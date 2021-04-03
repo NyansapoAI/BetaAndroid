@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keyword: "
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/keywordTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mombasa "
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    tools:text="Mombasa " />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/learningLevelImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/letter_level"
+                tools:src="@mipmap/letter_level" />
+
+            <LinearLayout
+                android:id="@+id/letterLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/letterHeader"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="Letter"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold"
+                    tools:text="Letter" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/letter_0"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="letter_0"
+                        tools:text="kite" />
+
+                    <TextView
+                        android:id="@+id/letter_1"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="letter_1"
+                        android:text="toy" />
+
+                    <TextView
+                        android:id="@+id/letter_2"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="letter_2"
+                        android:text="river" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/letter_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:padding="8dp"
+                        android:tag="letter_3"
+                        android:text="kite" />
+
+                    <TextView
+                        android:id="@+id/letter_4"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="letter_4"
+                        android:text="toy" />
+
+                    <TextView
+                        android:id="@+id/letter_5"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="letter_5"
+                        android:text="river" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wordLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/wordHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="word"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold"
+                    tools:text="Word" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/word_0"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="word_0"
+                        tools:text="kite" />
+
+                    <TextView
+                        android:id="@+id/word_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="word_1"
+                        tools:text="toy" />
+
+                    <TextView
+                        android:id="@+id/word_2"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:minWidth="50dp"
+                        android:tag="word_2"
+                        tools:text="river" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/word_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:tag="word_3"
+                        tools:text="school" />
+
+                    <TextView
+                        android:id="@+id/word_4"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:tag="word_4"
+
+                        tools:text="cube" />
+
+                    <TextView
+                        android:id="@+id/word_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_correct_word"
+                        android:gravity="center"
+                        android:tag="word_5"
+                        tools:text="mother" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/paragraphLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/paragraphHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Paragraph"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textview0"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_txtview"
+                        android:gravity="center"
+                        android:text="1" />
+
+                    <TextView
+                        android:id="@+id/textview1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_txtview"
+                        android:gravity="center"
+                        android:text="2"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/textview2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_txtview"
+                        android:gravity="center"
+                        android:text="3"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/textview3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_txtview"
+                        android:gravity="center"
+                        android:text="4"
+                        tools:text="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/paragraphTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textColor="@android:color/black"
+                    tools:text="One morning, the cow went to the lion. She
+
+" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/storyLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/storyHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Story"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/storyTxtView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="9"
+                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:textColor="@android:color/black"
+                        tools:text="One morning, the cow went to the lion. She" />
+
+                    <NumberPicker
+                        android:id="@+id/numberPicker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/q1TxtView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="what did the forest have?" />
+
+                <TextView
+                    android:id="@+id/answer1TxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_round"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    tools:text="my answer 1" />
+
+                <TextView
+                    android:id="@+id/q2TxtView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="what did the forest have?" />
+
+                <TextView
+                    android:id="@+id/answer2TxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_round"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    tools:text="my answer 2" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

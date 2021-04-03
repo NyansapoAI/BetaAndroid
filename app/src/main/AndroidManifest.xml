@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.edward.nyansapo">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:name="com.example.edward.nyansapo.presentation.ApplicationClass"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/small_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/small_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.edward.nyansapo.presentation.ui.pin.CustomPinActivity"
+            />
+        <activity android:name="com.example.edward.nyansapo.studentSettings" />
+        <activity android:name="com.example.edward.nyansapo.MainActivity" />
+        <activity android:name="com.example.edward.nyansapo.QuestionStory" />
+        <activity android:name="com.example.edward.nyansapo.student_assessments" />
+        <activity android:name="com.example.edward.nyansapo.assessment_detail" />
+        <activity android:name="com.example.edward.nyansapo.SelectAssessment" />
+        <activity android:name="com.example.edward.nyansapo.settings" />
+        <activity android:name="com.example.edward.nyansapo.cumulativeProgress" />
+        <activity android:name="com.example.edward.nyansapo.studentDetails">
+            <!--  <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
+
+                  <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>-->
+        </activity>
+        <activity android:name="com.example.edward.nyansapo.home" />
+        <activity android:name="com.example.edward.nyansapo.viewAssessment" />
+        <activity android:name="com.example.edward.nyansapo.registerSchool" />
+        <activity android:name="com.example.edward.nyansapo.RegisterTeacher" />
+        <activity android:name="com.example.edward.nyansapo.selectAssesment" />
+        <activity android:name="com.example.edward.nyansapo.student_activity" />
+        <activity android:name="com.example.edward.nyansapo.selectSchool" />
+        <activity android:name="com.example.edward.nyansapo.index2">
+            <!--     <intent-filcom.example.edward.nyansapo.er>
+                 <action androidcom.example.edward.nyansapo.name="android.intent.action.MAIN" />
+
+                 <category androcom.example.edward.nyansapo.d:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+ -->        </activity>
+        <activity android:name="com.example.edward.nyansapo.TeacherLogin" />
+        <activity android:name="com.example.edward.nyansapo.Interface_selecter" />
+        <activity android:name="com.example.edward.nyansapo.Begin_Assessment" />
+        <activity android:name="com.example.edward.nyansapo.PreAssessment" />
+        <activity android:name="com.example.edward.nyansapo.ParagraphChooserActivity" />
+        <activity android:name="com.example.edward.nyansapo.paragraph_assessment" />
+        <activity android:name="com.example.edward.nyansapo.story_assessment" />
+        <activity android:name="com.example.edward.nyansapo.storyQuestions" />
+        <activity android:name="com.example.edward.nyansapo.word_assessment" />
+        <activity android:name="com.example.edward.nyansapo.letter_assessment" />
+        <activity android:name="com.example.edward.nyansapo.thankYou" />
+        <activity android:name="com.example.edward.nyansapo.AddStudentFragment" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.edward.nyansapo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/slide_out_right" />
+    </application>
+</manifest>

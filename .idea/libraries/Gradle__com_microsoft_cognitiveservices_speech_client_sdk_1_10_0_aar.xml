@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.cognitiveservices.speech:client-sdk:1.10.0@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/6674385ff009a7daab8caf420f91dee5/jetified-client-sdk-1.10.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/5e560ed049368123610ab749212ae03d/jetified-client-sdk-1.10.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/88bd1c31d170ce701a70075e68cdf565/jetified-client-sdk-1.10.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/88bd1c31d170ce701a70075e68cdf565/jetified-client-sdk-1.10.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/88bd1c31d170ce701a70075e68cdf565/jetified-client-sdk-1.10.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

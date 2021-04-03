@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.2@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/72d1ceaeb196c02a4ccac53d4e48d61d/jetified-gaugelibrary-0.2.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/72d1ceaeb196c02a4ccac53d4e48d61d/jetified-gaugelibrary-0.2.2/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/72d1ceaeb196c02a4ccac53d4e48d61d/jetified-gaugelibrary-0.2.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.ekn.gruzer.gaugelibrary/gaugelibrary/0.2.2/c858e705bfa48921fa2fb1397e4c87beb3f09e42/gaugelibrary-0.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.ekn.gruzer.gaugelibrary/gaugelibrary/0.2.2/3beecd6562a27fd042cedd74b87073d16419e112/gaugelibrary-0.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

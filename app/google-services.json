@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "51077022369",
+    "project_id": "nyansapo-ai",
+    "storage_bucket": "nyansapo-ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51077022369:android:468092727a7cd6134326e0",
+        "android_client_info": {
+          "package_name": "com.example.edward.nyansapo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51077022369-midgbhde3sk6mfivnecp14g2ima4k3vf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBskXr_4yJeXicbe11HX6tDZSqLa2yXkdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51077022369-midgbhde3sk6mfivnecp14g2ima4k3vf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

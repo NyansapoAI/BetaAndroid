@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.gms:play-services-ads-identifier:15.0.1@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d69e9e9624406e11f504d4ec5b41c084/jetified-play-services-ads-identifier-15.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/6155d851d8845869dbaa7e931590952f/jetified-play-services-ads-identifier-15.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dafceb50e25f5b9c77a824f540818845/jetified-play-services-ads-identifier-15.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dafceb50e25f5b9c77a824f540818845/jetified-play-services-ads-identifier-15.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dafceb50e25f5b9c77a824f540818845/jetified-play-services-ads-identifier-15.0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

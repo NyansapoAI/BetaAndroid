@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ShowIn="navigation_view">
+
+
+    <!--<item android:title="Select School">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/school1"
+                    android:icon="@drawable/ic_school"
+                    android:title="School1" />
+
+            </group>
+
+            <item android:id="@+id/add_school"
+                android:icon="@drawable/ic_baseline"
+                android:title="Add School" />
+        </menu>
+
+    </item>
+
+
+
+
+    <item android:title="Select Group">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/group1"
+                    android:icon="@drawable/ic_group"
+                    android:title="Group1" />
+
+            </group>
+
+            <item android:id="@+id/add_group"
+                android:icon="@drawable/ic_baseline"
+                android:title="Add Group" />
+        </menu>
+    </item>-->
+
+
+
+
+
+
+    <item android:title="Communicate">
+        <menu>
+
+            <item android:id="@+id/share"
+                android:title="Share App"
+                android:icon="@drawable/ic_share"
+                />
+
+            <item android:id="@+id/send"
+                android:title="Export Data"
+                android:icon="@drawable/ic_send"
+                />
+        </menu>
+    </item>
+</menu>

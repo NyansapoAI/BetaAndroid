@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-analytics:15.0.2@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/84add6dd2d68b1739e6887a1e43c6e6f/jetified-firebase-analytics-15.0.2/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ae5e76d2b1a4c73887b1e8ed62d1c29d/jetified-firebase-analytics-15.0.2/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c1aab25ff2f5d18459604b13042a6139/jetified-firebase-analytics-15.0.2/res" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c1aab25ff2f5d18459604b13042a6139/jetified-firebase-analytics-15.0.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c1aab25ff2f5d18459604b13042a6139/jetified-firebase-analytics-15.0.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
