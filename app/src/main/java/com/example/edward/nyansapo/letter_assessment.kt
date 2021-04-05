@@ -322,14 +322,22 @@ class letter_assessment : AppCompatActivity() {
 
 
     private fun goToThankYou() {
-
         val myIntent = Intent(baseContext, thankYou::class.java)
-                assessment!!.letterCorrect = letters_correct
-                assessment!!.lettersWrong = letters_wrong
-                assessment!!.learningLevel = "LETTER"
-                myIntent.putExtra("Assessment", assessment)
-                startActivity(myIntent)
-                finish()
+        assessment!!.letterCorrect = letters_correct
+        assessment!!.lettersWrong = letters_wrong
+
+
+        if (error_count > 2) {
+            assessment!!.learningLevel = Learning_Level.BEGINNER.name
+
+        } else {
+            assessment!!.learningLevel = Learning_Level.LETTER.name
+
+        }
+
+        myIntent.putExtra("Assessment", assessment)
+        startActivity(myIntent)
+        finish()
 
     }
 

@@ -13,6 +13,7 @@ import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
+import android.os.Environment.DIRECTORY_MUSIC
 import android.util.Log
 import android.view.*
 import android.view.ViewGroup.*
@@ -31,6 +32,7 @@ import java.util.*
 import java.util.concurrent.ExecutionException
 import javax.inject.Inject
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 
 @AndroidEntryPoint
@@ -349,10 +351,15 @@ class paragraph_assessment : AppCompatActivity() {
 
 
     private fun startVoiceRecording() {
-        Log.d(TAG, "startVoiceRecording: Environment.getexternalStorageDirectory():${Environment.getExternalStorageDirectory()}")
+
+
+      MainActivity2.activityContext?.filesDir
+
+
+        Log.d(TAG, "startVoiceRecording: Environment.getexternalStorageDirectory():${Environment.getExternalStorageDirectory().absolutePath }")
         recorder = MediaRecorder()
         val status = Environment.getExternalStorageState();
-        if (status.equals("mounted")) {
+
             Log.d(TAG, "startVoiceRecording: sd card mounted")
             val timeStamp = Calendar.getInstance().time.time
             val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
@@ -367,10 +374,7 @@ class paragraph_assessment : AppCompatActivity() {
             recorder.setOutputFile(file.absolutePath)
             recorder.prepare()
             recorder.start()
-        } else {
-            Log.d(TAG, "startVoiceRecording: sd card not mounted")
 
-        }
 
     }
 

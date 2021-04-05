@@ -3,12 +3,13 @@ package com.example.edward.nyansapo.presentation.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.edward.nyansapo.Learning_Level
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentActivitiesBinding
+import com.example.edward.nyansapo.Learning_Level
 import com.example.edward.nyansapo.presentation.ui.grouping.SwipeGestureListener
 import com.example.edward.nyansapo.presentation.ui.grouping.SwipeListener
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
@@ -23,12 +24,13 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
 
     lateinit var binding: FragmentActivitiesBinding
     lateinit var adapter: ActivitiesAdapter
+    var originalList: MutableList<Activity>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated: ")
         binding = FragmentActivitiesBinding.bind(view)
-
+        originalList = getList()
         setGestureListener()
 
         setUpToolbar()
@@ -47,13 +49,11 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
         val list = getList()
 
 
-        adapter = ActivitiesAdapter {
+        adapter = ActivitiesAdapter(this,{
+            onSearchViewEmpty()
+        }) {
             onActivityClicked(it)
         }
-        adapter.originalList =list
-
-
-
 
 
         adapter.filter.filter(Learning_Level.BEGINNER.name)
@@ -61,6 +61,10 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
 
         binding.recyclerview.layoutManager = LinearLayoutManager(MainActivity2.activityContext!!)
         binding.recyclerview.adapter = adapter
+    }
+
+    private fun onSearchViewEmpty() {
+        setUpRecyclerView()
     }
 
     private fun getList(): MutableList<Activity> {
@@ -230,13 +234,24 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
 
             when (menuItem.itemId) {
                 R.id.addStudentItem -> {
-                   //
+                    //
                 }
             }
 
 
             true
         }
+
+        (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText?.toLowerCase())
+                return true
+            }
+        })
     }
     private fun setUpTabLayout() {
         //   binding.tabs.addTab(binding.tabs.newTab().setText("UNKNOWN"))

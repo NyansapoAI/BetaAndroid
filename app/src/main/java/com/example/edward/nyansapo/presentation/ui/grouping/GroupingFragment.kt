@@ -48,7 +48,6 @@ class GroupingFragment : Fragment(R.layout.fragment_learning_level), SwipeListen
 
         checkIfTheDatabaseIsEmpty()
         initRecyclerViewAdapter()
-        //  setSwipeListenerForItems()
 
 
     }

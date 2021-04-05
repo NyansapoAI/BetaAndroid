@@ -1,15 +1,17 @@
 package com.example.edward.nyansapo.presentation.ui.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
@@ -19,6 +21,7 @@ import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment
 import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment
+import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment2
 import com.example.edward.nyansapo.presentation.ui.home.HomePageFragment
 import com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment
 import com.example.edward.nyansapo.presentation.utils.Constants
@@ -26,19 +29,26 @@ import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.guardanis.applock.AppLock
-import com.guardanis.applock.activities.LockableAppCompatActivity
-import com.guardanis.applock.dialogs.LockCreationDialogBuilder
-import com.guardanis.applock.dialogs.UnlockDialogBuilder
+import com.nightonke.blurlockview.BlurLockView
+import com.nightonke.blurlockview.Directions.HideType
+import com.nightonke.blurlockview.Directions.ShowType
+import com.nightonke.blurlockview.Eases.EaseType
+import com.nightonke.blurlockview.Password
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import java.io.File
 
 
 @AndroidEntryPoint
-class MainActivity2 : LockableAppCompatActivity() {
+class MainActivity2 : AppCompatActivity() {
 
-    private val REQUEST_CODE_ENABLE = 11
+    private var settingPassword = false
+    private var counter = 0
+    private val DEFAULT_PASSWORD = "1234"
+    private val KEY_PASSWORD = "password"
+    private val KEY_PASSWORD_ENABLED = "passwordEnabled"
+    private val HIDE_DURATION_BLUR_VIEW = 1000
+    lateinit var sharedPreferences: SharedPreferences
 
     companion object {
         private const val TAG = "MainActivity2"
@@ -54,7 +64,10 @@ class MainActivity2 : LockableAppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        //   lockScreen()
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE)
+
+
 
         setUpToolbar()
 
@@ -67,6 +80,151 @@ class MainActivity2 : LockableAppCompatActivity() {
         binding.bottomNavigation.selectedItemId = R.id.action_home
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+        setUpBlurLockView()
+
+    }
+
+    private fun setUpBlurLockView() {
+        Log.d(TAG, "setUpBlurLockView: ")
+        binding.blurLockView.apply {
+            setBlurredView(binding.container)
+            downsampleFactor = 1
+            blurRadius = 1
+            overlayColor = R.color.black
+        }
+
+
+
+
+
+
+
+        if (isPasswordEnabled()) {
+            Log.d(TAG, "setUpBlurLockView: password enabled")
+            passwordEnabled()
+        } else {
+            Log.d(TAG, "setUpBlurLockView: password disabled")
+        }
+
+
+    }
+
+    val leftButtonClickListener = object : BlurLockView.OnLeftButtonClickListener {
+        override fun onClick() {
+            Log.d(TAG, "onClick: left button clicked")
+        }
+    }
+
+    val onPasswordInputListener = object : BlurLockView.OnPasswordInputListener {
+        override fun correct(inputPassword: String?) {
+            Log.d(TAG, "correct: inputPassword:$inputPassword")
+
+
+
+            if (settingPassword) {
+
+
+                passwordSetSuccessFully()
+
+            } else {
+                binding.blurLockView.hide(HIDE_DURATION_BLUR_VIEW, HideType.FADE_OUT, EaseType.Linear)
+            }
+        }
+
+
+        override fun incorrect(inputPassword: String?) {
+            Log.d(TAG, "incorrect: inputPassword:$inputPassword : :")
+
+            //logic for when person forgets password
+            if (inputPassword != null) {
+
+                if (inputPassword.equals(DEFAULT_PASSWORD)) {
+                    binding.blurLockView.hide(HIDE_DURATION_BLUR_VIEW, HideType.FADE_OUT, EaseType.Linear)
+                    return
+                }
+
+            }
+
+
+            if (settingPassword) {
+                if (counter == 0) {
+                    Log.d(TAG, "incorrect: first attempt")
+                    sharedPreferences.edit().putString(KEY_PASSWORD, inputPassword).apply()
+                    confirmPassword()
+
+                    return
+                }
+
+
+                passwordsDoNotMatch()
+
+
+            } else {
+                showToast("incorrect password")
+            }
+
+
+        }
+
+        override fun input(inputPassword: String?) {
+            Log.d(TAG, "input: inputPassword:$inputPassword")
+        }
+    }
+
+    private fun passwordsDoNotMatch() {
+        showToast("Passwords do not match")
+        resetPasswordScreen()
+
+    }
+
+    private fun resetPasswordScreen() {
+
+        binding.blurLockView.apply {
+            visibility = View.VISIBLE
+            hide(HIDE_DURATION_BLUR_VIEW, HideType.FADE_OUT, EaseType.Linear)
+
+        }
+    }
+
+
+    private fun passwordSetSuccessFully() {
+        Log.d(TAG, "passwordSetSuccessFully: password set successfully")
+        showToast("password set successfully")
+        sharedPreferences.edit().putBoolean(KEY_PASSWORD_ENABLED, true).apply()
+        binding.blurLockView.hide(HIDE_DURATION_BLUR_VIEW, HideType.FADE_OUT, EaseType.Linear)
+
+        settingPassword = false
+
+    }
+
+    private fun passwordEnabled() {
+        Log.d(TAG, "passwordEnabled: ")
+        binding.blurLockView.visibility = View.VISIBLE
+        val password = sharedPreferences.getString("password", DEFAULT_PASSWORD)
+        binding.blurLockView.setCorrectPassword(password)
+        binding.blurLockView.apply {
+
+            setTitle("Enter Password");
+            setLeftButton("Cancel");
+            setRightButton("Backspace");
+            //setTypeface(getTypeface());
+            setType(Password.NUMBER, true);
+            setOnLeftButtonClickListener(leftButtonClickListener);
+            setOnPasswordInputListener(onPasswordInputListener);
+            show(HIDE_DURATION_BLUR_VIEW, ShowType.FADE_IN, EaseType.Linear)
+        }
+
+
+    }
+
+
+    private fun isPasswordEnabled(): Boolean {
+        return sharedPreferences.getBoolean(KEY_PASSWORD_ENABLED, false)
     }
 
 
@@ -200,7 +358,7 @@ class MainActivity2 : LockableAppCompatActivity() {
                     R.id.action_grouping -> {
                         Log.d(TAG, "grouping clicked: ")
 
-                        supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment()).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment2()).commit()
 
                     }
                     R.id.action_home -> {
@@ -284,66 +442,70 @@ class MainActivity2 : LockableAppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item!!.itemId) {
-            R.id.enablePinItem -> {
-                dialogFlowClicked()
+            R.id.enablePasswordItem -> {
+                enablePassword()
             }
-            R.id.changePinItem -> {
-            }
-            R.id.unLockPinItem -> {
-                showDialogUnlockFlow()
+            R.id.disablePasswordItem -> {
+                disablePassword()
             }
 
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onPostResume() {
-        super.onPostResume()
-        Log.d(TAG, "onPostResume: ")
-        AppLock.onActivityResumed(this);
+    private fun disablePassword() {
+        Log.d(TAG, "disablePassword: password disabled")
+        sharedPreferences.edit().putBoolean(KEY_PASSWORD_ENABLED, false).apply()
+        binding.blurLockView.hide(HIDE_DURATION_BLUR_VIEW, HideType.FADE_OUT, EaseType.Linear)
+
     }
 
+    private fun enablePassword() {
+        binding.blurLockView.visibility = View.VISIBLE
 
-    fun dialogFlowClicked() {
-        if (!AppLock.isEnrolled(this)) {
-            showDialogCreateLockFlow()
+        Log.d(TAG, "enablePin: ")
+        counter = 0
+        settingPassword = true
 
-        } else {
-            Log.d(TAG, "dialogFlowClicked: Your are already enrolled in Lock System")
-            Toasty.info(this, "Your are already enrolled in Lock System").show()
+        val password = sharedPreferences.getString("password", DEFAULT_PASSWORD)
+        binding.blurLockView.setCorrectPassword("abcd")
+        binding.blurLockView.apply {
 
+            setTitle("Please Input Your Password");
+            //  setLeftButton("Cancel");
+            setRightButton("Backspace");
+            //setTypeface(getTypeface());
+            setType(Password.NUMBER, true);
+            setOnLeftButtonClickListener(leftButtonClickListener);
+            setOnPasswordInputListener(onPasswordInputListener);
+            show(HIDE_DURATION_BLUR_VIEW, ShowType.FADE_IN, EaseType.Linear)
         }
 
     }
 
+    private fun confirmPassword() {
+        Log.d(TAG, "confirmPassword: ")
+        counter++
+        binding.blurLockView.visibility = View.VISIBLE
 
-    private fun showDialogCreateLockFlow() {
-        LockCreationDialogBuilder(this)
-                .onCanceled({ showIndicatorMessage("You canceled...") })
-                .onLockCreated({ showIndicatorMessage("Lock created!") })
-                .show()
+
+        val password = sharedPreferences.getString(KEY_PASSWORD, DEFAULT_PASSWORD)
+        binding.blurLockView.setCorrectPassword(password)
+        binding.blurLockView.apply {
+
+            setTitle("Please Confirm Your Password");
+            setLeftButton("Cancel");
+            setRightButton("x");
+            setType(Password.NUMBER, true);
+            setOnLeftButtonClickListener(leftButtonClickListener);
+            setOnPasswordInputListener(onPasswordInputListener);
+            show(HIDE_DURATION_BLUR_VIEW, ShowType.FADE_IN, EaseType.Linear)
+        }
+
     }
 
-    private fun showDialogUnlockFlow() {
-        UnlockDialogBuilder(this)
-                .onCanceled({ showIndicatorMessage("Unlock canceled!") })
-                .onUnlocked({
-                  //  clearLocks()
-                })
-                .showIfEnrolledOrSuccess()
-    }
-
-    private fun clearLocks() {
-        Log.d(TAG, "clearLocks: ")
-        Log.d(TAG, "clearLocks:Unlock success! Lock removed. ")
-        Toasty.info(this, "Unlock success! Lock removed.").show()
-
-        AppLock.getInstance(this)
-                .invalidateEnrollments()
-    }
-
-    private fun showIndicatorMessage(message: String) {
-        Toast.makeText(this@MainActivity2, message, Toast.LENGTH_SHORT)
+    private fun showToast(message: String) {
+        Toasty.info(this@MainActivity2, message, Toast.LENGTH_SHORT)
                 .show()
     }
 
@@ -361,27 +523,7 @@ class MainActivity2 : LockableAppCompatActivity() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        when (requestCode) {
-            AppLock.REQUEST_CODE_UNLOCK -> {
-                if (resultCode == Activity.RESULT_OK)
-                    clearLocks()
-            }
-        }
-
-
-        when (requestCode) {
-            AppLock.REQUEST_CODE_LOCK_CREATION -> {
-                if (resultCode == Activity.RESULT_OK)
-                    Toast.makeText(this, "Lock created!", Toast.LENGTH_SHORT)
-                            .show()
-            }
-        }
-
-
-    }
 
 
 }

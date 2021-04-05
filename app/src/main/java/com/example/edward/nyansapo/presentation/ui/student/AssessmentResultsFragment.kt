@@ -30,7 +30,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_page), View.OnClickListener {
+class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_page) {
 
 
     private val TAG = "AssessmentResultsFragme"
@@ -59,20 +59,39 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
     private fun setUpNumberPicker() {
 
-        val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
-        Log.d(TAG, "setUpNumberPicker: directory:${directory.absolutePath}")
 
-        if(directory.listFiles()!=null){
-            binding.numberPicker.minValue = 0
-            binding.numberPicker.maxValue = directory.listFiles().size-1
-            Log.d(TAG, "setUpNumberPicker: list_files:${directory.listFiles().size-1}")
-            binding.numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+        val directoryParagraph = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
+        Log.d(TAG, "setUpNumberPicker: directory:${directoryParagraph.absolutePath}")
+
+        if(directoryParagraph.listFiles()!=null){
+            binding.numberPickerParagraph.minValue = 0
+            binding.numberPickerParagraph.maxValue = directoryParagraph.listFiles().size-1
+            Log.d(TAG, "setUpNumberPicker: list_files:${directoryParagraph.listFiles().size}")
+            binding.numberPickerParagraph.setOnValueChangedListener { picker, oldVal, newVal ->
+                Log.d(TAG, "setUpNumberPicker: newValue:$newVal")
+
+                readParagraphNew(newVal.toString())
+            }
+        }
+
+
+
+        val directoryStory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
+        Log.d(TAG, "setUpNumberPicker: directory:${directoryStory.absolutePath}")
+
+        if(directoryStory.listFiles()!=null){
+            binding.numberPickerStory.minValue = 0
+            binding.numberPickerStory.maxValue = directoryStory.listFiles().size-1
+            Log.d(TAG, "setUpNumberPicker: list_files:${directoryStory.listFiles().size-1}")
+            binding.numberPickerStory.setOnValueChangedListener { picker, oldVal, newVal ->
                 Log.d(TAG, "setUpNumberPicker: newValue:$newVal")
 
                 readStory(newVal.toString())
             }
         }
     }
+
+
 
     val wordClicked = object : View.OnClickListener {
         override fun onClick(view: View?) {
@@ -111,12 +130,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             word5.setOnClickListener(wordClicked)
         }
 
-        binding.apply {
-            textview0.setOnClickListener(this@AssessmentResultsFragment)
-            textview1.setOnClickListener(this@AssessmentResultsFragment)
-            textview2.setOnClickListener(this@AssessmentResultsFragment)
-            textview3.setOnClickListener(this@AssessmentResultsFragment)
-        }
+
     }
 
 
@@ -165,7 +179,28 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             e.printStackTrace()
         }
     }
+    private fun readParagraphNew(sentence_count: String) {
+        Log.d(TAG, "readParagraphNew: reading the story")
 
+        setUpMediaPlayer()
+
+        try {
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
+            val path = File(directory, "$sentence_count.wav").absolutePath
+
+            mediaPlayer.setDataSource(path)
+            mediaPlayer.prepare()
+            mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener {
+                Log.d(TAG, "readParagraphNew: completed playing")
+                mediaPlayer.release()
+            }
+        } catch (e: IOException) {
+            Toasty.info(requireContext(), "Recording not Found").show()
+            Log.d(TAG, "readParagraphNew: error")
+            e.printStackTrace()
+        }
+    }
     private fun readStory(sentence_count: String) {
         Log.d(TAG, "readStory: reading the story")
 
@@ -640,25 +675,6 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         }
     }
 
-    override fun onClick(view: View?) {
-        Log.d(TAG, "onClick: ")
-        when (view?.id) {
-            R.id.textview0 -> {
-                readParagraph(0.toString())
-            }
-            R.id.textview1 -> {
-                readParagraph(1.toString())
 
-            }
-            R.id.textview2 -> {
-                readParagraph(2.toString())
-
-            }
-            R.id.textview3 -> {
-                readParagraph(3.toString())
-
-            }
-        }
-    }
 
 }

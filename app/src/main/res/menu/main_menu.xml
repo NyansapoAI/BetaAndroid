@@ -2,16 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/enablePinItem"
-        android:title="Enable Pin"
+        android:id="@+id/enablePasswordItem"
+        android:title="Enable Password"
         app:showAsAction="never" />
+
     <item
-        android:id="@+id/changePinItem"
-        android:title="Change Pin"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/unLockPinItem"
-        android:title="Unlock Pin"
+        android:id="@+id/disablePasswordItem"
+        android:title="Disable Password"
         app:showAsAction="never" />
 
 </menu>

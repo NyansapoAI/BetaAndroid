@@ -163,7 +163,7 @@ dependencies {
     implementation 'org.mp4parser:isoparser:1.9.27'
 
     //4 digit lock
-    implementation('com.guardanis:applock:3.0.2')
+    implementation 'com.nightonke:blurlockview:1.0.0'
 
 }
 

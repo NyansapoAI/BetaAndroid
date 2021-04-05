@@ -55,7 +55,7 @@ class HomePageFragment : Fragment(R.layout.fragment_home_page) {
         super.onViewCreated(view, savedInstanceState)
 
         ////////////////////test
-        //    doTest()
+           doTest()
         getSharedPreferenceData()
 
 
