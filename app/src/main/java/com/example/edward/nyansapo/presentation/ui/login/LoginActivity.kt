@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
                             .createSignInIntentBuilder()
                             .setLogo(R.drawable.logo_wrapper)
                             .setAvailableProviders(Arrays.asList(
-                                    GoogleBuilder().build(),
+                                 //   GoogleBuilder().build(),
                                     EmailBuilder().build(),
                                     PhoneBuilder().build() //     new   AuthUI.IdpConfig.AnonymousBuilder().build()
                             ))
