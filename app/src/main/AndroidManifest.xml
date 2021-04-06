@@ -20,11 +20,11 @@
 
         <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
         <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">
-        <!--    <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
 
@@ -51,11 +51,11 @@
         <activity android:name="com.example.edward.nyansapo.student_activity" />
         <activity android:name="com.example.edward.nyansapo.selectSchool" />
         <activity android:name="com.example.edward.nyansapo.index2">
-            <intent-filter>
+     <!--       <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
          </activity>
         <activity android:name="com.example.edward.nyansapo.TeacherLogin" />
         <activity android:name="com.example.edward.nyansapo.Interface_selecter" />
