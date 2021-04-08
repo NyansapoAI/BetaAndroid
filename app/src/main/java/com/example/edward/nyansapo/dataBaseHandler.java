@@ -78,7 +78,7 @@ public class dataBaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        
         //create Tables
         String createTable = "create table "+ TABLE_NAME +
                 "(Id INTEGER PRIMARY KEY, txt TEXT)";

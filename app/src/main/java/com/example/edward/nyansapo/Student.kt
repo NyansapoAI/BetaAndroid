@@ -25,6 +25,6 @@ data class Student(
 ) : Parcelable, SearchSuggestion {
 
     override fun getBody(): String {
-        return "$firstname" + " $lastname"
+        return "$firstname $lastname"
     }
 }

@@ -1,5 +1,6 @@
 package com.example.edward.nyansapo.presentation.ui.student
 
+
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.edward.nyansapo.R
@@ -22,6 +24,7 @@ import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.activity_individual_student_page.view.*
 import java.io.File
 import java.io.IOException
 import java.util.regex.Matcher
@@ -43,6 +46,8 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
     lateinit var student: Student
     lateinit var assessment: Assessment
 
+    private var visible = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,30 +68,30 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         val directoryParagraph = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
         Log.d(TAG, "setUpNumberPicker: directory:${directoryParagraph.absolutePath}")
 
-        if(directoryParagraph.listFiles()!=null){
-            binding.numberPickerParagraph.minValue = 0
-            binding.numberPickerParagraph.maxValue = directoryParagraph.listFiles().size-1
-            Log.d(TAG, "setUpNumberPicker: list_files:${directoryParagraph.listFiles().size}")
-            binding.numberPickerParagraph.setOnValueChangedListener { picker, oldVal, newVal ->
-                Log.d(TAG, "setUpNumberPicker: newValue:$newVal")
+        /*  if(directoryParagraph.listFiles()!=null){
+              binding.numberPickerParagraph.minValue = 0
+              binding.numberPickerParagraph.maxValue = directoryParagraph.listFiles().size-1
+              Log.d(TAG, "setUpNumberPicker: list_files:${directoryParagraph.listFiles().size}")
+              binding.numberPickerParagraph.setOnValueChangedListener { picker, oldVal, newVal ->
+                  Log.d(TAG, "setUpNumberPicker: newValue:$newVal")
 
-                readParagraphNew(newVal.toString())
-            }
-        }
-
+                  readParagraphNew(newVal.toString())
+              }
+          }
+  */
 
 
         val directoryStory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
         Log.d(TAG, "setUpNumberPicker: directory:${directoryStory.absolutePath}")
 
-        if(directoryStory.listFiles()!=null){
-            binding.numberPickerStory.minValue = 0
-            binding.numberPickerStory.maxValue = directoryStory.listFiles().size-1
-            Log.d(TAG, "setUpNumberPicker: list_files:${directoryStory.listFiles().size-1}")
+        if (directoryStory.listFiles() != null) {
+            binding.numberPickerStory.minValue = 1
+            binding.numberPickerStory.maxValue = directoryStory.listFiles().size
+            Log.d(TAG, "setUpNumberPicker: list_files:${directoryStory.listFiles().size - 1}")
             binding.numberPickerStory.setOnValueChangedListener { picker, oldVal, newVal ->
                 Log.d(TAG, "setUpNumberPicker: newValue:$newVal")
-
-                readStory(newVal.toString())
+                val position = newVal - 1
+                readStory(position.toString())
             }
         }
     }
@@ -130,7 +135,26 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             word5.setOnClickListener(wordClicked)
         }
 
+        binding.visibilityImageview.setOnClickListener {
+            visible = !visible
 
+            if (visible) {
+                visibleMode()
+            } else {
+                invisibleMode()
+            }
+            setAssessmentInfoToUi()
+        }
+
+
+    }
+
+    private fun visibleMode() {
+        binding.visibilityImageview.setImageResource(R.drawable.ic_visible)
+    }
+
+    private fun invisibleMode() {
+        binding.visibilityImageview.setImageResource(R.drawable.ic_invisible)
     }
 
 
@@ -231,34 +255,6 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         }
             mediaPlayer = MediaPlayer()
 
-
-
-    }
-
-
-    private fun readParagraph(sentence_count: String) {
-        Log.d(TAG, "readTheParagraph: reading the paragraph")
-        setUpMediaPlayer()
-        val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
-
-        val path = File(directory, "$sentence_count.wav").absolutePath
-
-
-        try {
-
-            mediaPlayer.setDataSource(path)
-            mediaPlayer.prepare()
-            mediaPlayer.start()
-            mediaPlayer.setOnCompletionListener {
-                Log.d(TAG, "readParagraph: completed playing")
-                mediaPlayer.release()
-
-            }
-        } catch (e: IOException) {
-            Toasty.error(requireContext(), "Recording not found").show()
-            Log.d(TAG, "readParagraph: error")
-            e.printStackTrace()
-        }
 
 
     }
@@ -370,8 +366,13 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             }
         }
 
-        binding.storyTxtView.text = wordtoSpan
+        if (visible) {
+            binding.storyTxtView.text = wordtoSpan
+        } else {
+            binding.storyTxtView.text = wholeStory
 
+
+        }
 
 
         startSettingQuestions(false)
@@ -434,22 +435,77 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             }
         }
 
-        binding.paragraphTxtView.text = wordtoSpan
+        //    binding.paragraphTxtView.text = wordtoSpan
+        setParagraphOnButtons(wordtoSpan)
 
     }
 
-    /*   private fun underLineThisWord(string: String, wholeParagraph: String, wordsToSpan: Spannable) {
-           Log.d(TAG, "underLineThisWord: started underlining words in paragraph/story")
+    private fun setParagraphOnButtons(wordtoSpan: Spannable) {
+        Log.d(TAG, "setParagraphOnButtons: ")
+        wordtoSpan.split(".").filter {
+            !it.isBlank()
+        }.forEachIndexed { index, sentence ->
+            Log.d(TAG, "setParagraphOnButtons: index:$index : :sentence:$sentence")
 
-           Log.d(TAG, "underLineThisWord: string::$string wholeParagraph: :$wholeParagraph")
+            underlineWordAndSetOnButton(index, sentence)
 
 
-           wholeParagraph.indexOf(string, ignoreCase = true).apply {
-                   val endOfString = this + string.length
-                   wordsToSpan.setSpan(ForegroundColorSpan(Color.RED), this, endOfString, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-               }
+        }
+    }
 
-       }*/
+    val paragraphClickListener = object : View.OnClickListener {
+        override fun onClick(v: View?) {
+            Log.d(TAG, "onClick:${v?.id} button 0: :${R.id.button_0}")
+
+            when (v?.id) {
+                R.id.button_0 -> {
+                    Log.d(TAG, "onClick: button 0")
+                    readParagraphNew(0.toString())
+                }
+                R.id.button_1 -> {
+                    readParagraphNew(1.toString())
+                }
+                R.id.button_2 -> {
+                    readParagraphNew(2.toString())
+                }
+                R.id.button_3 -> {
+                    readParagraphNew(3.toString())
+                }
+                R.id.button_4 -> {
+                    readParagraphNew(4.toString())
+                }
+            }
+        }
+    }
+
+    private fun underlineWordAndSetOnButton(index: Int, sentence: String) {
+        Log.d(TAG, "underlineWordAndSetOnButton: ")
+        val wordsToSpan = SpannableString(sentence)
+
+        assessment.paragraphWordsWrong.split(",", ignoreCase = true).forEach { string ->
+
+            if (!string.isBlank()) {
+
+                underLineThisWord(string.trim().toLowerCase(), sentence.toLowerCase(), wordsToSpan)
+
+            }
+        }
+
+
+        val button: Button = binding.root.findViewWithTag("button_$index")
+
+        if (visible) {
+            button.text = wordsToSpan
+
+        } else {
+            button.text = sentence
+
+        }
+        button.visibility = View.VISIBLE
+
+        button.setOnClickListener(paragraphClickListener)
+    }
+
     private fun underLineThisWord(wordToSearch: String, wholeParagraph: String, spannable: Spannable) {
         Log.d(TAG, "underLineThisWord: started underlining words in paragraph/story")
 
@@ -485,8 +541,13 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
             flag = false
             val textView: TextView = binding.root.findViewWithTag<TextView>("word_$index")
+            if (visible) {
+                textView.setBackgroundResource(R.drawable.bg_wrong_word)
 
-            textView.setBackgroundResource(R.drawable.bg_wrong_word)
+            } else {
+                textView.setBackgroundResource(R.drawable.bg_correct_word)
+
+            }
             textView.text = string.trim()
 
             lastIndex = index
@@ -536,7 +597,12 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             flag = false
 
             val textView: TextView = binding.root.findViewWithTag<TextView>("letter_$index")
-            textView.setBackgroundResource(R.drawable.bg_wrong_word)
+            if (visible) {
+                textView.setBackgroundResource(R.drawable.bg_wrong_word)
+            } else {
+                textView.setBackgroundResource(R.drawable.bg_correct_word)
+
+            }
             textView.text = string.trim()
             Log.d(TAG, "startSettingLetters: index:$index letter:${textView.text}")
             lastIndex = index
@@ -581,7 +647,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         wordtoSpan.setSpan(ForegroundColorSpan(Color.RED), 90, 100, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         wordtoSpan.setSpan(ForegroundColorSpan(Color.RED), 152, 167, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        binding.paragraphTxtView.text = wordtoSpan
+        // binding.paragraphTxtView.text = wordtoSpan
     }
 
 

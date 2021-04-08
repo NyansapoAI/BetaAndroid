@@ -50,6 +50,12 @@
                 android:layout_height="200dp"
                 android:src="@mipmap/letter_level"
                 tools:src="@mipmap/letter_level" />
+            <ImageView
+                android:id="@+id/visibilityImageview"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_invisible"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/letterLinearLayout"
@@ -69,14 +75,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/letter_0"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
                         android:gravity="center"
@@ -88,7 +94,7 @@
                         android:id="@+id/letter_1"
                         android:layout_width="0dp"
 
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -101,7 +107,7 @@
                         android:id="@+id/letter_2"
                         android:layout_width="0dp"
 
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -115,7 +121,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -123,7 +129,7 @@
                     <TextView
                         android:id="@+id/letter_3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
                         android:gravity="center"
@@ -136,7 +142,7 @@
                         android:id="@+id/letter_4"
                         android:layout_width="0dp"
 
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -149,7 +155,7 @@
                         android:id="@+id/letter_5"
                         android:layout_width="0dp"
 
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -158,16 +164,13 @@
                         android:tag="letter_5"
                         android:text="river" />
 
-
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/wordLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
                 <TextView
@@ -182,25 +185,24 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/word_0"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
                         android:gravity="center"
-                        android:minWidth="50dp"
                         android:tag="word_0"
                         tools:text="kite" />
 
                     <TextView
                         android:id="@+id/word_1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -213,7 +215,7 @@
                         android:id="@+id/word_2"
                         android:layout_width="0dp"
 
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -226,14 +228,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/word_3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
                         android:gravity="center"
@@ -243,8 +245,7 @@
                     <TextView
                         android:id="@+id/word_4"
                         android:layout_width="0dp"
-
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -256,7 +257,7 @@
                     <TextView
                         android:id="@+id/word_5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_correct_word"
@@ -334,26 +335,87 @@
                 </LinearLayout>-->
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_weight="9"
-                        android:id="@+id/paragraphTxtView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:textAppearance="@android:style/TextAppearance.Large"
-                        android:textColor="@android:color/black"
-                        tools:text="One morning, the cow went to the lion. She
 
-" />
-                    <NumberPicker
-                        android:id="@+id/numberPickerParagraph"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/button_0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tag="button_0"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        tools:text="Nakuru is a big town"
+                        tools:visibility="visible" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tag="button_1"
+                        android:textAllCaps="false"
+                        android:id="@+id/button_1"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        tools:text="Nakuru is a big town"
+                        tools:visibility="visible" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:id="@+id/button_2"
+
+                        android:layout_height="wrap_content"
+                        android:tag="button_2"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        tools:text="Nakuru is a big town"
+                        tools:visibility="visible" />
+
+                    <Button   android:id="@+id/button_3"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tag="button_3"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        tools:text="Nakuru is a big town"
+                        tools:visibility="visible" />
+
+                    <Button   android:id="@+id/button_4"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:tag="button_4"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        tools:text="Nakuru is a big town"
+                        tools:visibility="visible" />
+
                 </LinearLayout>
+                <!--    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_weight="9"
+                            android:id="@+id/paragraphTxtView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAppearance="@android:style/TextAppearance.Large"
+                            android:textColor="@android:color/black"
+                            tools:text="One morning, the cow went to the lion. She"/>
+                        <NumberPicker
+                            android:id="@+id/numberPickerParagraph"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>-->
 
 
             </LinearLayout>
@@ -390,8 +452,10 @@
                         tools:text="One morning, the cow went to the lion. She" />
 
                     <NumberPicker
+
                         android:id="@+id/numberPickerStory"
                         android:layout_width="0dp"
+                        android:background="@android:color/holo_blue_dark"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 

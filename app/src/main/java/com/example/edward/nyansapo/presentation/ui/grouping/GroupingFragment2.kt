@@ -7,9 +7,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.arlib.floatingsearchview.FloatingSearchView
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentLearningLevelBinding
 import com.example.edward.nyansapo.AddStudentFragment
@@ -18,14 +17,15 @@ import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.ui.student.StudentAssessmentListFragment
 import com.example.edward.nyansapo.presentation.utils.Constants
 import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_learning_level.*
+
 
 class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListener {
 
@@ -34,6 +34,12 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
     lateinit var adapter: GroupingAdapter2
     lateinit var listenerRegistration: ListenerRegistration
     lateinit var originalList: MutableList<DocumentSnapshot>
+
+
+    lateinit var mSearchView: FloatingSearchView
+
+
+    private var mIsDarkSearchTheme = false
 
     lateinit var binding: FragmentLearningLevelBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,11 +55,16 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
         checkIfTheDatabaseIsEmpty()
         initRecyclerViewAdapter()
-        fetchAllStudents()
+        //  fetchAllStudents()
 
     }
 
-    private fun fetchAllStudents() {
+    override fun onResume() {
+        super.onResume()
+        fetchAllStudents()
+    }
+
+    private fun fetchAllStudents(onComplete: (List<DocumentSnapshot>) -> Unit = {}) {
         Log.d(TAG, "fetchAllStudents: ")
         val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
@@ -75,6 +86,8 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
             originalList = querySnapshot!!.documents
 
+            onComplete(originalList)
+
         }
 
     }
@@ -87,6 +100,8 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
         binding.fob.setOnClickListener {
             addstudent()
         }
+
+
     }
 
 
@@ -131,7 +146,9 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
     }
 
     private fun searchViewIsEmpty() {
-        initRecyclerViewAdapter()
+        Log.d(TAG, "searchViewIsEmpty: ${tabs.selectedTabPosition}")
+
+        onSwipeRight()
     }
 
     private fun onStudentLongClicked(it: DocumentSnapshot) {
@@ -178,22 +195,13 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
     }
 
     private fun onStudentClicked(it: DocumentSnapshot) {
+        studentDocumentSnapshot = it
         Log.d(TAG, "onStudentClicked: student Has been clicked")
         MainActivity2.activityContext!!.supportFragmentManager.beginTransaction().replace(R.id.container, StudentAssessmentListFragment()).addToBackStack(null).commitAllowingStateLoss()
     }
 
 
-    private fun setSwipeListenerForItems() {
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                adapter?.deleteFromDatabase(viewHolder.bindingAdapterPosition)
-            }
-        }).attachToRecyclerView(recyclerview)
-    }
 
     private fun setUpTabLayout() {
         binding.tabs.addTab(binding.tabs.newTab().setText("UNKNOWN"))

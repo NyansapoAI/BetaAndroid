@@ -38,7 +38,7 @@ class GroupingFragment : Fragment(R.layout.fragment_learning_level), SwipeListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLearningLevelBinding.bind(view)
-        setUpToolbar()
+        //setUpToolbar()
         setUpTabLayout()
         setOnClickListeners()
         setGestureListener()
@@ -217,7 +217,7 @@ class GroupingFragment : Fragment(R.layout.fragment_learning_level), SwipeListen
 
     }
 
-    private fun setUpToolbar() {
+/*    private fun setUpToolbar() {
         binding.toolbar.root.inflateMenu(R.menu.learning_level_menu)
         binding.toolbar.root.setTitle("Grouping")
         binding.toolbar.root.setOnMenuItemClickListener { menuItem ->
@@ -231,7 +231,7 @@ class GroupingFragment : Fragment(R.layout.fragment_learning_level), SwipeListen
 
             true
         }
-    }
+    }*/
 
 
     fun addstudent() {
