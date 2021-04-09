@@ -351,18 +351,17 @@ class paragraph_assessment : AppCompatActivity() {
 
 
     private fun startVoiceRecording() {
+        Log.d(TAG, "startVoiceRecording: assessment:${assessment}")
 
 
-      MainActivity2.activityContext?.filesDir
 
-
-        Log.d(TAG, "startVoiceRecording: Environment.getexternalStorageDirectory():${Environment.getExternalStorageDirectory().absolutePath }")
+   
         recorder = MediaRecorder()
         val status = Environment.getExternalStorageState();
 
             Log.d(TAG, "startVoiceRecording: sd card mounted")
             val timeStamp = Calendar.getInstance().time.time
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             directory.mkdirs()
             file = File(directory, "${sentence_count}.wav")
             file.createNewFile()

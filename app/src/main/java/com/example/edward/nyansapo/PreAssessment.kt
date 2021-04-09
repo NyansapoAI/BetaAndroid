@@ -29,6 +29,7 @@ import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_pre_assessment.*
+import java.util.*
 import java.util.concurrent.ExecutionException
 
 class PreAssessment : AppCompatActivity(), View.OnClickListener {
@@ -152,7 +153,9 @@ class PreAssessment : AppCompatActivity(), View.OnClickListener {
 
     private fun gotoParagraphChooser() {
         val myIntent = Intent(baseContext, ParagraphChooserActivity::class.java)
+        val uniqueID=Calendar.getInstance().timeInMillis.toString()
         val assessment = Assessment() // create new assessment object
+        assessment.id=uniqueID
         assessment.assessmentKey = ASSESSMENT_KEY // assign proper key
         myIntent.putExtra("Assessment", assessment) //sent next activity
         startActivity(myIntent)

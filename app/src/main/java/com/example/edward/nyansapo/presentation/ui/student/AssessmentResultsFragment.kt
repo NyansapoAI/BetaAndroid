@@ -65,7 +65,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
     private fun setUpNumberPicker() {
 
 
-        val directoryParagraph = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
+        val directoryParagraph = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}/${assessment.id}")
         Log.d(TAG, "setUpNumberPicker: directory:${directoryParagraph.absolutePath}")
 
         /*  if(directoryParagraph.listFiles()!=null){
@@ -81,7 +81,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
   */
 
 
-        val directoryStory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
+        val directoryStory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}/${assessment.id}")
         Log.d(TAG, "setUpNumberPicker: directory:${directoryStory.absolutePath}")
 
         if (directoryStory.listFiles() != null) {
@@ -163,7 +163,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
         var mediaPlayer: MediaPlayer
         try {
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/letters/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/letters/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             val file = File(directory, "${v.text.toString()}.wav")
 
             mediaPlayer = MediaPlayer()
@@ -187,7 +187,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         Log.d(TAG, "readWord: reading the paragraph")
         setUpMediaPlayer()
         try {
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/words/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/words/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             val file = File(directory, "${v.text.toString()}.wav")
 
             mediaPlayer.setDataSource(file.absolutePath)
@@ -209,7 +209,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         setUpMediaPlayer()
 
         try {
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             val path = File(directory, "$sentence_count.wav").absolutePath
 
             mediaPlayer.setDataSource(path)
@@ -231,7 +231,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
         setUpMediaPlayer()
 
         try {
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}/${assessment.id}")
             val path = File(directory, "$sentence_count.wav").absolutePath
 
             mediaPlayer.setDataSource(path)
@@ -477,12 +477,14 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
             }
         }
     }
-
+private var paragraphWordsWrongList= mutableListOf<String>()
     private fun underlineWordAndSetOnButton(index: Int, sentence: String) {
         Log.d(TAG, "underlineWordAndSetOnButton: ")
         val wordsToSpan = SpannableString(sentence)
 
-        assessment.paragraphWordsWrong.split(",", ignoreCase = true).forEach { string ->
+     paragraphWordsWrongList = assessment.paragraphWordsWrong.split(",", ignoreCase = true).toMutableList()
+
+        paragraphWordsWrongList.forEach { string ->
 
             if (!string.isBlank()) {
 
@@ -516,6 +518,8 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
         if (matcher.find()) {
             high_light_found_text(spannable, matcher)
+            //remove found word from list
+          //  paragraphWordsWrongList.remove(wordToSearch)
         }
 
     }

@@ -78,10 +78,10 @@ class thankYou : AppCompatActivity() {
             Log.d(TAG, "updateStudentLearningLevel: finished updating student learning level")
 
 
-            studentDocumentSnapshot!!.reference.collection(COLLECTION_ASSESSMENTS).add(assessment!!).addOnSuccessListener { assessment ->
+            studentDocumentSnapshot!!.reference.collection(COLLECTION_ASSESSMENTS).document(assessment!!.id).set(assessment!!).addOnSuccessListener { assessment ->
                 showProgress(false)
                 Log.d(TAG, "postAssessment: finished updating assessment")
-                saveAssessmentRecording(assessment.id)
+              //  saveAssessmentRecording(ass)
 
             }
 

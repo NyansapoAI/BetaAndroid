@@ -40,9 +40,9 @@ class GroupingAdapter2(val fragment2: GroupingFragment2, val searchViewEmpty: ()
     private val context: Context? = MainActivity2.activityContext!!
 
 
-    private fun setOnClickListeners(holder: ViewHolder, position: Int) {
+    private fun setOnClickListeners(holder: ViewHolder, positionDummy: Int) {
 
-
+        val position = holder.bindingAdapterPosition
         holder.itemView.setOnClickListener {
             if (position == RecyclerView.NO_POSITION) {
                 return@setOnClickListener

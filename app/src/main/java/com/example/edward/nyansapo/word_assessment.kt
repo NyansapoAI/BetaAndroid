@@ -235,7 +235,7 @@ class word_assessment : AppCompatActivity() {
         if (status.equals("mounted")) {
             Log.d(TAG, "startVoiceRecording: sd card mounted")
             val timeStamp = Calendar.getInstance().time.time
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/words/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/words/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             directory.mkdirs()
             file = File(directory, "${wordList[word_count]}.wav")
             file.createNewFile()

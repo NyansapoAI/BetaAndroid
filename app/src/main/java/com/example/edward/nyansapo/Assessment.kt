@@ -10,9 +10,6 @@ import java.util.*
 
 @Parcelize
 data class Assessment(
-
-
-        @DocumentId
         var id: String,
         var assessmentKey: String,
         var letterCorrect: String,

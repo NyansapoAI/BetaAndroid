@@ -17,8 +17,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="LearningLevelFragment" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="exclude SurfaceFlinger" />
   </component>
   <component name="BranchesTreeState">
@@ -41,31 +40,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0994166-8f47-4f0f-a1f8-b9e3b781f54e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_invisible.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_visible.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Student.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Student.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/dataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/dataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/PreAssessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/PreAssessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/letter_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/letter_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/login/LoginActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/student/AssessmentResultsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/student/AssessmentResultsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_individual_student_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_individual_student_page.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_student.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_student.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_learning_level.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_learning_level.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/learning_level_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/learning_level_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/story_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/story_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/thankYou.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/thankYou.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/word_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/word_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_activities.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_activities.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -610,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617718527996</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="modified ui">
+      <created>1617909161747</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1617909161752</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -637,7 +632,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="switched the google-services.json file" />
     <MESSAGE value="fixed time stamp issue  of assessments list" />
     <MESSAGE value="removed the animation transition from one activity to another it was causing a bug ,where some screens where not responsive" />
     <MESSAGE value="coded HomePageFragment.kt logic" />
@@ -662,7 +656,8 @@
     <MESSAGE value="implemented searching through list" />
     <MESSAGE value="update 1" />
     <MESSAGE value="update 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 2" />
+    <MESSAGE value="modified ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified ui" />
   </component>
   <component name="WindowStateProjectService">
     <state x="427" y="59" key="#Images" timestamp="1614867816939">
@@ -705,10 +700,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1616407067342" />
-    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1617718526327">
+    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1617909147352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1617718526327" />
+    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1617909147352" />
     <state x="142" y="54" width="1086" height="610" key="DiffContextDialog" timestamp="1617598291736">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -725,22 +720,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="261" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1617459244366" />
-    <state width="1323" height="189" key="GridCell.Tab.0.bottom" timestamp="1617908679231">
+    <state width="1323" height="76" key="GridCell.Tab.0.bottom" timestamp="1617980535612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="189" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1617908679231" />
-    <state width="1323" height="189" key="GridCell.Tab.0.center" timestamp="1617908679231">
+    <state width="1323" height="76" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1617980535612" />
+    <state width="1323" height="76" key="GridCell.Tab.0.center" timestamp="1617980535612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="189" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1617908679231" />
-    <state width="1323" height="189" key="GridCell.Tab.0.left" timestamp="1617908679231">
+    <state width="1323" height="76" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1617980535612" />
+    <state width="1323" height="76" key="GridCell.Tab.0.left" timestamp="1617980535612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="189" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1617908679231" />
-    <state width="1323" height="189" key="GridCell.Tab.0.right" timestamp="1617908679231">
+    <state width="1323" height="76" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1617980535612" />
+    <state width="1323" height="76" key="GridCell.Tab.0.right" timestamp="1617980535612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="189" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1617908679231" />
+    <state width="1323" height="76" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1617980535612" />
     <state x="263" y="106" key="IDE.errors.dialog" timestamp="1616410482164">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -753,10 +748,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1617248984019" />
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1617718532903">
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1617909166855">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617718532903" />
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617909166855" />
     <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1617189353942">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -785,9 +780,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="170" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1617270654381" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1617908284119">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1617980037528">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1617908284119" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1617980037528" />
   </component>
 </project>

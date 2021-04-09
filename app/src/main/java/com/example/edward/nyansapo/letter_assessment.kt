@@ -167,13 +167,12 @@ class letter_assessment : AppCompatActivity() {
 
     }
     private fun startVoiceRecording() {
-        Log.d(TAG, "startVoiceRecording: Environment.getexternalStorageDirectory():${Environment.getExternalStorageDirectory()}")
-        recorder = MediaRecorder()
+          recorder = MediaRecorder()
         val status = Environment.getExternalStorageState();
         if (status.equals("mounted")) {
             Log.d(TAG, "startVoiceRecording: sd card mounted")
          //   val timeStamp = Calendar.getInstance().time.time
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/letters/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/letters/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             directory.mkdirs()
             file = File(directory, "${letterList[letter_count]}.wav")
             file.createNewFile()

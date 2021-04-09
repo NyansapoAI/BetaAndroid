@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.arlib.floatingsearchview.FloatingSearchView
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentLearningLevelBinding
 import com.example.edward.nyansapo.AddStudentFragment
@@ -36,10 +36,7 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
     lateinit var originalList: MutableList<DocumentSnapshot>
 
 
-    lateinit var mSearchView: FloatingSearchView
 
-
-    private var mIsDarkSearchTheme = false
 
     lateinit var binding: FragmentLearningLevelBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,8 +51,10 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
 
         checkIfTheDatabaseIsEmpty()
+        val searchView = (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView)
+
         initRecyclerViewAdapter()
-        //  fetchAllStudents()
+
 
     }
 
@@ -107,6 +106,7 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
     private fun initRecyclerViewAdapter(learningLevel: String = Learning_Level.UNKNOWN.name) {
         Log.d(TAG, "initRecyclerViewAdapter: ")
+
         val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
         val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
@@ -145,10 +145,13 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
     }
 
+    private fun showTabs(visible: Boolean) {
+        binding.tabs.isVisible = visible
+    }
+
     private fun searchViewIsEmpty() {
         Log.d(TAG, "searchViewIsEmpty: ${tabs.selectedTabPosition}")
 
-        onSwipeRight()
     }
 
     private fun onStudentLongClicked(it: DocumentSnapshot) {
@@ -259,6 +262,7 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
     }
 
     private fun setUpToolbar() {
+        Log.d(TAG, "setUpToolbar: ")
         binding.toolbar.root.inflateMenu(R.menu.learning_level_menu)
         binding.toolbar.root.setTitle("Grouping")
         binding.toolbar.root.setOnMenuItemClickListener { menuItem ->
@@ -272,15 +276,24 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
 
             true
         }
+        val searchView = (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView)
 
-
-        (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText?.toLowerCase())
+
+                if (newText != null && newText.isNotEmpty()) {
+                    Log.d(TAG, "onQueryTextChange:  newText:$newText")
+                    showTabs(false)
+                    adapter.filter.filter(newText?.toLowerCase())
+                } else {
+                    Log.d(TAG, "onQueryTextChange: no text")
+                    showTabs(true)
+                    initRecyclerViewAdapter()
+                }
                 return true
             }
         })

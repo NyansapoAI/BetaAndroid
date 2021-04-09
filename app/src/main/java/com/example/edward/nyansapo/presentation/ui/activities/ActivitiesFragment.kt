@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edward.nyansapo.R
@@ -38,18 +39,19 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
         setUpRecyclerView()
         setOnClickListeners()
 
-
-
     }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+    }
+
     private fun setGestureListener() {
         binding.recyclerview.setOnTouchListener(SwipeGestureListener(this))
     }
 
     private fun setUpRecyclerView() {
-        val list = getList()
-
-
-        adapter = ActivitiesAdapter(this,{
+        adapter = ActivitiesAdapter(this, {
             onSearchViewEmpty()
         }) {
             onActivityClicked(it)
@@ -58,13 +60,12 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
 
         adapter.filter.filter(Learning_Level.BEGINNER.name)
 
-
         binding.recyclerview.layoutManager = LinearLayoutManager(MainActivity2.activityContext!!)
         binding.recyclerview.adapter = adapter
     }
 
     private fun onSearchViewEmpty() {
-        setUpRecyclerView()
+        //    setUpRecyclerView()
     }
 
     private fun getList(): MutableList<Activity> {
@@ -214,7 +215,7 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
     }
 
     private fun onActivityClicked(it: Activity) {
-        Log.d(TAG, "onActivityClicked: it:$it")
+        Log.d(TAG, "onActivityClicked: Activity:${it.name}")
         val bundle = bundleOf("activity" to it)
         val fragment = ActivitiesDetailFragment()
         fragment.arguments = bundle
@@ -226,6 +227,7 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
         binding.fob.setOnClickListener {
         }
     }
+
 
     private fun setUpToolbar() {
         binding.toolbar.root.inflateMenu(R.menu.search_menu)
@@ -242,17 +244,32 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
             true
         }
 
-        (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchView = (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText?.toLowerCase())
+                Log.d(TAG, "onQueryTextChange: ")
+                if (newText != null && newText.isNotEmpty()) {
+                    showTabs(false)
+                    adapter.filter.filter(newText?.toLowerCase())
+
+                } else {
+                    Log.d(TAG, "onQueryTextChange: searchview empty")
+                     setUpRecyclerView()
+                    showTabs(true)
+                }
                 return true
             }
         })
     }
+
+    private fun showTabs(visible: Boolean) {
+        binding.tabs.isVisible = visible
+    }
+
     private fun setUpTabLayout() {
         //   binding.tabs.addTab(binding.tabs.newTab().setText("UNKNOWN"))
         binding.tabs.addTab(binding.tabs.newTab().setText("Beginner"))
@@ -260,7 +277,7 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
         binding.tabs.addTab(binding.tabs.newTab().setText("Word"))
         binding.tabs.addTab(binding.tabs.newTab().setText("Paragraph"))
         binding.tabs.addTab(binding.tabs.newTab().setText("Story"))
-      //  binding.tabs.addTab(binding.tabs.newTab().setText("Above"))
+        //  binding.tabs.addTab(binding.tabs.newTab().setText("Above"))
 
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

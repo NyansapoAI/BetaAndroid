@@ -124,7 +124,7 @@ class story_assessment : AppCompatActivity() {
             val timeStamp = Calendar.getInstance().time.time
 
            // val student= studentDocumentSnapshot!!.toObject(Student::class.java)
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}")
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             directory.mkdirs()
             file = File(directory, "$sentence_count.wav")
             file.createNewFile()
