@@ -18,8 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
-        <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">
+        <activity android:name="com.example.edward.nyansapo.data.models.ui.main.MainActivity2" />
+        <activity android:name="com.example.edward.nyansapo.data.models.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

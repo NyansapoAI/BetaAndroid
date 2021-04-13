@@ -19,19 +19,16 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.db.AssessmentDao
 import com.example.edward.nyansapo.presentation.utils.GlobalData
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_pre_assessment.*
 import kotlinx.android.synthetic.main.activity_word_assessment.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
-import javax.inject.Inject
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 

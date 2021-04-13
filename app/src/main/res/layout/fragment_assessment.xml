@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout android:orientation="vertical"
+<RelativeLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.arlib.floatingsearchview.FloatingSearchView
         android:id="@+id/mSearchView"
@@ -20,15 +21,41 @@
         app:floatingSearch_suggestionsListAnimDuration="250"
         app:floatingSearch_showSearchKey="true"
         app:floatingSearch_viewSuggestionItemTextColor="@color/black" />
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:id="@+id/listLinLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text="Recently Added Students:"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            tools:listitem="@layout/item_student"
+            tools:itemCount="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fob"
+        android:padding="4dp"
+        android:text="Add Student"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:backgroundTint="@android:color/black"
         android:layout_margin="32dp"
-        android:tint="@color/white"
-        android:src="@drawable/ic_add_24" />
+        app:icon="@drawable/ic_add_24"
+      />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

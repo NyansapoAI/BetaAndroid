@@ -2,7 +2,7 @@ package com.example.edward.nyansapo.presentation.utils
 
 
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.db.AssessmentRecording
+import com.example.edward.nyansapo.data.local.db.AssessmentRecording
 
 class GlobalData {
     companion object {

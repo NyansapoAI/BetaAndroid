@@ -13,7 +13,6 @@ import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
-import android.os.Environment.DIRECTORY_MUSIC
 import android.util.Log
 import android.view.*
 import android.view.ViewGroup.*
@@ -21,7 +20,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.db.AssessmentDao
 import com.example.edward.nyansapo.presentation.utils.GlobalData
 import com.microsoft.cognitiveservices.speech.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,9 +28,7 @@ import kotlinx.android.synthetic.main.activity_pre_assessment.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
-import javax.inject.Inject
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 
 @AndroidEntryPoint
