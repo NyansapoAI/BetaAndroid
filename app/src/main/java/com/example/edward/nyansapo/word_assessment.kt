@@ -19,21 +19,18 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.db.AssessmentDao
+import com.edward.nyansapo.R
 import com.example.edward.nyansapo.presentation.utils.GlobalData
+import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_pre_assessment.*
 import kotlinx.android.synthetic.main.activity_word_assessment.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
-import javax.inject.Inject
-import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 
 
 class word_assessment : AppCompatActivity() {
@@ -44,7 +41,7 @@ class word_assessment : AppCompatActivity() {
 
     lateinit var file: File
     lateinit var recorder: MediaRecorder
-
+    lateinit var skipBtn: Button
 
     lateinit var wordList: Array<String>
     var error_count = 0
@@ -69,6 +66,10 @@ class word_assessment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_assessment)
+        skipBtn = findViewById(R.id.skipBtn)
+        skipBtn.setOnClickListener {
+            skipBtnClicked()
+        }
         initProgressBar()
         //setting choosen avatar
         imageView4.setImageResource(GlobalData.avatar)
@@ -85,7 +86,7 @@ class word_assessment : AppCompatActivity() {
 
         //ui components
         record_button = findViewById(R.id.record_button)
-        change_button = findViewById(R.id.change_button)
+        change_button = findViewById(R.id.skipBtn)
         assessment_card = findViewById(R.id.assessment_card)
 
 
@@ -101,6 +102,15 @@ class word_assessment : AppCompatActivity() {
         assessment_card!!.setOnClickListener { checkIfWeHavePermissions() }
 
         record_button!!.setOnClickListener { checkIfWeHavePermissions() }
+    }
+
+    private fun skipBtnClicked() {
+
+        var expected_txt = assessment_card!!.text.toString().trim().toLowerCase()
+        error_count += 1
+        words_wrong += expected_txt!! + ","
+
+        changeWord()
     }
 
     private fun checkIfWeHavePermissions() {
@@ -151,43 +161,16 @@ class word_assessment : AppCompatActivity() {
 
     private fun stopVoiceRecording() {
         Log.d(TAG, "stopRecordingVoice: word_count:$word_count")
-        recorder.stop()
-        recorder.release()
+        if (this::recorder.isInitialized) {
+            try {
+                recorder.stop()
+                recorder.release()
 
-
-        when (word_count) {
-            0 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:0")
-
-                GlobalData.assessmentRecording.word0 = file.absolutePath
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
-            1 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:1")
 
-                GlobalData.assessmentRecording.word1 = file.absolutePath
-            }
-            2 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:2")
-
-                GlobalData.assessmentRecording.word2 = file.absolutePath
-            }
-            3 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:3")
-
-                GlobalData.assessmentRecording.word3 = file.absolutePath
-            }
-            4 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:4")
-
-                GlobalData.assessmentRecording.word4 = file.absolutePath
-            }
-            5 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser word_count:5")
-
-                GlobalData.assessmentRecording.word5 = file.absolutePath
-            }
         }
-
 
     }
 

@@ -13,7 +13,6 @@ import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
-import android.os.Environment.DIRECTORY_MUSIC
 import android.util.Log
 import android.view.*
 import android.view.ViewGroup.*
@@ -21,8 +20,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.db.AssessmentDao
+import com.edward.nyansapo.R
 import com.example.edward.nyansapo.presentation.utils.GlobalData
+import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 import com.microsoft.cognitiveservices.speech.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_paragraph_assessment.*
@@ -30,10 +30,6 @@ import kotlinx.android.synthetic.main.activity_pre_assessment.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
-import javax.inject.Inject
-import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
 
 @AndroidEntryPoint
 class paragraph_assessment : AppCompatActivity() {
@@ -46,7 +42,7 @@ class paragraph_assessment : AppCompatActivity() {
     lateinit var recorder: MediaRecorder
 
 
-
+    lateinit var skipBtn: Button
     var paragraphButton: Button? = null
     var record_button: Button? = null
     var paragraph: String? = null
@@ -70,6 +66,10 @@ class paragraph_assessment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paragraph_assessment)
+        skipBtn = findViewById(R.id.skipBtn)
+        skipBtn.setOnClickListener {
+            skipBtnPressed()
+        }
         initProgressBar()
         //setting choosen avatar
         imageView4.setImageResource(GlobalData.avatar)
@@ -122,6 +122,27 @@ class paragraph_assessment : AppCompatActivity() {
         }
     }
 
+    private fun skipBtnPressed() {
+
+        val expected_txt = paragraphButton!!.getText().toString().toLowerCase().replace(".", "")!!.replace(",", "")
+
+        val expectedTextListDummy = expected_txt.split(" ").filter {
+            it.isNotBlank()
+        }.map {
+            it.trim()
+        }
+
+        var error_txt = ""
+        expectedTextListDummy.forEach {
+            error_txt += it + ","
+            Log.d(TAG, "onPostExecute: error_text:$error_txt")
+
+        }
+        error_count += expectedTextListDummy.size
+        paragraph_words_wrong += error_txt.trim()
+        changeSentence()
+    }
+
     var drawable: Drawable? = null
 
 
@@ -147,6 +168,7 @@ class paragraph_assessment : AppCompatActivity() {
 
         Log.d(TAG, "changeSentence: ")
         Log.d(TAG, "changeSentence: paragraph_words_wrong:$paragraph_words_wrong")
+        Log.d(TAG, "changeSentence: error_count:$error_count")
         stopVoiceRecording()
         Log.d(TAG, "changeSentence: assessmentRecording:${GlobalData.assessmentRecording}")
 
@@ -168,30 +190,15 @@ class paragraph_assessment : AppCompatActivity() {
 
     private fun stopVoiceRecording() {
         Log.d(TAG, "stopRecordingVoice: sentence_count:$sentence_count")
-        recorder.stop()
-        recorder.release()
+        if (this::recorder.isInitialized) {
+            try {
+                recorder.stop()
+                recorder.release()
 
-        when (sentence_count) {
-            0 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:0")
-
-                GlobalData.assessmentRecording.paragraph0 = file.absolutePath
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
-            1 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:1")
 
-                GlobalData.assessmentRecording.paragraph1 = file.absolutePath
-            }
-            2 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:2")
-
-                GlobalData.assessmentRecording.paragraph2 = file.absolutePath
-            }
-            3 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:3")
-
-                GlobalData.assessmentRecording.paragraph3 = file.absolutePath
-            }
         }
 
 
@@ -260,6 +267,7 @@ class paragraph_assessment : AppCompatActivity() {
                 }.map {
                     it.trim()
                 }
+
                 Log.d(TAG, "onPostExecute: list of words expected expectedTextListDummy: $expectedTextListDummy")
                 (expectedTextListDummy as ArrayList).removeAll(listOfTxtFromServer)
                 val countErrorFromSentence = expectedTextListDummy.size

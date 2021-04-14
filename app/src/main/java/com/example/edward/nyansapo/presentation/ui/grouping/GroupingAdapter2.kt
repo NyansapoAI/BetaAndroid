@@ -19,7 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
 import es.dmoral.toasty.Toasty
 
-class GroupingAdapter2(val fragment2: GroupingFragment2, val searchViewEmpty: () -> Unit, val onStudentClick: (DocumentSnapshot) -> Unit, val onStudentLongClicked: (DocumentSnapshot) -> Unit) : ListAdapter<DocumentSnapshot, GroupingAdapter2.ViewHolder>(DIFF_UTIL), Filterable {
+class GroupingAdapter2(val fragment2: GroupingFragment2?=null, val searchViewEmpty: () -> Unit={}, val onStudentClick: (DocumentSnapshot) -> Unit, val onStudentLongClicked: (DocumentSnapshot) -> Unit={}) : ListAdapter<DocumentSnapshot, GroupingAdapter2.ViewHolder>(DIFF_UTIL), Filterable {
 
     private val TAG = "LearningLevelAdapter"
 
@@ -109,7 +109,7 @@ class GroupingAdapter2(val fragment2: GroupingFragment2, val searchViewEmpty: ()
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 var list: MutableList<DocumentSnapshot> = mutableListOf()
-                for (snapshot in fragment2.originalList) {
+                for (snapshot in fragment2!!.originalList) {
                     val student = snapshot.toObject(Student::class.java)
                     if (student?.firstname!!.toLowerCase().contains(constraint.toString()) || student?.lastname!!.toLowerCase().contains(constraint.toString())) {
                         list.add(snapshot)

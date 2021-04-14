@@ -26,7 +26,7 @@ import com.google.firebase.firestore.Query
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_learning_level.*
 
-
+const val REQUEST_CODE: Int=7
 class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListener {
 
 

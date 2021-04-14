@@ -20,8 +20,8 @@ import com.edward.nyansapo.databinding.ActivityMain2Binding
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment
 import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
-import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment2
+import com.example.edward.nyansapo.presentation.ui.grouping.REQUEST_CODE
 import com.example.edward.nyansapo.presentation.ui.home.HomePageFragment
 import com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment
 import com.example.edward.nyansapo.presentation.utils.Constants
@@ -522,8 +522,14 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+//go to grouping fragment
+        if(requestCode== REQUEST_CODE){
+            supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment2()).commit()
+        }
 
-
+    }
 
 
 }

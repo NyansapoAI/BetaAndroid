@@ -28,8 +28,8 @@
         app:layout_constraintVertical_bias="0.421" />
 
     <Button
-        android:visibility="invisible"
-        android:id="@+id/change_button"
+        android:visibility="visible"
+        android:id="@+id/skipBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_default"
-        android:text="Change"
+        android:text="Skip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView4"

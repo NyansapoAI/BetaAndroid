@@ -34,16 +34,18 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/appbarLayout" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:text="Add Student"
+        android:textColor="@color/white"
+        android:padding="8dp"
         android:tint="@android:color/white"
-        android:backgroundTint="@android:color/black"
         android:layout_margin="32dp"
-        android:src="@drawable/ic_add_24" />
+        app:icon="@drawable/ic_add_24" />
 
 
 </RelativeLayout>

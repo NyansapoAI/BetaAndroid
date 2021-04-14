@@ -44,6 +44,7 @@ class letter_assessment : AppCompatActivity() {
 
 
     lateinit var letterList: Array<String>
+    lateinit var skipBtn: Button
 
     // intialize
     var error_count = 0
@@ -68,6 +69,10 @@ class letter_assessment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_letter_assessment)
+        skipBtn = findViewById(R.id.skipBtn)
+        skipBtn.setOnClickListener {
+            skipBtnClicked()
+        }
         initProgressBar()
 
         //setting choosen avatar
@@ -99,6 +104,15 @@ class letter_assessment : AppCompatActivity() {
 
         record_button!!.setOnClickListener { checkIfWeHavePermissions() }
     }
+
+    private fun skipBtnClicked() {
+
+        var expected_txt = assessment_card!!.text.toString().trim().toLowerCase()
+        error_count += 1
+        letters_wrong += expected_txt!! + ","
+        changeLetter()
+    }
+
 
     private fun checkIfWeHavePermissions() {
         Log.d(TAG, "checkIfWeHavePermissions: ")
@@ -193,41 +207,15 @@ class letter_assessment : AppCompatActivity() {
 
     private fun stopVoiceRecording() {
         Log.d(TAG, "stopRecordingVoice: letter_count:$letter_count")
-        recorder.stop()
-        recorder.release()
+        if (this::recorder.isInitialized) {
+            try {
+                recorder.stop()
+                recorder.release()
 
-
-        when (letter_count) {
-            0 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:0")
-
-                GlobalData.assessmentRecording.letter0 = file.absolutePath
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
-            1 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:1")
 
-                GlobalData.assessmentRecording.letter1 = file.absolutePath
-            }
-            2 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:2")
-
-                GlobalData.assessmentRecording.letter2 = file.absolutePath
-            }
-            3 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:3")
-
-                GlobalData.assessmentRecording.letter3 = file.absolutePath
-            }
-            4 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:4")
-
-                GlobalData.assessmentRecording.letter4 = file.absolutePath
-            }
-            5 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser letter_count:5")
-
-                GlobalData.assessmentRecording.letter5 = file.absolutePath
-            }
         }
 
 

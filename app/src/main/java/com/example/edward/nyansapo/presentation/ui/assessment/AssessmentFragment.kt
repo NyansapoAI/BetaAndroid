@@ -8,18 +8,22 @@ import android.util.Log
 import android.view.View
 import android.widget.Filter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.FloatingSearchView.*
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.FragmentAssessmentBinding
+import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.presentation.ui.grouping.GroupingAdapter2
+import com.example.edward.nyansapo.presentation.ui.grouping.REQUEST_CODE
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.utils.Constants
 import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
-import com.example.edward.nyansapo.AddStudentFragment
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
@@ -67,6 +71,24 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
             mainQuerySnapshot = it
 
         }
+        //get items for recyclerview
+        getSuggestions(5) {
+            setUpRecyclerView(it)
+        }
+        if (mSearchView.isSearchBarFocused) {
+            Log.d(TAG, "onResume: searchview is focused")
+            recyclerViewVisibility(false)
+        }
+    }
+
+    private fun setUpRecyclerView(querySnapshot: QuerySnapshot) {
+        Log.d(TAG, "setUpRecyclerView: size:${querySnapshot.size()}")
+        val recyclerAdapter = GroupingAdapter2(onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
+        recyclerAdapter.submitList(querySnapshot.documents)
+        binding.recyclerview.apply {
+            layoutManager = LinearLayoutManager(MainActivity2.activityContext)
+            adapter = recyclerAdapter
+        }
     }
 
     private fun setOnClickListeners() {
@@ -77,7 +99,8 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
     private fun addStudent() {
         val intent = Intent(MainActivity2.activityContext!!, AddStudentFragment::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,REQUEST_CODE)
+
     }
 
 
@@ -140,6 +163,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
         })
         mSearchView.setOnFocusChangeListener(object : OnFocusChangeListener {
             override fun onFocus() {
+                recyclerViewVisibility(false)
                 mSearchView.showProgress()
                 getSuggestions(3) {
                     mSearchView.swapSuggestions(it.toObjects(Student::class.java))
@@ -151,6 +175,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
             }
 
             override fun onFocusCleared() {
+                recyclerViewVisibility(true)
 
                 //  mSearchView.setSearchBarTitle("search bar title")
 
@@ -189,21 +214,22 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
              val student = item as Student
              val textColor = if (mIsDarkSearchTheme) "#ffffff" else "#000000"
              val textLight = if (mIsDarkSearchTheme) "#bfbfbf" else "#787878"
-
              *//*   leftIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,
                        R.drawable.ic_history_black_24dp, null))
                Util.setIconColor(leftIcon, Color.parseColor(textColor))
                leftIcon.alpha = .36f*//*
-
             leftIcon.alpha = 0.0f
             leftIcon.setImageDrawable(null)
-
             textView.setTextColor(Color.parseColor(textColor))
             val text: String = student.getBody()
                     .replaceFirst(mSearchView.getQuery(),
                             "<font color=\"" + textLight + "\">" + mSearchView.getQuery() + "</font>")
             textView.text = Html.fromHtml(text)
         })*/
+    }
+
+    private fun recyclerViewVisibility(visible: Boolean) {
+        binding.listLinLayout.isVisible = visible
     }
 
     private fun onStudentClicked(student: Student) {
@@ -295,5 +321,3 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
     }
 
 }
-
-

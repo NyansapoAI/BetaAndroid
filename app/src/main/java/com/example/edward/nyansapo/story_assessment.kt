@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
-import android.media.AudioManager
 import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
@@ -21,10 +20,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.edward.nyansapo.R
 import com.example.edward.nyansapo.presentation.utils.GlobalData
-import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
-import com.google.firebase.firestore.SetOptions
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
@@ -33,8 +31,6 @@ import kotlinx.android.synthetic.main.activity_story_assessment.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
-import kotlin.collections.ArrayList
-import com.edward.nyansapo.R
 
 class story_assessment : AppCompatActivity() {
 
@@ -42,6 +38,7 @@ class story_assessment : AppCompatActivity() {
     private val RC_PERMISSION = 4
     lateinit var file: File
     lateinit var recorder: MediaRecorder
+    lateinit var skipBtn: Button
 
     var next_button: Button? = null
     var story_view: Button? = null
@@ -67,6 +64,10 @@ class story_assessment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story_assessment)
+        skipBtn = findViewById(R.id.skipBtn)
+        skipBtn.setOnClickListener {
+            skipBtnPressed()
+        }
         initProgressBar()
         //setting choosen avatar
         imageView5.setImageResource(GlobalData.avatar)
@@ -97,14 +98,33 @@ class story_assessment : AppCompatActivity() {
 
         story_view!!.setText(sentenceList[sentence_count])
         back_button!!.setEnabled(false)
-        next_button!!.setOnClickListener {
-            nextParagraph()
-        }
         back_button!!.setOnClickListener { backParagraph() }
         story_view!!.setOnClickListener { checkIfWeHavePermissions() }
 
 
     }
+
+    private fun skipBtnPressed() {
+
+        var expected_txt = story_view!!.getText().toString().toLowerCase().trim().replace(".", "")!!.replace(",", "")
+
+        val expectedTextListDummy = expected_txt.split(" ").filter {
+            it.isNotBlank()
+        }.map {
+            it.trim()
+        }
+
+        var error_txt = ""
+        expectedTextListDummy.forEach {
+            error_txt += it + ","
+            Log.d(TAG, "onPostExecute: error_text:$error_txt")
+
+        }
+        error_count += expectedTextListDummy.size
+        story_words_wrong += error_txt.trim()
+        nextParagraph()
+    }
+
     private fun checkIfWeHavePermissions() {
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -220,33 +240,15 @@ class story_assessment : AppCompatActivity() {
 
     private fun stopVoiceRecording() {
         Log.d(TAG, "stopRecordingVoice: sentence_count:$sentence_count")
-        recorder.stop()
-        recorder.release()
+        if (this::recorder.isInitialized) {
+            try {
+                recorder.stop()
+                recorder.release()
 
-        when (sentence_count) {
-            0 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:0")
-
-                GlobalData.assessmentRecording.paragraph0 = file.absolutePath
-            }
-            1 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:1")
-
-                GlobalData.assessmentRecording.paragraph1 = file.absolutePath
-            }
-            2 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:2")
-
-                GlobalData.assessmentRecording.paragraph2 = file.absolutePath
-            }
-            3 -> {
-                Log.d(TAG, "stopRecordingVoice:chooser sentence_count:3")
-
-                GlobalData.assessmentRecording.paragraph3 = file.absolutePath
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
         }
-
-
     }
 
     private inner class SpeechAsync : AsyncTask<Void, String?, String?>() {
@@ -394,27 +396,7 @@ class story_assessment : AppCompatActivity() {
         startActivity(myIntent)
         finish()
 
-
-        /*
-            val map = mapOf("learningLevel" to "PARAGRAPH", "storyWordsWrong" to story_words_wrong)
-
-          showProgress(true)
-            assessmentDocumentSnapshot!!.reference.set(map, SetOptions.merge()).addOnSuccessListener {
-
-
-                //updating student learning level
-                val map2 = mapOf("learningLevel" to "PARAGRAPH")
-                studentDocumentSnapshot!!.reference.set(map2, SetOptions.merge()).addOnSuccessListener {
-                    showProgress(false)
-
-
-                }
-
-
-            }*/
-
-
-     }
+    }
 
     fun getStory(key: String?): String {
         return when (key) {
