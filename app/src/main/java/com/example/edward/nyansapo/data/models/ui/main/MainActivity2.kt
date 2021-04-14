@@ -18,10 +18,10 @@ import androidx.core.view.GravityCompat
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityMain2Binding
 import com.example.edward.nyansapo.Student
-import com.example.edward.nyansapo.data.models.ui.activities.ActivitiesFragment
 import com.example.edward.nyansapo.data.models.ui.activities.ActivitiesFragment2
 import com.example.edward.nyansapo.data.models.ui.assessment.AssessmentFragment
 import com.example.edward.nyansapo.data.models.ui.grouping.GroupingFragment2
+import com.example.edward.nyansapo.data.models.ui.grouping.GroupingFragment3
 import com.example.edward.nyansapo.data.models.ui.home.HomePageFragment
 import com.example.edward.nyansapo.data.models.ui.patterns.PatternsFragment
 import com.example.edward.nyansapo.presentation.utils.Constants
@@ -48,15 +48,18 @@ class MainActivity2 : AppCompatActivity() {
     private val KEY_PASSWORD = "password"
     private val KEY_PASSWORD_ENABLED = "passwordEnabled"
     private val HIDE_DURATION_BLUR_VIEW = 1000
+
+
+    private val TAG = "MainActivity2"
+
+
+companion object{
+    @JvmField
+    var activityContext: MainActivity2? = null
     lateinit var sharedPreferences: SharedPreferences
+}
 
-    companion object {
-        private const val TAG = "MainActivity2"
 
-        @JvmField
-        var activityContext: MainActivity2? = null
-
-    }
 
     lateinit var binding: ActivityMain2Binding
 
@@ -64,7 +67,6 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE)
 
 
@@ -358,7 +360,7 @@ class MainActivity2 : AppCompatActivity() {
                     R.id.action_grouping -> {
                         Log.d(TAG, "grouping clicked: ")
 
-                        supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment2()).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment3()).commit()
 
                     }
                     R.id.action_home -> {
@@ -522,8 +524,9 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
-
-
-
-
 }
+
+fun SharedPreferences.programID()=this.getString(Constants.KEY_PROGRAM_ID, null)
+fun SharedPreferences.groupID()=this.getString(Constants.KEY_GROUP_ID, null)
+fun SharedPreferences.campID()=this.getString(Constants.KEY_CAMP_ID, null)
+

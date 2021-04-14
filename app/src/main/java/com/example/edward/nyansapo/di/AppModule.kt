@@ -1,5 +1,7 @@
 package com.example.edward.nyansapo.di
 
+import com.example.edward.nyansapo.data.models.ui.grouping.GroupingRepository
+import com.example.edward.nyansapo.data.models.ui.grouping.Repository_G
 import com.example.edward.nyansapo.data.repositories.ProductionRepository
 import com.example.edward.nyansapo.data.repositories.Repository
 import dagger.Module
@@ -17,5 +19,11 @@ object AppModule {
     fun provideRepository():Repository{
 
         return ProductionRepository()
+    }
+    @Provides
+    @Singleton
+    fun provideRepository_G():Repository_G{
+
+        return GroupingRepository()
     }
 }

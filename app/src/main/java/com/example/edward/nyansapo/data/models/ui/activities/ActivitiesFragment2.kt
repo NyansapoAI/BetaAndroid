@@ -280,6 +280,10 @@ class ActivitiesFragment2 : Fragment(R.layout.fragment_activities), SwipeListene
         Log.d(TAG, "onSwipeLeft: position:$position")
     }
 
+    override fun onSwipeLeft_Original(position: Int) {
+
+    }
+
     override fun onSwipeRight() {
         Log.d(TAG, "onSwipeRight: ")
         Log.d(TAG, "onSwipeRight: selectedTabPosition:${tabs.selectedTabPosition} : :tab size:${tabs.tabCount}")

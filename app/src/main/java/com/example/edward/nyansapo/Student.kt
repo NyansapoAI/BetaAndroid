@@ -27,4 +27,9 @@ data class Student(
     override fun getBody(): String {
         return "$firstname $lastname"
     }
+
+    override fun toString(): String {
+        return "Names: $firstname $lastname :LearningLevel:$learningLevel"
+
+    }
 }
