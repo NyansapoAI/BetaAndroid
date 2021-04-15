@@ -47,6 +47,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
     lateinit var assessment: Assessment
 
     private var visible = false
+    private val ERROR_MESSAGE = "Student could not read"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -175,13 +176,17 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
                 mediaPlayer.release()
             }
         } catch (e: IOException) {
-            Toasty.info(requireContext(), "Recoding not Found").show()
+            showToast(ERROR_MESSAGE)
             Log.d(TAG, "readLetter: error")
             e.printStackTrace()
         }
 
     }
 
+    private fun showToast(message: String) {
+        Toasty.info(requireContext(), message).show()
+
+    }
 
     private fun readWord(v: TextView) {
         Log.d(TAG, "readWord: reading the paragraph")
@@ -220,7 +225,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
                 mediaPlayer.release()
             }
         } catch (e: IOException) {
-            Toasty.info(requireContext(), "Recording not Found").show()
+            showToast(ERROR_MESSAGE)
             Log.d(TAG, "readParagraphNew: error")
             e.printStackTrace()
         }
@@ -242,7 +247,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
                 mediaPlayer.release()
             }
         } catch (e: IOException) {
-            Toasty.info(requireContext(), "Recording not Found").show()
+            showToast(ERROR_MESSAGE)
             Log.d(TAG, "readStory: error")
             e.printStackTrace()
         }

@@ -64,7 +64,7 @@ class letter_assessment : AppCompatActivity() {
     var record_button: Button? = null
     var assessment_card: Button? = null
 
-
+var tries = 0
     var transcriptStarted = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,6 +143,8 @@ class letter_assessment : AppCompatActivity() {
         Log.d(TAG, "changeLetter: changing letter")
         Log.d(TAG, "changeLetter: error_count:$error_count")
         stopVoiceRecording()
+
+        tries = 0
 
         Log.d(TAG, "changeLetter: letter_correct: $letters_correct")
         Log.d(TAG, "changeLetter: letter_wrong: $letters_wrong")
@@ -258,22 +260,27 @@ class letter_assessment : AppCompatActivity() {
              if (textFromServer.equals("canceled", ignoreCase = true)) {
                 Toast.makeText(this@letter_assessment, "Internet Connection Failed", Toast.LENGTH_LONG).show()
             } else if (textFromServer.equals("no match", ignoreCase = true)) {
-                Toast.makeText(this@letter_assessment, "Try Again Please", Toast.LENGTH_LONG).show()
-            } else {
-                val textFromServerFormatted = textFromServer!!.replace(".", "")
-                Log.d(TAG, "onPostExecute: textFromServerFormatted by removing dots: $textFromServerFormatted")
-                if (expected_txt.equals(textFromServerFormatted)) {
-                    Log.d(TAG, "onPostExecute: letter is correct expected text: $expected_txt found: $textFromServerFormatted")
-                    letters_correct += expected_txt + ","
-                    Log.d(TAG, "onPostExecute: letters_correct: $letters_correct")
-                } else {
-                    Log.d(TAG, "onPostExecute: letter is wrong expected text: $expected_txt found: $textFromServerFormatted")
-                    letters_wrong += expected_txt + ","
-                    Log.d(TAG, "onPostExecute: letters_wrong :$letters_wrong")
-                    error_count += 1
-                }
-                changeLetter()
-            }
+                 if (tries < 1) {
+                     tries++
+                     Toast.makeText(this@letter_assessment, "Try Again", Toast.LENGTH_LONG).show()
+                 } else {
+                     skipBtnClicked()
+                 }
+             } else {
+                 val textFromServerFormatted = textFromServer!!.replace(".", "")
+                 Log.d(TAG, "onPostExecute: textFromServerFormatted by removing dots: $textFromServerFormatted")
+                 if (expected_txt.equals(textFromServerFormatted)) {
+                     Log.d(TAG, "onPostExecute: letter is correct expected text: $expected_txt found: $textFromServerFormatted")
+                     letters_correct += expected_txt + ","
+                     Log.d(TAG, "onPostExecute: letters_correct: $letters_correct")
+                 } else {
+                     Log.d(TAG, "onPostExecute: letter is wrong expected text: $expected_txt found: $textFromServerFormatted")
+                     letters_wrong += expected_txt + ","
+                     Log.d(TAG, "onPostExecute: letters_wrong :$letters_wrong")
+                     error_count += 1
+                 }
+                 changeLetter()
+             }
             reco!!.close()
         }
 

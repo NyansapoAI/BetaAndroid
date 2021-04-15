@@ -51,22 +51,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/letter_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/letter_assessment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_assessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/assessment/AssessmentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/assessment/AssessmentFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingFragment2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/main/MainActivity2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/main/MainActivity2.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/student/AssessmentResultsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/student/AssessmentResultsFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/story_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/story_assessment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/word_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/word_assessment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_letter_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_letter_assessment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_paragraph_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_paragraph_assessment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_story_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_story_assessment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_word_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_word_assessment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_assessment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_learning_level.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_learning_level.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +127,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="branch_01" />
+        <entry key="$PROJECT_DIR$" value="branch_02_refactor_code_to_use_mvvm" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -169,11 +164,8 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-hdpi" />
-      <recent name="C:\Users\user\Documents\Android\app\src\main\res\layout" />
-      <recent name="C:\Users\user\Documents\Android\app\src\main\res\drawable" />
-      <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-mdpi" />
+    <key name="android.template.1502989668">
+      <recent name="com.nyansapo.presentation.main" />
     </key>
     <key name="android.template.-286262575">
       <recent name="com.nyansapo.presentation.ui.attendance" />
@@ -189,10 +181,11 @@
     <key name="android.template.-715498183">
       <recent name="com.nyansapo.presentation.ui.begin_assessment_chooser" />
     </key>
-    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="com.nyansapo.presentation.ui.activities" />
-      <recent name="com.nyansapo" />
-      <recent name="com.nyansapo.presentation.ui.login" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-hdpi" />
+      <recent name="C:\Users\user\Documents\Android\app\src\main\res\layout" />
+      <recent name="C:\Users\user\Documents\Android\app\src\main\res\drawable" />
+      <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-mdpi" />
     </key>
     <key name="android.template.-129413714">
       <recent name="com.nyansapo.presentation.ui" />
@@ -202,9 +195,6 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.nyansapo" />
-    </key>
-    <key name="android.template.1502989668">
-      <recent name="com.nyansapo.presentation.main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-mdpi" />
@@ -227,6 +217,11 @@
     </key>
     <key name="android.template.-377282045">
       <recent name="com.nyansapo.presentation.ui.home" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.nyansapo.presentation.ui.activities" />
+      <recent name="com.nyansapo" />
+      <recent name="com.nyansapo.presentation.ui.login" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -358,8 +353,8 @@
         <item itemvalue="Gradle.Android:app [signingReport]" />
         <item itemvalue="Gradle.Android [signingReport]" />
         <item itemvalue="Android JUnit.com.nyansapo in Android.app" />
-        <item itemvalue="Gradle.Android [signingReport]" />
         <item itemvalue="Gradle.Android:app [signingReport]" />
+        <item itemvalue="Gradle.Android [signingReport]" />
       </list>
     </recent_temporary>
   </component>
@@ -734,22 +729,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="261" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1617459244366" />
-    <state width="1323" height="406" key="GridCell.Tab.0.bottom" timestamp="1618395364729">
+    <state width="1323" height="451" key="GridCell.Tab.0.bottom" timestamp="1618486143517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="406" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618395364729" />
-    <state width="1323" height="406" key="GridCell.Tab.0.center" timestamp="1618395364729">
+    <state width="1323" height="451" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618486143517" />
+    <state width="1323" height="451" key="GridCell.Tab.0.center" timestamp="1618486143517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="406" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1618395364729" />
-    <state width="1323" height="406" key="GridCell.Tab.0.left" timestamp="1618395364729">
+    <state width="1323" height="451" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1618486143517" />
+    <state width="1323" height="451" key="GridCell.Tab.0.left" timestamp="1618486143517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="406" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1618395364729" />
-    <state width="1323" height="406" key="GridCell.Tab.0.right" timestamp="1618395364729">
+    <state width="1323" height="451" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1618486143517" />
+    <state width="1323" height="451" key="GridCell.Tab.0.right" timestamp="1618486143517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="406" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1618395364729" />
+    <state width="1323" height="451" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1618486143517" />
     <state x="263" y="106" key="IDE.errors.dialog" timestamp="1616410482164">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -794,9 +789,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="170" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1617270654381" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1618392698857">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1618486070036">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1618392698857" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1618486070036" />
   </component>
 </project>

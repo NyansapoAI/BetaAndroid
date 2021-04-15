@@ -245,7 +245,12 @@ class paragraph_assessment : AppCompatActivity() {
             if (textFromServer.equals("canceled", ignoreCase = true)) {
                 Toast.makeText(this@paragraph_assessment, "Internet Connection Failed", Toast.LENGTH_LONG).show()
             } else if (textFromServer.equals("no match", ignoreCase = true)) {
-                Toast.makeText(this@paragraph_assessment, "Try Again", Toast.LENGTH_LONG).show()
+                if (tries < 1) {
+                    tries++
+                    Toast.makeText(this@paragraph_assessment, "Try Again", Toast.LENGTH_LONG).show()
+                } else {
+                    skipBtnPressed()
+                }
             } else {
                 /////////////////////////////////////////
 

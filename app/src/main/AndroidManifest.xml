@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

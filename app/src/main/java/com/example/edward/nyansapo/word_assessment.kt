@@ -60,7 +60,7 @@ class word_assessment : AppCompatActivity() {
     var record_button: Button? = null
     var assessment_card: Button? = null
     var change_button: Button? = null
-
+    var tries = 0
 
     var transcriptStarted = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,7 +177,7 @@ class word_assessment : AppCompatActivity() {
     fun changeWord() {
         Log.d(TAG, "changeWord: ")
         Log.d(TAG, "changeWord: error_count:$error_count")
-
+        tries = 0
         stopVoiceRecording()
         Log.d(TAG, "changeWord: assessmentRecording:${GlobalData.assessmentRecording}")
 
@@ -279,7 +279,12 @@ class word_assessment : AppCompatActivity() {
             if (textFromServer.equals("canceled", ignoreCase = true)) {
                 Toast.makeText(this@word_assessment, "Internet Connection Failed", Toast.LENGTH_LONG).show()
             } else if (textFromServer.equals("no match", ignoreCase = true)) {
-                Toast.makeText(this@word_assessment, "Try Again Please", Toast.LENGTH_LONG).show()
+                if (tries < 1) {
+                    tries++
+                    Toast.makeText(this@word_assessment, "Try Again", Toast.LENGTH_LONG).show()
+                } else {
+                    skipBtnClicked()
+                }
             } else {
                 var textFromServerFormatted = textFromServer!!.replace(".", "")
 
