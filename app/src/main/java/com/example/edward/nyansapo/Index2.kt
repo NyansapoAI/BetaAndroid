@@ -3,7 +3,7 @@ package com.example.edward.nyansapo
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.edward.nyansapo.data.models.ui.login.LoginActivity
+import com.example.edward.nyansapo.presentation.ui.login.LoginActivity
 import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
 import com.firebase.ui.auth.AuthUI
 import java.util.*

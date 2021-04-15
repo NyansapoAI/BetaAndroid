@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.data.local.db.AssessmentDao
-import com.example.edward.nyansapo.data.models.ui.main.MainActivity2
+import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.utils.COLLECTION_ASSESSMENTS
 import com.example.edward.nyansapo.presentation.utils.GlobalData
 import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot

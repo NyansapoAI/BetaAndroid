@@ -1,8 +1,6 @@
 package com.example.edward.nyansapo.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.edward.nyansapo.data.models.ui.activities.Activity
+import com.example.edward.nyansapo.presentation.ui.activities.Activity
 
 object StaticData {
 

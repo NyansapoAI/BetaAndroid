@@ -4,11 +4,11 @@ import android.content.Context
 import android.util.Log
 import androidx.annotation.DrawableRes
 import com.example.edward.nyansapo.*
-import com.example.edward.nyansapo.data.models.ui.attendance.CurrentDate
-import com.example.edward.nyansapo.data.models.ui.attendance.StudentAttendance
-import com.example.edward.nyansapo.data.models.ui.home.Camp
-import com.example.edward.nyansapo.data.models.ui.home.Group
-import com.example.edward.nyansapo.data.models.ui.home.Program
+import com.example.edward.nyansapo.presentation.ui.attendance.CurrentDate
+import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
+import com.example.edward.nyansapo.presentation.ui.home.Camp
+import com.example.edward.nyansapo.presentation.ui.home.Group
+import com.example.edward.nyansapo.presentation.ui.home.Program
 import com.google.android.gms.tasks.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +16,7 @@ import com.google.firebase.firestore.*
 import java.text.SimpleDateFormat
 import java.util.*
 import com.edward.nyansapo.R
+import java.lang.Exception
 
 object FirebaseUtils {
 
@@ -38,6 +39,14 @@ object FirebaseUtils {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).orderBy(ORDER_BY).addSnapshotListener { query, e ->
 
             onComplete(query!!)
+        }
+
+
+    }
+    fun getProgramNamesContinuously2(onComplete: (QuerySnapshot?,Exception?) -> Unit): ListenerRegistration {
+        return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).orderBy(ORDER_BY).addSnapshotListener { query, e ->
+
+            onComplete(query,e)
         }
 
 
@@ -70,6 +79,14 @@ object FirebaseUtils {
 
 
     }
+    fun getGroupNamesContinously2(programId: String, onComplete: (QuerySnapshot,Exception?) -> Unit): ListenerRegistration {
+        return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).orderBy(ORDER_BY).addSnapshotListener { query, e ->
+            onComplete(query!!,e)
+
+        }
+
+
+    }
 
     fun getGroupNamesOnce(programId: String, onComplete: (QuerySnapshot) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).orderBy(ORDER_BY).get().addOnSuccessListener {
@@ -92,6 +109,14 @@ object FirebaseUtils {
     fun getCampNamesContinously(programId: String, groupId: String, onComplete: (QuerySnapshot) -> Unit): ListenerRegistration {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).orderBy(ORDER_BY).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             onComplete(querySnapshot!!)
+
+        }
+
+
+    }
+  fun getCampNamesContinously2(programId: String, groupId: String, onComplete: (QuerySnapshot,Exception?) -> Unit): ListenerRegistration {
+        return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).orderBy(ORDER_BY).addSnapshotListener { querySnapshot, e ->
+            onComplete(querySnapshot!!,e)
 
         }
 
