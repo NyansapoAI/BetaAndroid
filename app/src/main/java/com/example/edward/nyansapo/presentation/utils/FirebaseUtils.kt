@@ -3,7 +3,11 @@ package com.example.edward.nyansapo.presentation.utils
 import android.content.Context
 import android.util.Log
 import androidx.annotation.DrawableRes
-import com.example.edward.nyansapo.*
+import com.edward.nyansapo.R
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Instructor
+import com.example.edward.nyansapo.Learning_Level
+import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.attendance.CurrentDate
 import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
 import com.example.edward.nyansapo.presentation.ui.home.Camp
@@ -15,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import java.text.SimpleDateFormat
 import java.util.*
-import com.edward.nyansapo.R
 
 object FirebaseUtils {
 
@@ -181,7 +184,7 @@ object FirebaseUtils {
             FirebaseFirestore.getInstance().collection("dummy").document("date").get().addOnSuccessListener {
 
 
-                val date = SimpleDateFormat.getDateInstance(SimpleDateFormat.SHORT).format(it.toObject(CurrentDate::class.java)?.date)
+                val date = SimpleDateFormat.getDateTimeInstance().format(it.toObject(CurrentDate::class.java)?.date)
 
 
                 Log.d(TAG, "getCurrentDateAndInitCurrentInfo: retrieving current date from database ${date}")
@@ -209,8 +212,6 @@ object FirebaseUtils {
 
             }
         }
-
-
     }
 
     fun getCollectionStudentFromGroup_ReturnCollection(programId: String, groupId: String): CollectionReference {
@@ -242,6 +243,16 @@ object FirebaseUtils {
             onComplete()
         }
     }
+
+    fun getStudentFromAttendance(programId: String, groupId: String, campId: String, studentId: String, date: String, onComplete: (DocumentSnapshot) -> Unit) {
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS).document(studentId).get().addOnSuccessListener {
+            onComplete(it)
+        }
+    }
+
+    fun getStudentFromAttendance_Task(programId: String, groupId: String, campId: String, studentId: String, date: String) =
+            firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS).document(studentId).get()
+
 
     fun getCollectionStudentFromCamp_attendance_ReturnSnapshot(programId: String, groupId: String, campId: String, date: String, onComplete: (QuerySnapshot) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS).get().addOnSuccessListener {

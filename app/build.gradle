@@ -165,6 +165,12 @@ dependencies {
     //4 digit lock
     implementation 'com.nightonke:blurlockview:1.0.0'
 
+    //csv writer
+    implementation 'com.opencsv:opencsv:4.0'
+
+    //load data from firebase synchronously
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1"
+
 }
 
 kapt {

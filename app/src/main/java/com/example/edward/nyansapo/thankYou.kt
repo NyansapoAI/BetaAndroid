@@ -72,21 +72,23 @@ class thankYou : AppCompatActivity() {
     fun updateStudentLearningLevel(assessment: Assessment?) {
 
         showProgress(true)
-        val map2 = mapOf("learningLevel" to assessment?.learningLevel)
-        studentDocumentSnapshot!!.reference.set(map2, SetOptions.merge()).addOnSuccessListener { student ->
 
-            Log.d(TAG, "updateStudentLearningLevel: finished updating student learning level")
+        studentDocumentSnapshot!!.reference.collection(COLLECTION_ASSESSMENTS).document(assessment!!.id).set(assessment!!).addOnSuccessListener { void ->
+            Log.d(TAG, "postAssessment: finished updating assessment")
+            studentDocumentSnapshot!!.reference.collection(COLLECTION_ASSESSMENTS).orderBy("timestamp").get().addOnSuccessListener {
+                Log.d(TAG, "updateStudentLearningLevel: success getting all the assessments")
+                val baseLineAssessment = it.documents[0]
+                val map = mapOf<String, String>("baseLine" to baseLineAssessment!!.getString("learningLevel")!!, "learningLevel" to assessment.learningLevel)
 
+                studentDocumentSnapshot!!.reference.set(map, SetOptions.merge()).addOnSuccessListener { student ->
+                    Log.d(TAG, "updateStudentLearningLevel: finished updating student learning level")
+                    showProgress(false)
 
-            studentDocumentSnapshot!!.reference.collection(COLLECTION_ASSESSMENTS).document(assessment!!.id).set(assessment!!).addOnSuccessListener { assessment ->
-                showProgress(false)
-                Log.d(TAG, "postAssessment: finished updating assessment")
-              //  saveAssessmentRecording(ass)
-
+                }
             }
 
-
         }
+
 
     }
 

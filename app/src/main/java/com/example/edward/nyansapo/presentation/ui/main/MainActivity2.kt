@@ -3,23 +3,29 @@ package com.example.edward.nyansapo.presentation.ui.main
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.lifecycleScope
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityMain2Binding
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment
 import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
+import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment2
 import com.example.edward.nyansapo.presentation.ui.grouping.REQUEST_CODE
 import com.example.edward.nyansapo.presentation.ui.home.HomePageFragment
@@ -34,9 +40,15 @@ import com.nightonke.blurlockview.Directions.HideType
 import com.nightonke.blurlockview.Directions.ShowType
 import com.nightonke.blurlockview.Eases.EaseType
 import com.nightonke.blurlockview.Password
+import com.opencsv.CSVWriter
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.io.File
+import java.io.FileWriter
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -64,6 +76,7 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        initProgressBar()
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE)
 
@@ -249,7 +262,7 @@ class MainActivity2 : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.exportDataItem -> {
-                    exportData()
+                    exportData2()
                 }
                 R.id.settingsItem -> {
 
@@ -387,7 +400,8 @@ class MainActivity2 : AppCompatActivity() {
     }
 
 
-    fun exportData() {
+    fun exportData2() {
+        Log.d(TAG, "exportData: ")
         val sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
         val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
@@ -401,36 +415,177 @@ class MainActivity2 : AppCompatActivity() {
         }
 
         FirebaseUtils.getCollectionStudentFromCamp_ReturnSnapshot(programId, groupId, campId) {
-
+            Log.d(TAG, "exportData: finished fetching students")
             val students = it.toObjects(Student::class.java)
             val data = StringBuilder()
-            data.append("Firstname,Lastname,Age,Gender,Class,Learning_Level") // generate headers
-            for (student in students!!) { // generate csv data
-                data.append("""
-    
-    ${student.firstname},${student.lastname},${student.age},${student.gender},${student.std_class},${student.learningLevel}
-    """.trimIndent())
-            }
-            try {
-                // save file before sending
-                val out = openFileOutput("NyansapoData.csv", MODE_PRIVATE)
-                out.write(data.toString().toByteArray())
-                out.close()
+            val header = "Day1,Day2,Day3,Day4,Day5,Firstname,Lastname,Age,Gender,Class,BaseLine,Endline".split(",").toTypedArray() // generate headers
+            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/Nyansapo_data")
+            directory.mkdirs()
+            val fileName = UUID.randomUUID().toString()
+            val file = File(directory, "$fileName.csv")
 
-                // export file
-                val context = applicationContext
-                val filelocation = File(filesDir, "NyansapoData.csv")
-                val path = FileProvider.getUriForFile(context, "com.example.edward.nyansapo.fileprovider", filelocation)
-                val fileIntent = Intent(Intent.ACTION_SEND)
-                fileIntent.type = "text/csv"
-                fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Nyansapo Data")
-                fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                fileIntent.putExtra(Intent.EXTRA_STREAM, path)
-                startActivity(Intent.createChooser(fileIntent, "Export Data"))
-            } catch (e: Exception) {
-                e.printStackTrace()
+            file.createNewFile()
+            val writer: CSVWriter
+            writer = CSVWriter(FileWriter(file.absolutePath));
+            writer.writeNext(header);
+            showProgress(true)
+            lifecycleScope.launch {
+
+                for (student in students!!) { // generate csv data
+                    writeStudentData2(writer, student)
+                }
+
+                writer.close()
+                Log.d(TAG, "exportData2: finished writing the csv file")
+
+                showProgress(false)
+                openCsvFile2(file)
             }
+
+
         }
+    }
+
+
+    private suspend fun writeStudentData2(writer: CSVWriter, student: Student) {
+        val date1 = fetcheDate1(student)
+        val date2 = fetcheDate2(student)
+        val date3 = fetcheDate3(student)
+        val date4 = fetcheDate4(student)
+        val date5 = fetcheDate5(student)
+
+        val row = "${date1},${date2},${date3},${date4},${date5},${student.firstname},${student.lastname},${student.age},${student.gender},${student.std_class},${student.baseLine},${student.learningLevel}".split(",").toTypedArray()
+        // val row = "${student.firstname},${student.lastname},${student.age},${student.gender},${student.std_class},${student.baseLine},${student.learningLevel}".split(",").toTypedArray()
+        Log.d(TAG, "writeStudentData2: row:${row}")
+        writer.writeNext(row);
+
+
+    }
+
+    private suspend fun fetcheDate1(student: Student): String {
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -4)
+        val currentDate = cal.toDate
+
+        val date = formatDate(currentDate)
+        val it = checkPresentOrAbsent(student.id!!, date)
+        Log.d(TAG, "fetchFirstData: status of student:$student:register:$it")
+        return it
+
+    }
+
+    private suspend fun fetcheDate2(student: Student): String {
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -3)
+        val currentDate = cal.toDate
+
+        val date = formatDate(currentDate)
+        val it = checkPresentOrAbsent(student.id!!, date)
+        Log.d(TAG, "fetchFirstData: status of student:$student:register:$it")
+        return it
+
+    }
+
+    private suspend fun fetcheDate3(student: Student): String {
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -2)
+        val currentDate = cal.toDate
+
+        val date = formatDate(currentDate)
+        val it = checkPresentOrAbsent(student.id!!, date)
+        Log.d(TAG, "fetchFirstData: status of student:$student:register:$it")
+        return it
+
+    }
+
+    private suspend fun fetcheDate4(student: Student): String {
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -1)
+        val currentDate = cal.toDate
+
+        val date = formatDate(currentDate)
+        Log.d(TAG, "fetcheDate4: date:$date")
+        val it = checkPresentOrAbsent(student.id!!, date)
+        Log.d(TAG, "fetchFirstData: status of student:$student:register:$it")
+        return it
+
+    }
+
+    private suspend fun fetcheDate5(student: Student): String {
+        val currentDate = Calendar.getInstance().toDate
+        val date = formatDate(currentDate)
+        val it = checkPresentOrAbsent(student.id!!, date)
+        Log.d(TAG, "fetchFirstData: status of student:$student:register:$it")
+        return it
+
+    }
+
+
+    //check if student was present or absent
+    private suspend fun checkPresentOrAbsent(id: String, date: String): String {
+        val sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE)
+
+        val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
+        val groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)
+        val campId = sharedPreferences.getString(Constants.KEY_CAMP_ID, null)
+        val campPos = sharedPreferences.getInt(Constants.CAMP_POS, -1)
+
+        if (campPos == -1) {
+            Toasty.error(this, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
+            supportFragmentManager.popBackStackImmediate()
+        }
+
+
+        val it = FirebaseUtils.getStudentFromAttendance_Task(programId, groupId, campId, id, date).await()
+        val register: String
+        if (it.exists()) {
+            val studentAttendance = it.toObject(StudentAttendance::class.java)!!
+            Log.d(TAG, "studentId: studentAttendance:$studentAttendance")
+            if (studentAttendance.present) {
+                register = "Present"
+            } else {
+                register = "Absent"
+            }
+        } else {
+            register = "Present"
+        }
+
+        return register
+
+    }
+
+    val Calendar.toDate get() = this.time
+    val Date.toCalendar
+        get() = {
+            val cal = Calendar.getInstance()
+            cal.time = this
+            cal
+        }
+
+    private fun formatDate(dateOriginal: Date): String {
+
+
+        val date = SimpleDateFormat("dd_MM_yyyy").format(dateOriginal)
+        Log.d(TAG, "getCurrentDateAndInitCurrentInfo: retrieving current date from database ${date}")
+
+        //this symbols act weird with database
+        var currentDate: String
+        currentDate = date.replace("/", "_")
+        currentDate = currentDate.replace("0", "")
+        Log.d(TAG, "formatDate: ")
+        return currentDate
+    }
+
+
+    private fun openCsvFile2(file: File) {
+        val path = FileProvider.getUriForFile(this, "com.example.edward.nyansapo.fileprovider", file)
+        val fileIntent = Intent(Intent.ACTION_SEND)
+        fileIntent.type = "text/csv"
+        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Nyansapo Data")
+        fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        fileIntent.putExtra(Intent.EXTRA_STREAM, path)
+        startActivity(Intent.createChooser(fileIntent, "Export Data"))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -525,11 +680,81 @@ class MainActivity2 : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 //go to grouping fragment
-        if(requestCode== REQUEST_CODE){
+        if (requestCode == REQUEST_CODE) {
             supportFragmentManager.beginTransaction().replace(R.id.container, GroupingFragment2()).commit()
         }
 
     }
+
+
+    /////////////////////PROGRESS_BAR////////////////////////////
+    lateinit var dialog: AlertDialog
+
+    private fun showProgress(show: Boolean) {
+
+        if (show) {
+            dialog.show()
+
+        } else {
+            dialog.dismiss()
+
+        }
+
+    }
+
+    private fun initProgressBar() {
+
+        dialog = setProgressDialog(this, "Loading..")
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+    }
+
+    fun setProgressDialog(context: Context, message: String): AlertDialog {
+        val llPadding = 30
+        val ll = LinearLayout(context)
+        ll.orientation = LinearLayout.HORIZONTAL
+        ll.setPadding(llPadding, llPadding, llPadding, llPadding)
+        ll.gravity = Gravity.CENTER
+        var llParam = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        ll.layoutParams = llParam
+
+        val progressBar = ProgressBar(context)
+        progressBar.isIndeterminate = true
+        progressBar.setPadding(0, 0, llPadding, 0)
+        progressBar.layoutParams = llParam
+
+        llParam = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        val tvText = TextView(context)
+        tvText.text = message
+        tvText.setTextColor(Color.parseColor("#000000"))
+        tvText.textSize = 20.toFloat()
+        tvText.layoutParams = llParam
+
+        ll.addView(progressBar)
+        ll.addView(tvText)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(true)
+        builder.setView(ll)
+
+        val dialog = builder.create()
+        val window = dialog.window
+        if (window != null) {
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(dialog.window?.attributes)
+            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
+            dialog.window?.attributes = layoutParams
+        }
+        return dialog
+    }
+
+    //end progressbar
 
 
 }

@@ -40,22 +40,28 @@ class GroupingAdapter2(val fragment2: GroupingFragment2?=null, val searchViewEmp
     private val context: Context? = MainActivity2.activityContext!!
 
 
-    private fun setOnClickListeners(holder: ViewHolder, positionDummy: Int) {
+    private fun setOnClickListeners(holder: ViewHolder, position: Int) {
+        var currentSnapshot: DocumentSnapshot
 
-        val position = holder.bindingAdapterPosition
+        try {
+            currentSnapshot = getItem(position)
+        } catch (e: IndexOutOfBoundsException) {
+            currentSnapshot = getItem(position - 1)
+        }
+
         holder.itemView.setOnClickListener {
             if (position == RecyclerView.NO_POSITION) {
                 return@setOnClickListener
             }
-            studentDocumentSnapshot = getItem(position)
-            onStudentClick(getItem(position))
+            studentDocumentSnapshot = currentSnapshot
+            onStudentClick(currentSnapshot)
         }
         holder.itemView.setOnLongClickListener {
             if (position == RecyclerView.NO_POSITION) {
                 return@setOnLongClickListener false
             }
-            studentDocumentSnapshot = getItem(position)
-            onStudentLongClicked(getItem(position))
+            studentDocumentSnapshot = currentSnapshot
+            onStudentLongClicked(currentSnapshot)
 
             true
         }
@@ -97,9 +103,9 @@ class GroupingAdapter2(val fragment2: GroupingFragment2?=null, val searchViewEmp
             val model = getItem(position).toObject(Student::class.java)!!
             Log.d(TAG, "onBindViewHolder: " + model.firstname + " " + model.lastname)
 
-            setOnClickListeners(holder, position)
+            nameTxtView.setText("${model.firstname} ${model.lastname}")
 
-            nameTxtView.setText(model.firstname + " " + model.lastname)
+            setOnClickListeners(holder, position)
 
 
         }

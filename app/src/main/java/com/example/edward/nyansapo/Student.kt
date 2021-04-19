@@ -21,6 +21,7 @@ data class Student(
         var timestamp: Date? = null,
         var instructor_id: String? = null,
         var learningLevel: String? = Learning_Level.UNKNOWN.name,
+        var baseLine: String? = Learning_Level.UNKNOWN.name,
         var std_class: String? = null
 ) : Parcelable, SearchSuggestion {
 

@@ -108,7 +108,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         val myCalendar = Calendar.getInstance()
         myCalendar.time = currentDateServer
 
-        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth -> // TODO Auto-generated method stub
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             myCalendar[Calendar.YEAR] = year
             myCalendar[Calendar.MONTH] = monthOfYear
             myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
@@ -156,6 +156,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         binding.dateBtn.text = data
         var dateFormated = data.replace("/", "_")
         dateFormated = dateFormated.replace("0", "")
+        Log.d(TAG, "updateLabel: dataFormatted:$dateFormated")
 
         //start fetching data again with new date from picker
         initDataFetching(dateFormated)

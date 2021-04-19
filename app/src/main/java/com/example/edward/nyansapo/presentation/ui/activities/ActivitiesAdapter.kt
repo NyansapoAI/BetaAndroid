@@ -43,8 +43,15 @@ class ActivitiesAdapter(val fragment: ActivitiesFragment, val onSearchViewEmpty:
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.nameTxtView.text = getItem(position).name
         holder.itemView.setOnClickListener {
-            Log.d(TAG, "setOnClickListener: position:${holder.bindingAdapterPosition} item:${getItem(holder.bindingAdapterPosition).name}}")
-            onActivityClicked(getItem(holder.bindingAdapterPosition))
+         var currentItem:Activity
+            try {
+                currentItem=getItem(position)
+            }catch (e:IndexOutOfBoundsException){
+                currentItem=getItem(position-1)
+                e.printStackTrace()
+            }
+
+             onActivityClicked(currentItem)
         }
     }
 
