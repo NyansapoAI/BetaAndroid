@@ -22,8 +22,8 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/dummyItem"
-        android:title="Dummy Item"
+        android:id="@+id/refreshItem"
+        android:title="Refresh"
         app:showAsAction="never" />
 
 </menu>

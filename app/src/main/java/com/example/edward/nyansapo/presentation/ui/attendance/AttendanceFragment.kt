@@ -4,23 +4,27 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.ActivityAttendanceBinding
 import com.edward.nyansapo.databinding.ItemAttendanceBinding
+import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.utils.Constants
 import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.AddStudentFragment
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
@@ -51,6 +55,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         Log.d(TAG, "onViewCreated: ")
         binding = ActivityAttendanceBinding.bind(view)
         sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        initProgressBar()
         setUpToolBar()
         setCurrentDate()
         getCurrentInfo()
@@ -86,6 +91,25 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
                     startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty(datePickerDate, querySnapshot)
 
                 }
+
+            }
+
+
+        }
+    }
+
+    private fun initDataFetching2(datePickerDate: String) {
+        Log.d(TAG, "initDataFetching2: datePickerDate:$datePickerDate")
+
+        //checking if there is student in the database
+        checkIfWeHaveAnyStudentInTheCamp() { databaseIsEmpty, querySnapshot ->
+
+            Log.d(TAG, "initDataFetching: we are using date from datepicker")
+            if (!databaseIsEmpty) {
+                initRecyclerViewAdapter(datePickerDate)
+                startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty2(datePickerDate, querySnapshot)
+            } else {
+                Log.d(TAG, "initDataFetching2: database is empty")
 
             }
 
@@ -149,13 +173,12 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
 
             myCalendar.get(Calendar.YEAR)
 
-            Toasty.error(MainActivity2.activityContext!!, "Please Don't Choose  Future date only past  can be choosen").show()
+            Toasty.error(MainActivity2.activityContext!!, "Please Don't Choose  Future date only past  can be choosen", Toasty.LENGTH_LONG).show()
             return
         }
 
-        binding.dateBtn.text = data
-        var dateFormated = data.replace("/", "_")
-        dateFormated = dateFormated.replace("0", "")
+        binding.dateBtn.text = choosenDate.formatDate
+        var dateFormated = choosenDate.formatDate.cleanString
         Log.d(TAG, "updateLabel: dataFormatted:$dateFormated")
 
         //start fetching data again with new date from picker
@@ -206,10 +229,24 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
                 R.id.editItem -> {
                     editItemClicked(item)
                 }
+                R.id.refreshItem -> {
+                    refreshItemClicked()
+                }
 
 
             }
             true
+
+        }
+    }
+
+    private fun refreshItemClicked() {
+        val date = binding.dateBtn.text
+        if (date.isBlank()) {
+            Toasty.error(requireContext(), "Please First choose a date").show()
+        } else {
+            var formattedDate = date.toString().cleanString
+            initDataFetching2(formattedDate)
 
         }
     }
@@ -247,6 +284,15 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
             }
 
         }
+
+    }
+
+    private fun startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty2(date: String, querySnapshot: QuerySnapshot) {
+
+        FirebaseUtils.deleteStudentsAttendance_Task(programId, groupId, campId, date).delete().addOnSuccessListener {
+            addStudentsToAttendance(date, querySnapshot)
+        }
+
 
     }
 
@@ -333,17 +379,18 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
     private fun setCurrentDate() {
         Log.d(TAG, "setCurrentDate: setting current date")
 
-
+        showProgress(true)
         FirebaseUtils.getCurrentDate { date ->
             Log.d(TAG, "setCurrentDate: date retrieved:${date}")
             if (date == null) {
                 currentDateServer = Calendar.getInstance().time
-                binding.dateBtn.text = SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+                binding.dateBtn.text = Calendar.getInstance().time.formatDate
 
             } else {
                 currentDateServer = date
-                binding.dateBtn.text = SimpleDateFormat.getDateTimeInstance().format(date)
+                binding.dateBtn.text = date.formatDate
             }
+            showProgress(false)
 
 
         }
@@ -352,8 +399,84 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
     private fun getCurrentDateToPlaceInDatabase(onComplete: (String) -> Unit) {
         Log.d(TAG, "setCurrentDate: setting current date")
         FirebaseUtils.getCurrentDateFormatted {
+            Log.d(TAG, "getCurrentDateToPlaceInDatabase: currentDate:$it")
 
             onComplete(it!!)
         }
     }
+
+    /////////////////////PROGRESS_BAR////////////////////////////
+    lateinit var dialog: AlertDialog
+
+    private fun showProgress(show: Boolean) {
+
+        if (show) {
+            dialog.show()
+
+        } else {
+            dialog.dismiss()
+
+        }
+
+    }
+
+    private fun initProgressBar() {
+
+        dialog = setProgressDialog(requireContext(), "Loading..")
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+    }
+
+    fun setProgressDialog(context: Context, message: String): AlertDialog {
+        val llPadding = 30
+        val ll = LinearLayout(context)
+        ll.orientation = LinearLayout.HORIZONTAL
+        ll.setPadding(llPadding, llPadding, llPadding, llPadding)
+        ll.gravity = Gravity.CENTER
+        var llParam = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        ll.layoutParams = llParam
+
+        val progressBar = ProgressBar(context)
+        progressBar.isIndeterminate = true
+        progressBar.setPadding(0, 0, llPadding, 0)
+        progressBar.layoutParams = llParam
+
+        llParam = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        val tvText = TextView(context)
+        tvText.text = message
+        tvText.setTextColor(Color.parseColor("#000000"))
+        tvText.textSize = 20.toFloat()
+        tvText.layoutParams = llParam
+
+        ll.addView(progressBar)
+        ll.addView(tvText)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(true)
+        builder.setView(ll)
+
+        val dialog = builder.create()
+        val window = dialog.window
+        if (window != null) {
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(dialog.window?.attributes)
+            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
+            dialog.window?.attributes = layoutParams
+        }
+        return dialog
+    }
+
+    //end progressbar
+
+
 }
+
+val Date.formatDate get() = SimpleDateFormat("dd/MM/yyyy").format(this)
+
+val String.cleanString get() = this.replace("/", "_")

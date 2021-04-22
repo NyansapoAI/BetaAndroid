@@ -10,6 +10,8 @@ import com.example.edward.nyansapo.Learning_Level
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.attendance.CurrentDate
 import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
+import com.example.edward.nyansapo.presentation.ui.attendance.cleanString
+import com.example.edward.nyansapo.presentation.ui.attendance.formatDate
 import com.example.edward.nyansapo.presentation.ui.home.Camp
 import com.example.edward.nyansapo.presentation.ui.home.Group
 import com.example.edward.nyansapo.presentation.ui.home.Program
@@ -17,7 +19,6 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 object FirebaseUtils {
@@ -184,16 +185,14 @@ object FirebaseUtils {
             FirebaseFirestore.getInstance().collection("dummy").document("date").get().addOnSuccessListener {
 
 
-                val date = SimpleDateFormat.getDateTimeInstance().format(it.toObject(CurrentDate::class.java)?.date)
+                var date = it.toObject(CurrentDate::class.java)?.date
+                if (date == null) {
+                    date = Calendar.getInstance().time
+                }
 
-
-                Log.d(TAG, "getCurrentDateAndInitCurrentInfo: retrieving current date from database ${date}")
 
                 //this symbols act weird with database
-                var currentDate: String
-                currentDate = date.replace("/", "_")
-                currentDate = currentDate.replace("0", "")
-
+                var currentDate: String = date!!.formatDate.cleanString
                 onComplete(currentDate)
 
             }
@@ -261,6 +260,10 @@ object FirebaseUtils {
 
 
     }
+
+    fun deleteStudentsAttendance_Task(programId: String, groupId: String, campId: String, date: String) =
+            firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date)
+
 
     fun addStudentsToCamp(programId: String, groupId: String, campId: String, student: Student, onComplete: (DocumentReference) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).add(student).addOnSuccessListener {

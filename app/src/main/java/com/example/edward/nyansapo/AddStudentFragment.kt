@@ -27,8 +27,9 @@ import kotlinx.android.synthetic.main.activity_register_student.*
 
 class AddStudentFragment : AppCompatActivity() {
 
-             private  val TAG="registerStudent"
-
+           
+                   private  val TAG="AddStudentFragment"
+             
     lateinit var binding: ActivityRegisterStudentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

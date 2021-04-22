@@ -1,6 +1,7 @@
 package com.example.edward.nyansapo.presentation.ui.assessment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityBeginAssessementBinding
 import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.EditStudentFragment
 import com.example.edward.nyansapo.Student
 
 
@@ -42,10 +44,31 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
 
     }
 
-    private fun setUpToolbar() {
-        binding.toolbar.root.inflateMenu(R.menu.overflow_menu)
+    override fun onResume() {
+        super.onResume()
         val fullname = "${studentDocumentSnapshot!!.toObject(Student::class.java)!!.firstname}  ${studentDocumentSnapshot!!.toObject(Student::class.java)!!.lastname}"
         binding.toolbar.root.title = fullname
+
+    }
+    private fun setUpToolbar() {
+        binding.toolbar.root.inflateMenu(R.menu.begin_assessment_menu)
+        val fullname = "${studentDocumentSnapshot!!.toObject(Student::class.java)!!.firstname}  ${studentDocumentSnapshot!!.toObject(Student::class.java)!!.lastname}"
+        binding.toolbar.root.title = fullname
+
+        binding.toolbar.root.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.editStudentItem -> {
+                    editStudentClicked()
+                }
+            }
+
+            true
+        }
+    }
+
+    private fun editStudentClicked() {
+        val intent = Intent(requireContext(), EditStudentFragment::class.java)
+        startActivity(intent)
     }
 
     private fun setOnClickListeners() {

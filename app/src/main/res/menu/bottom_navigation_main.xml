@@ -11,11 +11,11 @@
 
       <item
           android:id="@+id/action_grouping"
-          android:icon="@drawable/ic_grouping"
+          android:icon="@drawable/grouping_2"
           android:title="Grouping" />
       <item
           android:id="@+id/action_home"
-          android:icon="@drawable/ic_home"
+          android:icon="@drawable/home_2"
           android:title="Home" />
       <item
           android:id="@+id/action_patterns"

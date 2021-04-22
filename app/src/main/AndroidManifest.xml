@@ -70,6 +70,7 @@
         <activity android:name="com.example.edward.nyansapo.letter_assessment" />
         <activity android:name="com.example.edward.nyansapo.thankYou" />
         <activity android:name="com.example.edward.nyansapo.AddStudentFragment" />
+    <activity android:name="com.example.edward.nyansapo.EditStudentFragment" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

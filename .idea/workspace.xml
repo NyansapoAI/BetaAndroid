@@ -17,7 +17,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="MainActivity2" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="AttendanceFragment" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="exclude SurfaceFlinger" />
   </component>
@@ -41,13 +41,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0994166-8f47-4f0f-a1f8-b9e3b781f54e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_opencsv_opencsv_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_beanutils_commons_beanutils_1_9_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_text_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_play_services_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/EditStudentFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/grouping_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/home_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/begin_assessment_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -59,29 +56,23 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/NyansapCopy.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/NyansapCopy.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Student.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Student.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/AddStudentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/AddStudentFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/assessment/BeginAssessmentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/assessment/BeginAssessmentFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/attendance/AttendanceFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/attendance/AttendanceFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/grouping/GroupingAdapter2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/main/MainActivity2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/main/MainActivity2.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/utils/FirebaseUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/utils/FirebaseUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/thankYou.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/thankYou.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/utils/GlobalData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/utils/GlobalData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/attendance_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/attendance_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/overflow_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/overflow_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[NZM7KR8HTODUDMFA]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -165,8 +156,8 @@
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED" value="ViewPager2" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/com.github.arimorty/floatingsearchview/2.1.1/5af5c30598fc2a62289e6870cf51cf8aea0ccc48/floatingsearchview-2.1.1-sources.jar!/com/arlib/floatingsearchview/FloatingSearchView.java_SELECTED" value="FloatingSearchView" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/com.nightonke/blurlockview/1.0.0/f01ce0c37b685c96fa78d87d8c858143a29a3d41/blurlockview-1.0.0-sources.jar!/com/nightonke/blurlockview/BlurLockView.java_SELECTED" value="BlurLockView" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java/com/edward/nyansapo" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
     <property name="multi-representation-previewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/view/View.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/widget/AdapterView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/widget/Toolbar.java_selected" value="Custom views" />
@@ -177,9 +168,6 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.1502989668">
-      <recent name="com.nyansapo.presentation.main" />
-    </key>
     <key name="android.template.-286262575">
       <recent name="com.nyansapo.presentation.ui.attendance" />
     </key>
@@ -195,10 +183,11 @@
       <recent name="com.nyansapo.presentation.ui.begin_assessment_chooser" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\menu" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-hdpi" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\layout" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\drawable" />
-      <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-mdpi" />
     </key>
     <key name="android.template.-129413714">
       <recent name="com.nyansapo.presentation.ui" />
@@ -208,6 +197,9 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.nyansapo" />
+    </key>
+    <key name="android.template.1502989668">
+      <recent name="com.nyansapo.presentation.main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-mdpi" />
@@ -219,11 +211,11 @@
       <recent name="com.nyansapo.add_dialog" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo" />
       <recent name="com.example.edward.nyansapo.presentation.ui.grouping" />
       <recent name="com.nyansapo.presentation.ui.home" />
       <recent name="com.nyansapo.presentation.ui.learning_level" />
       <recent name="com.nyansapo.presentation.ui.attendance" />
-      <recent name="com.nyansapo" />
     </key>
     <key name="android.template.-593298867">
       <recent name="com.nyansapo.presentation.ui.learning_level" />
@@ -627,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617909161752</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="implemented the export feature">
+      <created>1618832772501</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1618832772501</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -654,7 +653,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed time stamp issue  of assessments list" />
     <MESSAGE value="removed the animation transition from one activity to another it was causing a bug ,where some screens where not responsive" />
     <MESSAGE value="coded HomePageFragment.kt logic" />
     <MESSAGE value="done coding the HomePageFragment.kt and CreateNewActivity.kt" />
@@ -679,13 +677,18 @@
     <MESSAGE value="update 1" />
     <MESSAGE value="update 2" />
     <MESSAGE value="modified ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified ui" />
+    <MESSAGE value="implemented the export feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented the export feature" />
   </component>
   <component name="WindowStateProjectService">
     <state x="427" y="59" key="#Images" timestamp="1614867816939">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="427" y="59" key="#Images/0.0.1366.728@0.0.1366.728" timestamp="1614867816939" />
+    <state x="568" y="226" key="#Notifications" timestamp="1618835383352">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="568" y="226" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1618835383352" />
     <state x="392" y="0" key="#app" timestamp="1617251577863">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -722,10 +725,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1616407067342" />
-    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1617909147352">
+    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1618832757601">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1617909147352" />
+    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1618832757601" />
     <state x="142" y="54" width="1086" height="610" key="DiffContextDialog" timestamp="1617598291736">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -742,22 +745,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="261" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1617459244366" />
-    <state width="1323" height="249" key="GridCell.Tab.0.bottom" timestamp="1618829983226">
+    <state width="1323" height="249" key="GridCell.Tab.0.bottom" timestamp="1619091763262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618829983226" />
-    <state width="1323" height="249" key="GridCell.Tab.0.center" timestamp="1618829983226">
+    <state width="1323" height="249" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619091763262" />
+    <state width="1323" height="249" key="GridCell.Tab.0.center" timestamp="1619091763262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1618829983226" />
-    <state width="1323" height="249" key="GridCell.Tab.0.left" timestamp="1618829983226">
+    <state width="1323" height="249" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1619091763262" />
+    <state width="1323" height="249" key="GridCell.Tab.0.left" timestamp="1619091763262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1618829983226" />
-    <state width="1323" height="249" key="GridCell.Tab.0.right" timestamp="1618829983226">
+    <state width="1323" height="249" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1619091763262" />
+    <state width="1323" height="249" key="GridCell.Tab.0.right" timestamp="1619091763262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1618829983226" />
+    <state width="1323" height="249" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1619091763262" />
     <state x="263" y="106" key="IDE.errors.dialog" timestamp="1616410482164">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -770,14 +773,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1617248984019" />
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1617909166855">
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1618835354664">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1617909166855" />
-    <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1617189353942">
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1618835354664" />
+    <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1619091570369">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="164" y="141" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1617189353942" />
+    <state x="164" y="141" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1619091570369" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616656284069">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -802,9 +805,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="170" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1617270654381" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1618823429274">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1619087593875">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1618823429274" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1619087593875" />
   </component>
 </project>

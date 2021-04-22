@@ -6,7 +6,7 @@ import com.example.edward.nyansapo.db.AssessmentRecording
 
 class GlobalData {
     companion object {
-        @JvmField
+         @JvmField
         var avatar: Int = R.drawable.nyansapo_avatar_lion
     @JvmField
         var assessmentRecording: AssessmentRecording = AssessmentRecording()
