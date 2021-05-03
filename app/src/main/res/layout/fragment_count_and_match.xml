@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Count And Match"
+        android:textSize="24dp"
+        android:textStyle="bold|italic" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_1"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_2"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_3"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_4"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_5"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_6"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_7"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_8"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_9"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_10"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_11"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:tag="ball_12"
+            android:visibility="gone"
+            tools:src="@mipmap/ball_selected"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_2"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_3"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_4"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_margin="2dp"
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_6"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_7"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="2"
+            android:background="@drawable/bg_number_choices_disabled"
+            android:enabled="false"
+            android:gravity="center"
+            android:tag="choice_8"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="4" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/nyansapo_avatar_elelphant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/skipTxtView"
+        android:text="Skip"
+        android:textSize="24dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

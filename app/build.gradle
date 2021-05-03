@@ -165,6 +165,16 @@ dependencies {
     //4 digit lock
     implementation 'com.nightonke:blurlockview:1.0.0'
 
+    //load data from firebase synchronously
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1"
+
+    //make image view blur
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+
+    //analyses text written in canvas
+    implementation 'com.google.mlkit:digital-ink-recognition:16.2.0'
+    // fix for Duplicate class com.google.common.util.concurrent.ListenableFuture found in modules jetified-guava-26.0-android (com.google.guava:guava:26.0-android) and jetified-listenablefuture-1.0 (com.google.guava:listenablefuture:1.0)
+    implementation 'com.google.guava:guava:27.0.1-android'
 }
 
 kapt {

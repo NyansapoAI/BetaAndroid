@@ -4,4 +4,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="end_point">275310be-2c21-4131-9609-22733b4e0c04</string>
+    <string name="speech_subscription_key">1c58abdab5d74d5fa41ec8b0b4a62367</string>
+    <string name="service_region">eastus</string>
+
+
+
+
 </resources>

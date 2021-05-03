@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.mlkit:digital-ink-recognition:16.2.0@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dbb94e7d902dc347e95833d8165333ce/jetified-digital-ink-recognition-16.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dbb94e7d902dc347e95833d8165333ce/jetified-digital-ink-recognition-16.2.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dbb94e7d902dc347e95833d8165333ce/jetified-digital-ink-recognition-16.2.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.google.mlkit/digital-ink-recognition/16.2.0/75755ff937e775b0ecd8ee51dc66a47f17e37ba6/digital-ink-recognition-16.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

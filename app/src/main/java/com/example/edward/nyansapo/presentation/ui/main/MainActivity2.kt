@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityMain2Binding
 import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.numeracy.NumeracyActivity
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment2
 import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment3
@@ -263,6 +264,9 @@ companion object{
                 R.id.tutorialItem -> {
 
                 }
+                R.id.numeracyItem -> {
+                    goToNumeracy()
+                }
                 R.id.logoutItem -> {
                     logoutClicked()
                 }
@@ -272,6 +276,11 @@ companion object{
             drawer.closeDrawer(GravityCompat.START)
             return true
         }
+    }
+
+    private fun goToNumeracy() {
+        val intent = Intent(this, NumeracyActivity::class.java)
+        startActivity(intent)
     }
 
     private fun syncData() {

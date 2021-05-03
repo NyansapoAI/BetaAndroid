@@ -31,16 +31,21 @@
             android:title="Settings" />
 
        <item
-            android:iconTint="@color/black"
-            android:icon="@drawable/ic_sync"
-            android:id="@+id/synceItem"
-            android:title="Sync" />
+           android:id="@+id/synceItem"
+           android:icon="@drawable/ic_sync"
+           android:iconTint="@color/black"
+           android:title="Sync" />
 
         <item
             android:iconTint="@color/black"
             android:icon="@drawable/ic_tutorial"
             android:id="@+id/tutorialItem"
             android:title="Tutorial" />
+        <item
+            android:id="@+id/numeracyItem"
+            android:icon="@drawable/ic_tutorial"
+            android:iconTint="@color/black"
+            android:title="Numeracy" />
         <item
             android:id="@+id/logoutItem"
             android:icon="@drawable/ic_logout"

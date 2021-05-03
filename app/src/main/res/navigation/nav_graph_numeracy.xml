@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_numeracy"
+    app:startDestination="@id/countAndMatchFragment">
+
+    <fragment
+        android:id="@+id/countAndMatchFragment"
+        android:name="com.example.edward.nyansapo.numeracy.count_and_match.CountAndMatchFragment"
+        android:label="CountAndMatchFragment" >
+        <action
+            android:id="@+id/action_countAndMatchFragment_to_numberRecognition2Fragment"
+            app:destination="@id/numberRecognition2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberRecognition2Fragment"
+        android:name="com.example.edward.nyansapo.numeracy.number_recognition.NumberRecognition2Fragment"
+        android:label="NumberRecognition2Fragment" >
+        <action
+            android:id="@+id/action_numberRecognition2Fragment_to_additionFragment"
+            app:destination="@id/additionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberRecognition3Fragment"
+        android:name="com.example.edward.nyansapo.numeracy.NumberRecognition3Fragment"
+        android:label="NumberRecognition3Fragment" />
+    <fragment
+        android:id="@+id/additionFragment"
+        android:name="com.example.edward.nyansapo.numeracy.addition.AdditionFragment"
+        android:label="AdditionFragment" />
+    <fragment
+        android:id="@+id/subtractionFragment"
+        android:name="com.example.edward.nyansapo.numeracy.SubtractionFragment"
+        android:label="SubtractionFragment" />
+    <fragment
+        android:id="@+id/multiplicationFragment"
+        android:name="com.example.edward.nyansapo.numeracy.MultiplicationFragment"
+        android:label="MultiplicationFragment" />
+    <fragment
+        android:id="@+id/divisionFragment"
+        android:name="com.example.edward.nyansapo.numeracy.DivisionFragment"
+        android:label="DivisionFragment" />
+</navigation>
