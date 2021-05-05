@@ -3,26 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_oval_header"
         android:gravity="center"
         android:text="Number Recognition"
         android:textSize="24dp"
         android:textStyle="bold|italic" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
+
     <TextView
         android:id="@+id/numberRecognTxtView"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:textColor="@color/lightblue"
+        android:layout_margin="20dp"
         android:autoSizeMaxTextSize="500dp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
         android:background="@drawable/bg_number_recognition_not_recording"
         tools:text="57" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,6 +64,7 @@
         android:id="@+id/skipTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Skip"
         android:textSize="20dp" />
 

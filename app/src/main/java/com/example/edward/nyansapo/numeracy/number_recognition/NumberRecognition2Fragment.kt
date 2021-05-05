@@ -1,9 +1,18 @@
 package com.example.edward.nyansapo.numeracy.number_recognition
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -35,6 +44,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNumberRecognition2Binding.bind(view)
+        initProgressBar()
         subScribeToObservers()
     }
 
@@ -42,6 +52,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             launch {
                 viewModel.getNumberRecogn_2.collect {
+                    Log.d(TAG, "subScribeToObservers: getNumberRecogn_2:${it.status.name}")
                     when (it.status) {
                         Resource.Status.LOADING -> {
 
@@ -58,12 +69,49 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
                 }
             }
 
+            launch {
+                viewModel.recognitionStatus.collect {
+                    Log.d(TAG, "subScribeToObservers: recognitionStatus:${it.status.name}")
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+                            showProgress(true)
+
+                        }
+                        Resource.Status.SUCCESS -> {
+                            showProgress(false)
+                            viewModel.setEvent(Event.CheckIfCorrect(it.data!!))
+                        }
+                        Resource.Status.ERROR -> {
+                            displayNumber()
+                            showProgress(false)
+                            showToastInfo("Error: ${it.exception?.message}")
+                        }
+                    }
+                }
+            }
+            launch {
+                viewModel.numberRecognitionEvents.collect {
+                    when (it) {
+                        Event.Next -> {
+                            goToNext()
+                        }
+                        Event.Finished -> {
+                            finished()
+                        }
+
+                    }
+                }
+            }
+
         }
     }
 
+    private fun finished() {
+        findNavController().navigate(R.id.action_numberRecognition2Fragment_to_additionFragment)
+    }
+
     private fun displayNumber() {
-        Log.d(TAG, "displayNumber: getNumberRecogn_2:${viewModel.getNumberRecogn_2}")
-        Log.d(TAG, "displayNumber: getCurrentNumber:${viewModel.getCurrentNumber()}")
+         Log.d(TAG, "displayNumber: getCurrentNumber:${viewModel.getCurrentNumber()}")
         Log.d(TAG, "displayNumber: counter:${viewModel.counter}")
         Log.d(TAG, "displayNumber: correctCount:${viewModel.correctCount}")
         binding.numberRecognTxtView.setBackgroundResource(R.drawable.bg_number_recognition_not_recording)
@@ -72,6 +120,9 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
 
     private fun setOnClickListeners() {
         binding.imvMic.setOnClickListener {
+            micClicked()
+        }
+        binding.numberRecognTxtView.setOnClickListener {
             micClicked()
         }
         binding.imvAvatar.setOnClickListener {
@@ -105,78 +156,98 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     }
 
     private fun recordStudent() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            binding.numberRecognTxtView.setBackgroundResource(R.drawable.bg_number_recognition_recording)
-            launch(Dispatchers.IO) {
-                startRecording()
+        binding.numberRecognTxtView.setBackgroundResource(R.drawable.bg_number_recognition_recording)
+        viewModel.setEvent(Event.RecordStudent)
 
-            }
-
-        }
-    }
-
-    private suspend fun startRecording() {
-        Log.d(TAG, "startRecording: ")
-        val speechSubscriptionKey = requireActivity().getString(R.string.speech_subscription_key)
-        val serviceRegion = requireActivity().getString(R.string.service_region)
-        val config = SpeechConfig.fromSubscription(speechSubscriptionKey, serviceRegion)
-
-        config!!.endpointId = requireActivity().getString(R.string.end_point)
-        val reco = SpeechRecognizer(config)
-        var result: SpeechRecognitionResult? = null
-        val task = reco!!.recognizeOnceAsync()!!
-
-
-        try {
-            result = task.get()
-        } catch (e: ExecutionException) {
-            e.printStackTrace()
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-
-        if (result!!.reason == ResultReason.RecognizedSpeech) {
-            withContext(Dispatchers.Main) {
-                successResult(result.text)
-            }
-
-        } else if (result.reason == ResultReason.NoMatch) {
-            showToastInfo("No Match")
-        } else if (result.reason == ResultReason.Canceled) {
-            showToastInfo("Cancelled")
-
-        }
 
     }
 
-    private fun successResult(result: String) {
-        Log.d(TAG, "successResult: result:$result")
-        val cleanResult = result.cleanResult
-        Log.d(TAG, "successResult: cleanResult:$cleanResult")
-        Log.d(TAG, "successResult: getNumberRecogn_2:${viewModel.getCurrentNumber()}::cleanResult :$cleanResult")
-        if (viewModel.getCurrentNumber().toString() == cleanResult) {
-            Log.d(TAG, "successResult: correct")
-            viewModel.correctCount++
-        } else {
-            Log.d(TAG, "successResult: wrong")
 
-        }
-        goToNext()
-    }
+
 
     private fun goToNext() {
-
-
-        viewModel.counter++
         displayNumber()
-
-
     }
 
     private fun showToastInfo(message: String) {
         Toasty.info(requireContext(), message).show()
     }
 
+    sealed class Event {
+        object RecordStudent : Event()
+        data class CheckIfCorrect(val recorded: String) : Event()
+        object Next : Event()
+        object Finished : Event()
+    }
+
+    /////////////////////PROGRESS_BAR////////////////////////////
+    lateinit var dialog: AlertDialog
+
+    private fun showProgress(show: Boolean) {
+
+        if (show) {
+            dialog.show()
+
+        } else {
+            dialog.dismiss()
+
+        }
+
+    }
+
+    private fun initProgressBar() {
+
+        dialog = setProgressDialog(requireContext(), "Speak..")
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+    }
+
+    fun setProgressDialog(context: Context, message: String): AlertDialog {
+        val llPadding = 30
+        val ll = LinearLayout(context)
+        ll.orientation = LinearLayout.HORIZONTAL
+        ll.setPadding(llPadding, llPadding, llPadding, llPadding)
+        ll.gravity = Gravity.CENTER
+        var llParam = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        ll.layoutParams = llParam
+
+        val progressBar = ProgressBar(context)
+        progressBar.isIndeterminate = true
+        progressBar.setPadding(0, 0, llPadding, 0)
+        progressBar.layoutParams = llParam
+
+        llParam = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        val tvText = TextView(context)
+        tvText.text = message
+        tvText.setTextColor(Color.parseColor("#000000"))
+        tvText.textSize = 20.toFloat()
+        tvText.layoutParams = llParam
+
+        ll.addView(progressBar)
+        ll.addView(tvText)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(true)
+        builder.setView(ll)
+
+        val dialog = builder.create()
+        val window = dialog.window
+        if (window != null) {
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(dialog.window?.attributes)
+            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
+            dialog.window?.attributes = layoutParams
+        }
+        return dialog
+    }
+
+    //end progressbar
 }
 
 val String.cleanResult get() = this.replace(".", "")

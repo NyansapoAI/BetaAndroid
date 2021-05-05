@@ -84,23 +84,9 @@ class CustomLinearLayout(context: Context?, attrs: AttributeSet?) : LinearLayout
     }
 
 
-    // This is what to send to the recognizer.
-    val ink = inkBuilder.build()
-
     fun clearDrawing() {
-        isDrawingCacheEnabled = false
-        // don't forget that one and the match below,
-        // or you just keep getting a duplicate when you save.
-
-        //      onSizeChanged(width, height, width, height);
+        mPath.reset()
         invalidate()
-        isDrawingCacheEnabled = true
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        val mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        val mCanvas = Canvas(mBitmap)
     }
 
 

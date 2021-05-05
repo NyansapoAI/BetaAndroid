@@ -1,7 +1,10 @@
 package com.example.edward.nyansapo.numeracy.addition
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -13,7 +16,7 @@ class CustomTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextVie
     private val TAG = "CustomTextView"
 
     private val mPaint: Paint
-    private val mPath: Path
+   private val mPath: Path
 
     init {
         Log.d(TAG, "init: ")
@@ -86,20 +89,10 @@ class CustomTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextVie
 
 
     fun clearDrawing() {
-        isDrawingCacheEnabled = false
-        // don't forget that one and the match below,
-        // or you just keep getting a duplicate when you save.
-
-        //      onSizeChanged(width, height, width, height);
+        mPath.reset()
         invalidate()
-        isDrawingCacheEnabled = true
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        val mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        val mCanvas = Canvas(mBitmap)
-    }
 
 
 }

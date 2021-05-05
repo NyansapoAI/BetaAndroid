@@ -27,7 +27,14 @@
     <fragment
         android:id="@+id/additionFragment"
         android:name="com.example.edward.nyansapo.numeracy.addition.AdditionFragment"
-        android:label="AdditionFragment" />
+        android:label="AdditionFragment" >
+        <action
+            android:id="@+id/action_additionFragment_to_subtractionFragment"
+            app:destination="@id/subtractionFragment" />
+        <action
+            android:id="@+id/action_additionFragment_to_wordProblemFragment"
+            app:destination="@id/wordProblemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subtractionFragment"
         android:name="com.example.edward.nyansapo.numeracy.SubtractionFragment"
@@ -40,4 +47,8 @@
         android:id="@+id/divisionFragment"
         android:name="com.example.edward.nyansapo.numeracy.DivisionFragment"
         android:label="DivisionFragment" />
+    <fragment
+        android:id="@+id/wordProblemFragment"
+        android:name="com.example.edward.nyansapo.numeracy.word_problem.WordProblemFragment"
+        android:label="WordProblemFragment" />
 </navigation>

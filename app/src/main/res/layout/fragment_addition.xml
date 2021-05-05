@@ -4,25 +4,34 @@
     android:id="@+id/linearLayoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_oval_header"
         android:gravity="center"
         android:text="Addition"
         android:textSize="24dp"
         android:textStyle="bold|italic" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
+
     <TextView
         android:id="@+id/firstNumberTxtView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginLeft="80dp"
         android:autoSizeMaxTextSize="500dp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
+        android:textColor="@color/black"
         tools:text="26" />
 
     <LinearLayout
@@ -33,37 +42,76 @@
         <TextView
             android:id="@+id/symbolTxtView"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="75dp"
             android:autoSizeMaxTextSize="100dp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
+            android:textColor="@color/black"
             tools:text="+" />
 
         <TextView
             android:id="@+id/secondNumberTxtView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:autoSizeMaxTextSize="200dp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
+            android:textColor="@color/black"
             tools:text="13" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="10dp"
+        android:background="@color/black" />
+
     <com.example.edward.nyansapo.numeracy.addition.CustomTextView
         android:id="@+id/answerTxtView"
-        android:background="@drawable/bg_answer"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_answer" />
 
-    <ImageView
-        android:id="@+id/imageViewAvatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/nyansapo_avatar_elelphant" />
+        android:background="@color/black" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnResetAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Reset Answer Box"
+            android:textAllCaps="false" />
+
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/nyansapo_avatar_elelphant" />
+
+        <Button
+            android:id="@+id/btnResetWorkSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Reset Work space Box"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/skipTxtView"
@@ -72,6 +120,5 @@
         android:layout_gravity="center_horizontal"
         android:text="Skip"
         android:textSize="24dp" />
-
 
 </com.example.edward.nyansapo.numeracy.addition.CustomLinearLayout>
