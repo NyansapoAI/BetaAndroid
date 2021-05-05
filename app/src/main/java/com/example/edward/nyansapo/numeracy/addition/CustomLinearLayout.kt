@@ -15,6 +15,7 @@ class CustomLinearLayout(context: Context?, attrs: AttributeSet?) : LinearLayout
     private val mPaint: Paint
     private val mPath: Path
 
+
     init {
         Log.d(TAG, "init: ")
         mPaint = Paint()

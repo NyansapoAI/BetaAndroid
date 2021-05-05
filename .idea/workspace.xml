@@ -17,7 +17,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="WordProblemViewModel" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CustomLinearLayout2" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -41,12 +41,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0994166-8f47-4f0f-a1f8-b9e3b781f54e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/Operators.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/AdditionViewModel_2.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/WordProblemFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/WordProblemViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_oval_header.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_word_problem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout2.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/RubberTextView.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -58,22 +54,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/DataSet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/DataSet.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/AdditionFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/AdditionFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/AdditionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/AdditionViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomTextView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomTextView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/CountAndMatchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/CountAndMatchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/CountAndMatchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/CountAndMatchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/NumeracyRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/NumeracyRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognition2Fragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognition2Fragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognitionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognitionViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_addition.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_addition.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_count_and_match.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_count_and_match.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_number_recognition_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_number_recognition_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_numeracy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_numeracy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/WordProblemFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/WordProblemFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_word_problem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_word_problem.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,11 +113,11 @@
         <option value="Kotlin Interface" />
         <option value="navigationResourceFile" />
         <option value="Kotlin Object" />
-        <option value="Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
         <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -162,7 +146,10 @@
     <property name="android-custom-viewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/widget/AdapterView.java_SELECTED" value="AdapterView" />
     <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.java_SELECTED" value="CustomLinearLayout" />
     <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.kt_SELECTED" value="CustomLinearLayout" />
+    <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout2.kt_SELECTED" value="CustomLinearLayout2" />
     <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomTextView.kt_SELECTED" value="CustomTextView" />
+    <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/RubberTextView.java_SELECTED" value="RubberTextView" />
+    <property name="android-custom-viewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/RubberTextView.kt_SELECTED" value="RubberTextView" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/widget/SearchView.java_SELECTED" value="SearchView" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/widget/Toolbar.java_SELECTED" value="Toolbar" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0-alpha04/f27d98a59b17c8f160111c71fae3a3633b80bba2/recyclerview-1.2.0-alpha04-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
@@ -175,7 +162,10 @@
     <property name="multi-representation-previewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/widget/AdapterView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout2.kt_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomTextView.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/RubberTextView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/word_problem/RubberTextView.kt_selected" value="Custom views" />
     <property name="multi-representation-previewC:/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/widget/SearchView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/widget/Toolbar.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0-alpha04/f27d98a59b17c8f160111c71fae3a3633b80bba2/recyclerview-1.2.0-alpha04-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
@@ -659,7 +649,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620058254636</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="finished design of numeracy">
+      <created>1620188867132</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1620188867153</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -686,7 +683,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="coded HomePageFragment.kt logic" />
     <MESSAGE value="done coding the HomePageFragment.kt and CreateNewActivity.kt" />
     <MESSAGE value="implemented saving of the choosen choice in HomePageFragment.kt in shared pref" />
     <MESSAGE value="implemented progressive search view" />
@@ -711,7 +707,8 @@
     <MESSAGE value="modified ui" />
     <MESSAGE value="fixed the activityscreen bug and the paragraph_assessment.kt being overriden" />
     <MESSAGE value="finished implementing count and match" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished implementing count and match" />
+    <MESSAGE value="finished design of numeracy" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished design of numeracy" />
   </component>
   <component name="WindowStateProjectService">
     <state x="427" y="59" key="#Images" timestamp="1614867816939">
@@ -762,10 +759,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1616407067342" />
-    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1620058198933">
+    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1620188835632">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1620058198933" />
+    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1620188835632" />
     <state x="142" y="54" width="1086" height="610" key="DiffContextDialog" timestamp="1617598291736">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -782,22 +779,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="552" y="261" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1617459244366" />
-    <state width="1323" height="46" key="GridCell.Tab.0.bottom" timestamp="1620186241242">
+    <state width="1323" height="255" key="GridCell.Tab.0.bottom" timestamp="1620206184608">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="46" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620186241242" />
-    <state width="1323" height="46" key="GridCell.Tab.0.center" timestamp="1620186241242">
+    <state width="1323" height="255" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
+    <state width="1323" height="255" key="GridCell.Tab.0.center" timestamp="1620206184608">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="46" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620186241242" />
-    <state width="1323" height="46" key="GridCell.Tab.0.left" timestamp="1620186241242">
+    <state width="1323" height="255" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
+    <state width="1323" height="255" key="GridCell.Tab.0.left" timestamp="1620206184608">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="46" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620186241242" />
-    <state width="1323" height="46" key="GridCell.Tab.0.right" timestamp="1620186241242">
+    <state width="1323" height="255" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
+    <state width="1323" height="255" key="GridCell.Tab.0.right" timestamp="1620206184608">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="46" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620186241242" />
+    <state width="1323" height="255" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
     <state x="263" y="106" key="IDE.errors.dialog" timestamp="1616410482164">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -810,10 +807,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620032370433" />
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1620058448698">
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1620188926257">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620058448698" />
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620188926257" />
     <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1620028728013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

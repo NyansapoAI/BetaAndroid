@@ -12,6 +12,7 @@ import com.example.edward.nyansapo.wrappers.Resource
 import com.google.mlkit.vision.digitalink.Ink
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_addition.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -84,6 +85,7 @@ class WordProblemFragment : Fragment(R.layout.fragment_word_problem) {
             btnResetWorkSpace.setOnClickListener {
                 binding.root.clearDrawing()
             }
+
         }
     }
 
