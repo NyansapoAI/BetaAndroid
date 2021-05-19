@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo.presentation.utils
+package com.example.edward.nyansapo.util
 
 import com.google.firebase.firestore.DocumentSnapshot
 

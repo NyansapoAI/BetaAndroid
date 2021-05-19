@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo.presentation.utils
+package com.example.edward.nyansapo.util
 
 import android.content.Context
 import android.util.Log
@@ -43,10 +43,11 @@ object FirebaseUtils {
 
 
     }
-    fun getProgramNamesContinuously2(onComplete: (QuerySnapshot?,Exception?) -> Unit): ListenerRegistration {
+
+    fun getProgramNamesContinuously2(onComplete: (QuerySnapshot?, Exception?) -> Unit): ListenerRegistration {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).orderBy(ORDER_BY).addSnapshotListener { query, e ->
 
-            onComplete(query,e)
+            onComplete(query, e)
         }
 
 
@@ -79,9 +80,10 @@ object FirebaseUtils {
 
 
     }
-    fun getGroupNamesContinously2(programId: String, onComplete: (QuerySnapshot,Exception?) -> Unit): ListenerRegistration {
+
+    fun getGroupNamesContinously2(programId: String, onComplete: (QuerySnapshot, Exception?) -> Unit): ListenerRegistration {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).orderBy(ORDER_BY).addSnapshotListener { query, e ->
-            onComplete(query!!,e)
+            onComplete(query!!, e)
 
         }
 
@@ -114,9 +116,10 @@ object FirebaseUtils {
 
 
     }
-  fun getCampNamesContinously2(programId: String, groupId: String, onComplete: (QuerySnapshot,Exception?) -> Unit): ListenerRegistration {
+
+    fun getCampNamesContinously2(programId: String, groupId: String, onComplete: (QuerySnapshot, Exception?) -> Unit): ListenerRegistration {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).orderBy(ORDER_BY).addSnapshotListener { querySnapshot, e ->
-            onComplete(querySnapshot!!,e)
+            onComplete(querySnapshot!!, e)
 
         }
 
@@ -132,6 +135,7 @@ object FirebaseUtils {
 
 
     }
+
     fun getFirstCamp(programId: String, groupId: String, onComplete: (QuerySnapshot) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).orderBy(ORDER_BY).limit(1).get().addOnSuccessListener {
 
@@ -141,6 +145,7 @@ object FirebaseUtils {
 
 
     }
+
     fun addCamp(programId: String, groupId: String, camp: Camp, onComplete: () -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).add(camp).addOnSuccessListener {
             onComplete()
@@ -149,14 +154,14 @@ object FirebaseUtils {
     }
 
     ////////////////////////////
-   /* val studentsCollection: CollectionReference
-        get() = FirebaseFirestore.getInstance().collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_STUDENTS)
-*/
-  /*  fun assessmentsCollection(id: String): CollectionReference {
-        ..
-        return studentsCollection.document(id).collection(COLLECTION_ASSESSMENTS)
-    }
-*/
+    /* val studentsCollection: CollectionReference
+         get() = FirebaseFirestore.getInstance().collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_STUDENTS)
+ */
+    /*  fun assessmentsCollection(id: String): CollectionReference {
+          ..
+          return studentsCollection.document(id).collection(COLLECTION_ASSESSMENTS)
+      }
+  */
 
 
     val instructor_id: String
@@ -258,6 +263,12 @@ object FirebaseUtils {
         }
     }
 
+    fun getCollectionStudentFromCamp_ReturnSnapshot2(programId: String, groupId: String, campId: String, onComplete: (QuerySnapshot?, FirebaseFirestoreException?) -> Unit): ListenerRegistration =
+            firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).orderBy(TIME_STAMP_FIELD, Query.Direction.DESCENDING).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                onComplete(querySnapshot, firebaseFirestoreException)
+            }
+
+
     fun getCollectionStudentFromCamp_attendance_ReturnCollection(programId: String, groupId: String, campId: String, date: String): CollectionReference {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS)
     }
@@ -292,6 +303,10 @@ object FirebaseUtils {
             onComplete(it)
         }
     }
+
+    fun getAssessmentsFromStudent2(snapshot: DocumentSnapshot) =
+            snapshot.reference.collection(COLLECTION_ASSESSMENTS).orderBy(TIME_STAMP_FIELD)
+
 
     fun getAssessmentsFromStudent_Task(programId: String, groupId: String, campId: String, studentId: String): Task<QuerySnapshot> {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS).orderBy("timestamp").get()

@@ -6,6 +6,8 @@ import com.bumptech.glide.RequestManager
 import com.example.edward.nyansapo.data.repositories.ProductionRepository
 import com.example.edward.nyansapo.data.repositories.Repository
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
+import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentRepo
+import com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentRepo
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingRepository
 import com.example.edward.nyansapo.presentation.ui.grouping.Repository_G
 import com.example.edward.nyansapo.presentation.ui.home.HomeRepository
@@ -25,6 +27,18 @@ object AppModule {
     fun provideRepository(): Repository {
 
         return ProductionRepository()
+    }
+    @Provides
+    @Singleton
+    fun providesAssRepo(): AssessmentRepo {
+
+        return AssessmentRepo()
+    }
+   @Provides
+    @Singleton
+    fun providesBeginAssessmentRepo(): BeginAssessmentRepo {
+
+        return BeginAssessmentRepo()
     }
 
     @Provides

@@ -12,8 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.android.volley.*
-import com.example.edward.nyansapo.home
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import java.util.*
 import com.edward.nyansapo.R
 

@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo
+package com.example.edward.nyansapo.assess_process
 
 
 import android.app.AlertDialog
@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
-import android.media.AudioManager
 import android.media.MediaRecorder
 import android.os.AsyncTask
 import android.os.Bundle
@@ -21,10 +20,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.presentation.utils.GlobalData
-import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
-import com.google.firebase.firestore.SetOptions
+import com.example.edward.nyansapo.util.GlobalData
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
@@ -35,6 +32,10 @@ import java.util.*
 import java.util.concurrent.ExecutionException
 import kotlin.collections.ArrayList
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Assessment_Content
+import com.example.edward.nyansapo.storyQuestions
+import com.example.edward.nyansapo.thankYou
 
 class story_assessment : AppCompatActivity() {
 

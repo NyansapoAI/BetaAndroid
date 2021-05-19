@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo
+package com.example.edward.nyansapo.assess_process
 
 import android.app.AlertDialog
 import android.content.Context
@@ -19,7 +19,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.presentation.utils.GlobalData
+import com.example.edward.nyansapo.util.GlobalData
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
@@ -30,7 +30,10 @@ import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Assessment_Content
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
+import com.example.edward.nyansapo.thankYou
 
 
 class word_assessment : AppCompatActivity() {

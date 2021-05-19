@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo
+package com.example.edward.nyansapo.assess_process.paragraph
 
 
 import android.app.AlertDialog
@@ -20,7 +20,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.edward.nyansapo.presentation.utils.GlobalData
+import com.example.edward.nyansapo.util.GlobalData
 import com.microsoft.cognitiveservices.speech.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_paragraph_assessment.*
@@ -29,7 +29,11 @@ import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutionException
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Assessment_Content
+import com.example.edward.nyansapo.assess_process.story_assessment
+import com.example.edward.nyansapo.assess_process.word_assessment
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 
 @AndroidEntryPoint
 class paragraph_assessment : AppCompatActivity() {

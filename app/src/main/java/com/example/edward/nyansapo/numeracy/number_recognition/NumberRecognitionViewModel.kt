@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult

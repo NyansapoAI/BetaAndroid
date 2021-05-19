@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.edward.nyansapo.numeracy.addition.AdditionFragment
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.vision.digitalink.*
 import kotlinx.coroutines.channels.Channel

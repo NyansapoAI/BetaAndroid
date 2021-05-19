@@ -24,8 +24,8 @@ import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment3
 import com.example.edward.nyansapo.presentation.ui.home.HomePageFragment2
 import com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView

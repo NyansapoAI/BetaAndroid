@@ -11,8 +11,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.edward.nyansapo.presentation.utils.answerQ1
-import com.example.edward.nyansapo.presentation.utils.answerQ2
+import com.example.edward.nyansapo.util.answerQ1
+import com.example.edward.nyansapo.util.answerQ2
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_assess_process"
+    app:startDestination="@id/avatarChooserFragment">
+
+    <fragment
+        android:id="@+id/avatarChooserFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.AvatarChooserFragment"
+        android:label="AvatarChooserFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_avatarChooserFragment_to_selectAssessmentFragment"
+            app:destination="@id/selectAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assessmentFragment2"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment2"
+        android:label="AssessmentFragment2" >
+        <action
+            android:id="@+id/action_assessmentFragment2_to_beginAssessmentFragment"
+            app:destination="@id/beginAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beginAssessmentFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentFragment"
+        android:label="BeginAssessmentFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_beginAssessmentFragment_to_avatarChooserFragment"
+            app:destination="@id/avatarChooserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectAssessmentFragment"
+        android:name="com.example.edward.nyansapo.select_assessment.SelectAssessmentFragment"
+        android:label="SelectAssessmentFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+    </fragment>
+</navigation>

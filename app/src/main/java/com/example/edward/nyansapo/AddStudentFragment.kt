@@ -19,9 +19,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityRegisterStudentBinding
 
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_register_student.*
 

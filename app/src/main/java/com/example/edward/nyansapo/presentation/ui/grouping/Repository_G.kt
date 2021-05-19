@@ -1,6 +1,6 @@
 package com.example.edward.nyansapo.presentation.ui.grouping
 
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.flow.Flow
 

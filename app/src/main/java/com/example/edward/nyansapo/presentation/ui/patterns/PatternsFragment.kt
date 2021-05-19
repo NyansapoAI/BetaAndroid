@@ -12,8 +12,8 @@ import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.FragmentDataAnalyticsBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.QueryDocumentSnapshot

@@ -12,8 +12,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.assessmentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 

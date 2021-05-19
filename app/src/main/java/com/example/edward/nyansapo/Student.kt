@@ -2,10 +2,15 @@ package com.example.edward.nyansapo
 
 import android.os.Parcelable
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
+import com.edward.nyansapo.R
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.android.parcel.Parcelize
 import java.util.*
+
+
+const val TIME_STAMP_FIELD = "timestamp"
+const val STUDENT_ARG = "student"
 
 @Parcelize
 data class Student(
@@ -21,7 +26,9 @@ data class Student(
         var timestamp: Date? = null,
         var instructor_id: String? = null,
         var learningLevel: String? = Learning_Level.UNKNOWN.name,
-        var std_class: String? = null
+        var std_class: String? = null,
+        var avatar: Int = R.drawable.nyansapo_avatar_lion
+
 ) : Parcelable, SearchSuggestion {
 
     override fun getBody(): String {

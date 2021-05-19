@@ -3,7 +3,7 @@ package com.example.edward.nyansapo.presentation.ui.home
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect

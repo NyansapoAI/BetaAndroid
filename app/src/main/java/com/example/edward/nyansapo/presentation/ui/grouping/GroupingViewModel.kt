@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edward.nyansapo.Student
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

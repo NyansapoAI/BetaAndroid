@@ -5,24 +5,48 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.SelectAssessment
+import com.example.edward.nyansapo.select_assessment.SelectAssessment
 import com.edward.nyansapo.databinding.ActivityBeginAssessMentChooserBinding
+import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.GlobalData
+import com.example.edward.nyansapo.util.GlobalData
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_begin_assess_ment_chooser.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AvatarChooserFragment : Fragment(R.layout.activity_begin_assess_ment_chooser), View.OnClickListener {
 
     private val TAG = "AvatarChooserFragment"
 
     lateinit var binding: ActivityBeginAssessMentChooserBinding
+    private val viewModel: AvatarChooserViewModel by viewModels()
+    private val navArgs: AvatarChooserFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ActivityBeginAssessMentChooserBinding.bind(view)
-
         setOnClickListeners()
+        subScribeToObservers()
+    }
 
+    private fun subScribeToObservers() {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            launch {
+                viewModel.avatarChooserEvents.collect {
+                    when (it) {
+                        is Event.GoSelectAssessment -> {
+                            goToSelectAssessment(it.student)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setOnClickListeners() {
@@ -36,34 +60,15 @@ class AvatarChooserFragment : Fragment(R.layout.activity_begin_assess_ment_choos
     }
 
     override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.cheetaImageView -> {
-                GlobalData.avatar = R.drawable.nyansapo_avatar_cheeta
-            }
-            R.id.lionImageView -> {
-                GlobalData.avatar = R.drawable.nyansapo_avatar_lion
-            }
-            R.id.rhinoImageView -> {
-                GlobalData.avatar = R.drawable.nyansapo_avatar_rhino
-            }
-            R.id.buffaloImageView -> {
-                GlobalData.avatar = R.drawable.nyansapo_avatar_waterbuffalo
-            }
-            R.id.elephantImageView -> {
-                GlobalData.avatar = R.drawable.nyansapo_avatar_elelphant
-            }
-
-        }
-
-
-        goToSelectAssessment()
-
+        viewModel.setEvent(Event.AvatarSelected(view?.id))
     }
 
-    private fun goToSelectAssessment() {
+    private fun goToSelectAssessment(student: Student) {
+        findNavController().navigate(AvatarChooserFragmentDirections.actionAvatarChooserFragmentToSelectAssessmentFragment(student))
+    }
 
-        Log.d(TAG, "addAssessment: btn clicked ")
-        val intent = Intent(MainActivity2.activityContext!!, SelectAssessment::class.java)
-        startActivity(intent)
+    sealed class Event {
+        data class AvatarSelected(val viewId: Int?) : Event()
+        data class GoSelectAssessment(val student: Student) : Event()
     }
 }

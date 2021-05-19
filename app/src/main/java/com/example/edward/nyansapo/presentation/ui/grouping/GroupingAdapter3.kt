@@ -12,7 +12,7 @@ import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ItemStudentBinding
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
 import es.dmoral.toasty.Toasty

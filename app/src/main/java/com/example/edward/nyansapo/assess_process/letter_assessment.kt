@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo
+package com.example.edward.nyansapo.assess_process
 
 
 import android.app.AlertDialog
@@ -21,8 +21,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.presentation.utils.GlobalData
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Assessment_Content
+import com.example.edward.nyansapo.Learning_Level
+import com.example.edward.nyansapo.util.GlobalData
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
+import com.example.edward.nyansapo.thankYou
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult

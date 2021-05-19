@@ -18,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentAdditionBinding
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.vision.digitalink.Ink
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty

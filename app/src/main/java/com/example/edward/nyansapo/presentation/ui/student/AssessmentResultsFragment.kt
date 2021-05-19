@@ -20,8 +20,8 @@ import com.example.edward.nyansapo.Assessment_Content
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.data.local.db.AssessmentDao
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.assessmentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_individual_student_page.view.*

@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentCreateNewPageBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.util.FirebaseUtils
 import com.google.firebase.firestore.QuerySnapshot
 import es.dmoral.toasty.Toasty
 import java.util.*

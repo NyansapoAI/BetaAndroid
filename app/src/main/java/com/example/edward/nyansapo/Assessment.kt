@@ -8,6 +8,8 @@ import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+
+const val ASSESSMENT_KEY="ASSESSMENT_KEY"
 @Parcelize
 data class Assessment(
         var id: String,

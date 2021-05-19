@@ -8,11 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentWordProblemBinding
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.vision.digitalink.Ink
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_addition.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

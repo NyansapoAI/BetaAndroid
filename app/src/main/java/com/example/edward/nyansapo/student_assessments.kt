@@ -13,13 +13,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edward.nyansapo.SelectAssessmentModal.AssessmentModalListener
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 import com.edward.nyansapo.R

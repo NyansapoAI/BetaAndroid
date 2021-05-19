@@ -21,18 +21,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumberRecognition2Binding
-import com.example.edward.nyansapo.wrappers.Resource
-import com.microsoft.cognitiveservices.speech.ResultReason
-import com.microsoft.cognitiveservices.speech.SpeechConfig
-import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
-import com.microsoft.cognitiveservices.speech.SpeechRecognizer
+import com.example.edward.nyansapo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.concurrent.ExecutionException
 
 @AndroidEntryPoint
 class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition_2) {

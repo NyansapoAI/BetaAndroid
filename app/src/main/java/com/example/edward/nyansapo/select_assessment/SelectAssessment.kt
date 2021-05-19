@@ -1,4 +1,4 @@
-package com.example.edward.nyansapo
+package com.example.edward.nyansapo.select_assessment
 
 
 import android.content.Intent
@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.PreAssessment
+import com.example.edward.nyansapo.Student
 
 class SelectAssessment : AppCompatActivity(), View.OnClickListener {
     var button3: Button? = null
@@ -32,7 +34,7 @@ class SelectAssessment : AppCompatActivity(), View.OnClickListener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         toolbar.setNavigationOnClickListener {
-          onBackPressed()
+            onBackPressed()
         }
 
 
@@ -53,11 +55,6 @@ class SelectAssessment : AppCompatActivity(), View.OnClickListener {
         button8!!.setOnClickListener(this)
         button9!!.setOnClickListener(this)
         button10!!.setOnClickListener(this)
-        //button6!!.setEnabled(false)
-        //button7!!.setEnabled(false)
-        //button8!!.setEnabled(false)
-        //button9!!.setEnabled(false)
-        //button10!!.setEnabled(false)
     }
 
     override fun onClick(v: View) {

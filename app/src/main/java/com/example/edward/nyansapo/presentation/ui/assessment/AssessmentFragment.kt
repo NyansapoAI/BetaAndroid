@@ -18,13 +18,12 @@ import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.FragmentAssessmentBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.example.edward.nyansapo.AddStudentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingAdapter2
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import es.dmoral.toasty.Toasty
@@ -33,16 +32,10 @@ import es.dmoral.toasty.Toasty
 class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
     private val TAG = "AssessmentFragment"
-
-
     lateinit var binding: FragmentAssessmentBinding
-
-    val FIND_SUGGESTION_SIMULATED_DELAY: Long = 250
     lateinit var mSearchView: FloatingSearchView
     lateinit var mainQuerySnapshot: QuerySnapshot
     val filteredQuerySnapshot: ArrayList<DocumentSnapshot> = ArrayList()
-
-    lateinit var listenerRegistration: ListenerRegistration
 
 
     private var mIsDarkSearchTheme = false
@@ -71,10 +64,10 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
         }
         //get items for recyclerview
-        getSuggestions(5){
+        getSuggestions(5) {
             setUpRecyclerView(it)
         }
-        if (mSearchView.isSearchBarFocused){
+        if (mSearchView.isSearchBarFocused) {
             Log.d(TAG, "onResume: searchview is focused")
             recyclerViewVisibility(false)
         }
@@ -82,11 +75,11 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
     private fun setUpRecyclerView(querySnapshot: QuerySnapshot) {
         Log.d(TAG, "setUpRecyclerView: size:${querySnapshot.size()}")
-        val recyclerAdapter=GroupingAdapter2(onStudentClick ={ onStudentClicked(it.toObject(Student::class.java)!!)})
-       recyclerAdapter.submitList(querySnapshot.documents)
+        val recyclerAdapter = GroupingAdapter2(onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
+        recyclerAdapter.submitList(querySnapshot.documents)
         binding.recyclerview.apply {
-            layoutManager=LinearLayoutManager(MainActivity2.activityContext)
-            adapter=recyclerAdapter
+            layoutManager = LinearLayoutManager(MainActivity2.activityContext)
+            adapter = recyclerAdapter
         }
     }
 
@@ -230,7 +223,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
     }
 
     private fun recyclerViewVisibility(visible: Boolean) {
-        binding.listLinLayout.isVisible=visible
+        binding.listLinLayout.isVisible = visible
     }
 
     private fun onStudentClicked(student: Student) {

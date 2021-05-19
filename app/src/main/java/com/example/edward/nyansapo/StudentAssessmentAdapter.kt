@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.AssessmentRowNormalBinding
 
-import com.example.edward.nyansapo.presentation.utils.assessmentDocumentSnapshot
+import com.example.edward.nyansapo.util.assessmentDocumentSnapshot
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

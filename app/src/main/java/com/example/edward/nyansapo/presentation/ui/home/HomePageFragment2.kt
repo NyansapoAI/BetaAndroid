@@ -18,8 +18,8 @@ import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentHomePageBinding
 import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceFragment
 import com.example.edward.nyansapo.presentation.ui.main.*
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.FirebaseUtils
+import com.example.edward.nyansapo.util.Resource
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot

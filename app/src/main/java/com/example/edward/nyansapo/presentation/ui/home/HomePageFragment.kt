@@ -22,8 +22,8 @@ import com.edward.nyansapo.databinding.FragmentHomePageBinding
 import com.example.edward.nyansapo.Assessment_Content
 import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceFragment
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ListenerRegistration

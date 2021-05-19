@@ -18,9 +18,9 @@ import com.example.edward.nyansapo.AddStudentFragment
 import com.example.edward.nyansapo.Learning_Level
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.ui.student.StudentAssessmentListFragment
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.example.edward.nyansapo.util.onQueryTextChanged
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.DocumentSnapshot

@@ -5,8 +5,8 @@ import com.example.edward.nyansapo.presentation.ui.main.campId
 import com.example.edward.nyansapo.presentation.ui.main.groupId
 import com.example.edward.nyansapo.presentation.ui.main.programId
 
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.FirebaseUtils
+import com.example.edward.nyansapo.util.Resource
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

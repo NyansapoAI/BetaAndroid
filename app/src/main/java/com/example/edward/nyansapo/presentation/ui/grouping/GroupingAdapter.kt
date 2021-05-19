@@ -10,7 +10,7 @@ import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.ItemStudentBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

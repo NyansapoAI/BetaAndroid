@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivityBeginAssessementBinding
 import com.example.edward.nyansapo.Assessment
@@ -12,34 +16,103 @@ import com.example.edward.nyansapo.Student
 
 
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.Constants
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.Constants
+import com.example.edward.nyansapo.util.FirebaseUtils
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.Resource
+import com.google.firebase.firestore.DocumentSnapshot
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.*
 
+@AndroidEntryPoint
 class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
 
 
     private val TAG = "BeginAssessmentFragment"
 
-    lateinit var assessmentList: List<Assessment>
 
     lateinit var binding: ActivityBeginAssessementBinding
-    lateinit var studentId: String
+    private val viewModel: BeginAssessmentViewModel by viewModels()
+    private val navArgs: BeginAssessmentFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ActivityBeginAssessementBinding.bind(view)
-        studentId = studentDocumentSnapshot!!.id
+        Log.d(TAG, "onViewCreated: student:${navArgs.student}")
 
         setUpToolbar()
         setOnClickListeners()
-        checkIfDatabaseIsEmpty()
+        subScribeToObservers()
+    }
 
+    private fun subScribeToObservers() {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            launch {
+                viewModel.getStudent.collect {
+                    Log.d(TAG, "subScribeToObservers: getStudent:${it.status.name}")
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+
+                        }
+                        Resource.Status.SUCCESS -> {
+
+                        }
+                        Resource.Status.ERROR -> {
+                            showToastInfo("Error:${it.exception?.message}")
+                        }
+
+                    }
+                }
+            }
+
+            launch {
+                viewModel.beginAssessmentEvents.collect {
+                    when (it) {
+                        is Event.BeginAssessmentClicked -> {
+                            goToAvatarChooser(it.student)
+                        }
+                    }
+                }
+            }
+
+            launch {
+                viewModel.getAssessmentsStatus.collect {
+                    Log.d(TAG, "subScribeToObservers: getAssessmentsStatus:${it.status.name}")
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+
+                        }
+                        Resource.Status.SUCCESS -> {
+                            successGettingAssessments(it.data!!)
+
+                        }
+                        Resource.Status.EMPTY -> {
+                            showToastInfo("No Assessment Available")
+
+                        }
+                        Resource.Status.ERROR -> {
+                            showToastInfo("Error:${it.exception?.message}")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun successGettingAssessments(data: List<DocumentSnapshot>) {
+        val assessmentList = data.map { it.toObject(Assessment::class.java)!! }
+        setUpGraph(assessmentList)
+
+    }
+
+    private fun showToastInfo(message: String) {
+        Toasty.info(requireContext(), message).show()
     }
 
     private fun setUpToolbar() {
@@ -49,51 +122,17 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
     }
 
     private fun setOnClickListeners() {
-
         binding.beginAssessmentBtn.setOnClickListener {
-            goToAvatarChooser()
-
+            viewModel.setEvent(Event.BeginAssessmentClicked(navArgs.student))
         }
     }
 
-    private fun goToAvatarChooser() {
-
-        MainActivity2.activityContext!!.supportFragmentManager.beginTransaction().replace(R.id.container, AvatarChooserFragment()).addToBackStack(null).commit()
-    }
-
-    private fun checkIfDatabaseIsEmpty() {
-        Log.d(TAG, "checkIfDatabaseIsEmpty: ")
-        val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
-
-        val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
-        val groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)
-        val campId = sharedPreferences.getString(Constants.KEY_CAMP_ID, null)
-        val campPos = sharedPreferences.getInt(Constants.CAMP_POS, -1)
-
-        if (campPos == -1) {
-            Toasty.error(MainActivity2.activityContext!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
-            MainActivity2.activityContext!!.supportFragmentManager.popBackStackImmediate()
-        }
-
-        FirebaseUtils.getAssessmentsFromStudent(programId, groupId, campId, studentDocumentSnapshot!!.id) {
-            if (it.isEmpty) {
-                Log.d(TAG, "checkIfDatabaseIsEmpty: no assessments")
-
-            } else {
-                Log.d(TAG, "checkIfDatabaseIsEmpty: ${it.size()} assessments")
-                //this list is need by graphview
-                assessmentList = it.toObjects(Assessment::class.java) as ArrayList<Assessment>
-
-                setUpGraph()
-            }
-
-
-        }
+    private fun goToAvatarChooser(student: Student) {
+        findNavController().navigate(BeginAssessmentFragmentDirections.actionBeginAssessmentFragmentToAvatarChooserFragment(student))
     }
 
 
-
-    private fun setUpGraph() {
+    private fun setUpGraph(assessmentList: List<Assessment>) {
 
 
         // set onclick listeners
@@ -112,8 +151,8 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
             series.setAnimated(true)
             graphView!!.addSeries(series)
             graphView!!.title = "Literacy Level Vs. Time of Current Assessments"
-            graphView!!. gridLabelRenderer.horizontalAxisTitle="Time of Current Assessments"
-            graphView!!.  gridLabelRenderer.verticalAxisTitle="Literacy Level"
+            graphView!!.gridLabelRenderer.horizontalAxisTitle = "Time of Current Assessments"
+            graphView!!.gridLabelRenderer.verticalAxisTitle = "Literacy Level"
 
 
 
@@ -190,6 +229,12 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
             "ABOVE" -> 4
             else -> -1
         }
+    }
+
+    sealed class Event {
+        data class BeginAssessmentClicked(val student: Student) : Event()
+        data class GetAssessments(val snapshot: DocumentSnapshot) : Event()
+
     }
 
 

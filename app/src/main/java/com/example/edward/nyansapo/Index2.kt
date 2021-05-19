@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.edward.nyansapo.presentation.ui.login.LoginActivity
-import com.example.edward.nyansapo.presentation.utils.FirebaseUtils
+import com.example.edward.nyansapo.util.FirebaseUtils
 import com.firebase.ui.auth.AuthUI
 import java.util.*
 import com.edward.nyansapo.R

@@ -17,7 +17,8 @@
         android:roundIcon="@drawable/small_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.edward.nyansapo.numeracy.NumeracyActivity"></activity>
+        <activity android:name="com.example.edward.nyansapo.assess_process.AssessProcessActivity"></activity>
+        <activity android:name="com.example.edward.nyansapo.numeracy.NumeracyActivity" />
         <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
         <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">
             <intent-filter>
@@ -31,7 +32,7 @@
         <activity android:name="com.example.edward.nyansapo.QuestionStory" />
         <activity android:name="com.example.edward.nyansapo.student_assessments" />
         <activity android:name="com.example.edward.nyansapo.assessment_detail" />
-        <activity android:name="com.example.edward.nyansapo.SelectAssessment" />
+        <activity android:name="com.example.edward.nyansapo.select_assessment.SelectAssessment" />
         <activity android:name="com.example.edward.nyansapo.settings" />
         <activity android:name="com.example.edward.nyansapo.cumulativeProgress" />
         <activity android:name="com.example.edward.nyansapo.studentDetails">
@@ -66,11 +67,11 @@
         <activity android:name="com.example.edward.nyansapo.Begin_Assessment" />
         <activity android:name="com.example.edward.nyansapo.PreAssessment" />
         <activity android:name="com.example.edward.nyansapo.ParagraphChooserActivity" />
-        <activity android:name="com.example.edward.nyansapo.paragraph_assessment" />
-        <activity android:name="com.example.edward.nyansapo.story_assessment" />
+        <activity android:name="com.example.edward.nyansapo.assess_process.paragraph.paragraph_assessment" />
+        <activity android:name="com.example.edward.nyansapo.assess_process.story_assessment" />
         <activity android:name="com.example.edward.nyansapo.storyQuestions" />
-        <activity android:name="com.example.edward.nyansapo.word_assessment" />
-        <activity android:name="com.example.edward.nyansapo.letter_assessment" />
+        <activity android:name="com.example.edward.nyansapo.assess_process.word_assessment" />
+        <activity android:name="com.example.edward.nyansapo.assess_process.letter_assessment" />
         <activity android:name="com.example.edward.nyansapo.thankYou" />
         <activity android:name="com.example.edward.nyansapo.AddStudentFragment" />
 

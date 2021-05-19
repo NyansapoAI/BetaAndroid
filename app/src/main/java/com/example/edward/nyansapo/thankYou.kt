@@ -18,9 +18,9 @@ import androidx.lifecycle.lifecycleScope
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.data.local.db.AssessmentDao
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.presentation.utils.COLLECTION_ASSESSMENTS
-import com.example.edward.nyansapo.presentation.utils.GlobalData
-import com.example.edward.nyansapo.presentation.utils.studentDocumentSnapshot
+import com.example.edward.nyansapo.util.COLLECTION_ASSESSMENTS
+import com.example.edward.nyansapo.util.GlobalData
+import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_thank_you.*

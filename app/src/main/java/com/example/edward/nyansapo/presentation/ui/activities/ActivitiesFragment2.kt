@@ -19,7 +19,7 @@ import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.SwipeGestureListener
 import com.example.edward.nyansapo.presentation.ui.grouping.SwipeListener
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.wrappers.Resource
+import com.example.edward.nyansapo.util.Resource
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
