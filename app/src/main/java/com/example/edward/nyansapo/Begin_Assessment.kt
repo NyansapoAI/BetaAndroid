@@ -5,8 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.edward.nyansapo.MainActivity
-import com.example.edward.nyansapo.PreAssessment
+import com.example.edward.nyansapo.presentation.ui.preassessment.PreAssessment
 import com.edward.nyansapo.R
 
 class Begin_Assessment : AppCompatActivity() {

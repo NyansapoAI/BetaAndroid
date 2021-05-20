@@ -32,3 +32,6 @@ val COLLECTION_ASSESSMENTS = "assessments"
 
 
 val STUDENT_ID = "studentId"
+
+const val ASSEMENT_KEY_ARG = "assessmentKey"
+const val PARAGRAPH_ARG = "paragraph"

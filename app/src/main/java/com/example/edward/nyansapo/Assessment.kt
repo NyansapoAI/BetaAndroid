@@ -9,11 +9,12 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 
-const val ASSESSMENT_KEY="ASSESSMENT_KEY"
+//const val ASSESSMENT_KEY="ASSESSMENT_KEY"
+const val ASSESSMENT_ARG="assessment"
 @Parcelize
 data class Assessment(
         var id: String,
-        var assessmentKey: String,
+        var assessmentKey: Int,
         var letterCorrect: String,
         var lettersWrong: String = "",
         var wordsCorrect: String = "",
@@ -30,5 +31,5 @@ data class Assessment(
         var LOCAL_ID: String = "",
         var CLOUD_ID: String = ""
 ) : Parcelable {
-    constructor() : this("", "", "", "", "", "", "", 0,"", "", "", "", null, "", "")
+    constructor() : this("", 0, "", "", "", "", "", 0,"", "", "", "", null, "", "")
 }

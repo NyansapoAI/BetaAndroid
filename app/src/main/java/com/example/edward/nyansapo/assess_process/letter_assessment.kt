@@ -80,7 +80,7 @@ class letter_assessment : AppCompatActivity() {
         val intent = intent
         //Toast.makeText(this,instructor_id, Toast.LENGTH_LONG ).show();
         assessment = intent.getParcelableExtra("Assessment")
-        ASSESSMENT_KEY = assessment!!.assessmentKey
+       // ASSESSMENT_KEY = assessment!!.assessmentKey
         assessment_content = Assessment_Content()
         letterList = getLetters(ASSESSMENT_KEY).map { it.trim().toLowerCase() }.toTypedArray()
 

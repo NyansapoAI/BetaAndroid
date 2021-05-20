@@ -65,8 +65,8 @@
         <activity android:name="com.example.edward.nyansapo.TeacherLogin" />
         <activity android:name="com.example.edward.nyansapo.Interface_selecter" />
         <activity android:name="com.example.edward.nyansapo.Begin_Assessment" />
-        <activity android:name="com.example.edward.nyansapo.PreAssessment" />
-        <activity android:name="com.example.edward.nyansapo.ParagraphChooserActivity" />
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.preassessment.PreAssessment" />
+        <activity android:name="com.example.edward.nyansapo.paragraph_chooser.ParagraphChooserActivity" />
         <activity android:name="com.example.edward.nyansapo.assess_process.paragraph.paragraph_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.story_assessment" />
         <activity android:name="com.example.edward.nyansapo.storyQuestions" />

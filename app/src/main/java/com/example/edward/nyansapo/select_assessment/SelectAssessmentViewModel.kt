@@ -1,16 +1,13 @@
 package com.example.edward.nyansapo.select_assessment
 
-import android.content.Intent
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.PreAssessment
 import com.example.edward.nyansapo.STUDENT_ARG
 import com.example.edward.nyansapo.Student
-import com.example.edward.nyansapo.presentation.ui.assessment.AvatarChooserFragment
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch

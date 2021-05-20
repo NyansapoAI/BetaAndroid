@@ -46,7 +46,6 @@ class paragraph_assessment : AppCompatActivity() {
     lateinit var recorder: MediaRecorder
 
 
-
     var paragraphButton: Button? = null
     var record_button: Button? = null
     var paragraph: String? = null
@@ -80,6 +79,7 @@ class paragraph_assessment : AppCompatActivity() {
         ASSESSMENT_KEY = assessment!!.assessmentKey
         //Toast.makeText(this,instructor_id, Toast.LENGTH_LONG ).show();
         assessment_content = Assessment_Content()
+        val
         val para = getPara(ASSESSMENT_KEY)
         paragraph = para[0]
         //Toast.makeText(this, intent.getStringExtra("paragraph"), Toast.LENGTH_LONG);
@@ -88,7 +88,7 @@ class paragraph_assessment : AppCompatActivity() {
             assessment!!.paragraphChoosen = 0
             para[0]
         } else {
-            assessment!!.paragraphChoosen=1
+            assessment!!.paragraphChoosen = 1
             para[1]
         }
 
@@ -196,7 +196,6 @@ class paragraph_assessment : AppCompatActivity() {
 
 
     }
-
 
 
     inner class SpeechAsync : AsyncTask<Void, String?, String?>() {
@@ -352,27 +351,23 @@ class paragraph_assessment : AppCompatActivity() {
 
     private fun startVoiceRecording() {
         Log.d(TAG, "startVoiceRecording: assessment:${assessment}")
-
-
-
-   
         recorder = MediaRecorder()
         val status = Environment.getExternalStorageState();
 
-            Log.d(TAG, "startVoiceRecording: sd card mounted")
-            val timeStamp = Calendar.getInstance().time.time
-            val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}/${assessment?.id}")
-            directory.mkdirs()
-            file = File(directory, "${sentence_count}.wav")
-            file.createNewFile()
+        Log.d(TAG, "startVoiceRecording: sd card mounted")
+        val timeStamp = Calendar.getInstance().time.time
+        val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/paragraphs/${studentDocumentSnapshot!!.id}/${assessment?.id}")
+        directory.mkdirs()
+        file = File(directory, "${sentence_count}.wav")
+        file.createNewFile()
 
-            Log.d(TAG, "startVoiceRecording: file path:${file.absolutePath}")
-            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            recorder.setOutputFile(file.absolutePath)
-            recorder.prepare()
-            recorder.start()
+        Log.d(TAG, "startVoiceRecording: file path:${file.absolutePath}")
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        recorder.setOutputFile(file.absolutePath)
+        recorder.prepare()
+        recorder.start()
 
 
     }

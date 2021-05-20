@@ -5,10 +5,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivitySelectAssesmentBinding
 import com.edward.nyansapo.databinding.ActivitySelectAssessmentBinding
 import com.example.edward.nyansapo.Student
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.modal_layout.*
 import kotlinx.coroutines.flow.collect
@@ -23,15 +25,16 @@ class SelectAssessmentFragment : Fragment(R.layout.activity_select_assessment), 
         binding = ActivitySelectAssessmentBinding.bind(view)
         setOnClickListeners()
         subScribeToObservers()
+        val taks: QueryDocumentSnapshot
     }
 
     private fun subScribeToObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             launch {
                 viewModel.selectAssessmentEvents.collect {
-                    when(it){
-                        is Event.GoToPreAssessment->{
-                            goToPreAssessment(it.assessmentKey,it.student)
+                    when (it) {
+                        is Event.GoToPreAssessment -> {
+                            goToPreAssessment(it.assessmentKey, it.student)
                         }
                     }
                 }
@@ -40,7 +43,7 @@ class SelectAssessmentFragment : Fragment(R.layout.activity_select_assessment), 
     }
 
     private fun goToPreAssessment(assessmentKey: Int, student: Student) {
-
+        findNavController().navigate(SelectAssessmentFragmentDirections.actionSelectAssessmentFragmentToPreAssessmentFragment(student, assessmentKey))
     }
 
     private fun setOnClickListeners() {

@@ -40,5 +40,59 @@
         <argument
             android:name="student"
             app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_selectAssessmentFragment_to_preAssessmentFragment"
+            app:destination="@id/preAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preAssessmentFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.preassessment.PreAssessmentFragment"
+        android:label="PreAssessmentFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <argument
+            android:name="assessmentKey"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_preAssessmentFragment_to_paragraphChooserFragment"
+            app:destination="@id/paragraphChooserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paragraphChooserFragment"
+        android:name="com.example.edward.nyansapo.paragraph_chooser.ParagraphChooserFragment"
+        android:label="ParagraphChooserFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_paragraphAssessmentFragment"
+            app:destination="@id/paragraphAssessmentFragment" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_paragraphAssessmentFragment2"
+            app:destination="@id/paragraphAssessmentFragment" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_paragraphAssessmentFragment3"
+            app:destination="@id/paragraphAssessmentFragment" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_paragraphAssessmentFragment4"
+            app:destination="@id/paragraphAssessmentFragment" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_paragraphAssessmentFragment5"
+            app:destination="@id/paragraphAssessmentFragment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+    </fragment>
+    <fragment
+        android:id="@+id/paragraphAssessmentFragment"
+        android:name="com.example.edward.nyansapo.assess_process.paragraph.ParagraphAssessmentFragment"
+        android:label="ParagraphAssessmentFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
     </fragment>
 </navigation>

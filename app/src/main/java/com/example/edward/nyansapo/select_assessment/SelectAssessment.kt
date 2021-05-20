@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.edward.nyansapo.util.studentDocumentSnapshot
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.PreAssessment
+import com.example.edward.nyansapo.presentation.ui.preassessment.PreAssessment
 import com.example.edward.nyansapo.Student
 
 class SelectAssessment : AppCompatActivity(), View.OnClickListener {

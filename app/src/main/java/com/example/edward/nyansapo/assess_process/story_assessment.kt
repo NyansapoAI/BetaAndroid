@@ -80,7 +80,7 @@ class story_assessment : AppCompatActivity() {
 
         storyString = getStory(ASSESSMENT_KEY)
         back_button = findViewById(R.id.back_button)
-        next_button = findViewById(R.id.next_button)
+        next_button = findViewById(R.id.skip_button)
         story_view = findViewById(R.id.story_view)
 
 

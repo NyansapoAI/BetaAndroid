@@ -11,6 +11,7 @@ import com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentRep
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingRepository
 import com.example.edward.nyansapo.presentation.ui.grouping.Repository_G
 import com.example.edward.nyansapo.presentation.ui.home.HomeRepository
+import com.example.edward.nyansapo.presentation.ui.preassessment.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +23,12 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
+    @Provides
+    @Singleton
+    fun providePreAssessmentRepo(): MainRepository {
+
+        return MainRepository()
+    }
     @Provides
     @Singleton
     fun provideRepository(): Repository {
