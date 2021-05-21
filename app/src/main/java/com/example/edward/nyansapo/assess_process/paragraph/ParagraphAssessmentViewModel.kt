@@ -71,9 +71,9 @@ class ParagraphAssessmentViewModel constructor(@ApplicationContext private val c
     var error_count = 0
     var sentence_count = 0
     var tries = 0
-    private val _fetchParagraphStatus = Channel<Resource<Nothing>>()
+    private val _fetchParagraphStatus = Channel<Resource<Boolean>>()
     val fetchParagraphStatus = _fetchParagraphStatus.receiveAsFlow()
-    private fun fetchParagraph() {
+    private suspend fun fetchParagraph() {
         val assessment = savedStateHandle.get<Assessment>(ASSESSMENT_ARG)!!
         val paragraphs = getPara(assessment.assessmentKey.toString())
         val paragraph = paragraphs[assessment.paragraphChoosen]
@@ -83,6 +83,7 @@ class ParagraphAssessmentViewModel constructor(@ApplicationContext private val c
         }.filter { line ->
             line.isNotBlank()
         }.toTypedArray()
+        _fetchParagraphStatus.send(Resource.success(true))
 
 
     }

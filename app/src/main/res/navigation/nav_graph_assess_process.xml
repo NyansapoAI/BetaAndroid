@@ -83,11 +83,76 @@
         <argument
             android:name="student"
             app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_paragraphChooserFragment_to_storyAssessmentFragment"
+            app:destination="@id/storyAssessmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/paragraphAssessmentFragment"
         android:name="com.example.edward.nyansapo.assess_process.paragraph.ParagraphAssessmentFragment"
         android:label="ParagraphAssessmentFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_paragraphAssessmentFragment_to_wordAssessmentFragment"
+            app:destination="@id/wordAssessmentFragment" />
+        <action
+            android:id="@+id/action_paragraphAssessmentFragment_to_storyAssessmentFragment"
+            app:destination="@id/storyAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordAssessmentFragment"
+        android:name="com.example.edward.nyansapo.assess_process.word.WordAssessmentFragment"
+        android:label="WordAssessmentFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_wordAssessmentFragment_to_thankYouFragment"
+            app:destination="@id/thankYouFragment" />
+        <action
+            android:id="@+id/action_wordAssessmentFragment_to_letterAssessmentFragment"
+            app:destination="@id/letterAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyAssessmentFragment"
+        android:name="com.example.edward.nyansapo.assess_process.story.StoryAssessmentFragment"
+        android:label="StoryAssessmentFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_storyAssessmentFragment_to_thankYouFragment"
+            app:destination="@id/thankYouFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/letterAssessmentFragment"
+        android:name="com.example.edward.nyansapo.assess_process.letter.LetterAssessmentFragment"
+        android:label="LetterAssessmentFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_letterAssessmentFragment_to_thankYouFragment"
+            app:destination="@id/thankYouFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thankYouFragment"
+        android:name="com.example.edward.nyansapo.assess_process.thank_you.ThankYouFragment"
+        android:label="ThankYouFragment" >
         <argument
             android:name="assessment"
             app:argType="com.example.edward.nyansapo.Assessment" />

@@ -146,11 +146,11 @@ class ParagraphAssessmentFragment : Fragment(R.layout.activity_paragraph_assessm
     }
 
     private fun goToWord(assessment: Assessment) {
-
+        findNavController().navigate(ParagraphAssessmentFragmentDirections.actionParagraphAssessmentFragmentToWordAssessmentFragment(assessment, navArgs.student))
     }
 
     private fun goToStory(assessment: Assessment) {
-
+        findNavController().navigate(ParagraphAssessmentFragmentDirections.actionParagraphAssessmentFragmentToStoryAssessmentFragment(assessment, navArgs.student))
     }
 
 
@@ -163,10 +163,7 @@ class ParagraphAssessmentFragment : Fragment(R.layout.activity_paragraph_assessm
     private fun stopVoiceRecording() {
         recorder.stop()
         recorder.release()
-
-
     }
-
     private fun setSentence(data: String) {
         binding.paragraph1!!.setText(data)
     }

@@ -31,8 +31,8 @@ import java.util.concurrent.ExecutionException
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Assessment
 import com.example.edward.nyansapo.Assessment_Content
-import com.example.edward.nyansapo.assess_process.story_assessment
-import com.example.edward.nyansapo.assess_process.word_assessment
+import com.example.edward.nyansapo.assess_process.story.story_assessment
+import com.example.edward.nyansapo.assess_process.word.word_assessment
 import com.example.edward.nyansapo.util.studentDocumentSnapshot
 
 @AndroidEntryPoint
@@ -76,10 +76,10 @@ class paragraph_assessment : AppCompatActivity() {
 
         //Toast.makeText(this, "Click on the Record Button to read or click on change to change the prompt", Toast.LENGTH_LONG).show();
         assessment = intent.getParcelableExtra("Assessment")
-        ASSESSMENT_KEY = assessment!!.assessmentKey
+        ASSESSMENT_KEY = assessment!!.assessmentKey.toString()
         //Toast.makeText(this,instructor_id, Toast.LENGTH_LONG ).show();
         assessment_content = Assessment_Content()
-        val
+
         val para = getPara(ASSESSMENT_KEY)
         paragraph = para[0]
         //Toast.makeText(this, intent.getStringExtra("paragraph"), Toast.LENGTH_LONG);

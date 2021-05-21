@@ -19,6 +19,7 @@ import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer
 import java.util.concurrent.ExecutionException
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.assess_process.thank_you.thankYou
 
 class storyQuestions : AppCompatActivity() {
     private val TAG = "storyQuestions"

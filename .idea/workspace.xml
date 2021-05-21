@@ -41,47 +41,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0994166-8f47-4f0f-a1f8-b9e3b781f54e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_chooser/ParagraphChooserFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_chooser/ParagraphChooserViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/MainRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/PreAssessmentFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/PreAssessmentViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid6792.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/UploadVoices.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter/LetterAssessmentFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter/LetterAssessmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/story/StoryAssessmentFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/thank_you/ThankYouFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/word/WordAssessmentFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/word/WordAssessmentViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Assessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Begin_Assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/Begin_Assessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/ParagraphChooserActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/paragraph_chooser/ParagraphChooserActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/PreAssessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/PreAssessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/letter/Letter_assessment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/ParagraphAssessmentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/ParagraphAssessmentFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/ParagraphAssessmentViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/ParagraphAssessmentViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/ParagraphRepo.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/Paragraph_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/paragraph/Paragraph_assessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/story_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/story_assessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessmentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessmentFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessmentViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/select_assessment/SelectAssessmentViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/student_assessments.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/student_assessments.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/ViewExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/UtilityExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_paragraph_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_paragraph_assessment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pre_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pre_assessment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_story_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_story_assessment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/story_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/story/Story_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/word_assessment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/word/Word_assessment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/storyQuestions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/storyQuestions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/thankYou.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/assess_process/thank_you/ThankYou.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_letter_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_letter_assessment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_word_assessment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_word_assessment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_assess_process.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_assess_process.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -223,30 +208,27 @@
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-hdpi" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\layout" />
     </key>
-    <key name="android.template.-129413714">
-      <recent name="com.nyansapo.presentation.ui" />
+    <key name="android.template.1502989668">
+      <recent name="com.nyansapo.presentation.main" />
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
       <recent name="com.example.edward.nyansapo.numeracy.count_and_match" />
     </key>
-    <key name="android.template.-1042092484">
-      <recent name="com.example.edward.nyansapo.numeracy" />
-    </key>
     <key name="android.template.-33687695">
       <recent name="com.nyansapo.presentation.ui.student" />
     </key>
-    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.example.edward.nyansapo.presentation.ui.assessment" />
-      <recent name="com.example.edward.nyansapo.numeracy.addition" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo.presentation" />
+      <recent name="com.nyansapo" />
+    </key>
+    <key name="android.template.-1042092484">
       <recent name="com.example.edward.nyansapo.numeracy" />
-      <recent name="com.example.edward.nyansapo.presentation.ui.home" />
-      <recent name="com.example.edward.nyansapo.data.models.ui.grouping" />
     </key>
-    <key name="android.template.1502989668">
-      <recent name="com.nyansapo.presentation.main" />
+    <key name="android.template.-129413714">
+      <recent name="com.nyansapo.presentation.ui" />
     </key>
-    <key name="android.template.-593298867">
-      <recent name="com.nyansapo.presentation.ui.learning_level" />
+    <key name="android.template.-1972338356">
+      <recent name="com.example.edward.nyansapo.assess_process" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\java\com\example\edward\nyansapo\util" />
@@ -258,22 +240,25 @@
       <recent name="com.nyansapo.index" />
       <recent name="com.nyansapo.add_dialog" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.example.edward.nyansapo.presentation" />
-      <recent name="com.nyansapo" />
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo.presentation.ui.assessment" />
+      <recent name="com.example.edward.nyansapo.numeracy.addition" />
+      <recent name="com.example.edward.nyansapo.numeracy" />
+      <recent name="com.example.edward.nyansapo.presentation.ui.home" />
+      <recent name="com.example.edward.nyansapo.data.models.ui.grouping" />
     </key>
-    <key name="android.template.-1972338356">
-      <recent name="com.example.edward.nyansapo.assess_process" />
+    <key name="android.template.-593298867">
+      <recent name="com.nyansapo.presentation.ui.learning_level" />
     </key>
     <key name="android.template.-377282045">
       <recent name="com.nyansapo.presentation.ui.home" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo.assess_process.thank_you" />
+      <recent name="com.example.edward.nyansapo.assess_process.letter" />
+      <recent name="com.example.edward.nyansapo.assess_process.story" />
+      <recent name="com.example.edward.nyansapo.assess_process.word" />
       <recent name="com.example.edward.nyansapo.paragraph_chooser" />
-      <recent name="com.example.edward.nyansapo.presentation.ui.preassessment" />
-      <recent name="com.example.edward.nyansapo.util" />
-      <recent name="com.example.edward.nyansapo.select_assessment" />
-      <recent name="com.example.edward.nyansapo.assess_process.paragraph" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -701,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621419711742</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="refactored ParagraphAssessmentFragment.kt">
+      <created>1621512694520</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1621512694520</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -728,7 +720,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="implemented progressive search view" />
     <MESSAGE value="finished working on 3/4 of prototypes" />
     <MESSAGE value="finished working on the graphs" />
     <MESSAGE value="Implemented utility fxn for Speech Recognition" />
@@ -753,7 +744,8 @@
     <MESSAGE value="finished design of numeracy" />
     <MESSAGE value="clean some bugs in numeracy" />
     <MESSAGE value="refactored SelectAssessment.kt" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored SelectAssessment.kt" />
+    <MESSAGE value="refactored ParagraphAssessmentFragment.kt" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored ParagraphAssessmentFragment.kt" />
   </component>
   <component name="WindowStateProjectService">
     <state x="427" y="59" key="#Images" timestamp="1614867816939">
@@ -773,10 +765,10 @@
     </state>
     <state x="-1254" y="-1" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621418478105" />
     <state x="474" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1620050217428" />
-    <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1621501060855">
+    <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1621596167737">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621501060855" />
+    <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621596167737" />
     <state x="252" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1620015429670">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -793,10 +785,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1620028740900" />
-    <state x="-1317" y="107" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1621492713694">
+    <state x="-1317" y="107" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1621595903921">
       <screen x="-1920" y="-114" width="1920" height="1040" />
     </state>
-    <state x="-1317" y="107" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621492713694" />
+    <state x="-1317" y="107" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621595903921" />
     <state x="429" y="155" width="565" height="418" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1620039963500" />
     <state x="263" y="118" key="AndroidCreateResourceDirectoryDialog" timestamp="1620015654656">
       <screen x="0" y="0" width="1366" height="728" />
@@ -811,11 +803,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1616407067342" />
-    <state x="-1754" y="-114" key="CommitChangelistDialog2" timestamp="1621419691966">
-      <screen x="-1920" y="-114" width="1920" height="1040" />
+    <state x="118" y="0" key="CommitChangelistDialog2" timestamp="1621512674449">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1754" y="-114" key="CommitChangelistDialog2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621419691966" />
-    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1620206739182" />
+    <state x="118" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621512674449" />
     <state x="142" y="54" width="1086" height="610" key="DiffContextDialog" timestamp="1617598291736">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -873,11 +865,11 @@
     </state>
     <state x="-1661" y="-103" key="SettingsEditor/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621420059328" />
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620032370433" />
-    <state x="-1533" y="5" key="Vcs.Push.Dialog.v2" timestamp="1621420071935">
-      <screen x="-1920" y="-114" width="1920" height="1040" />
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1621512703765">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1533" y="5" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621420071935" />
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620206776445" />
+    <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621512703765" />
     <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1620028728013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -886,10 +878,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1616656284069" />
-    <state x="-19" y="30" width="1382" height="816" maximized="true" key="dock-window-1" timestamp="1621493131936">
+    <state x="-122" y="6" width="1382" height="807" maximized="true" key="dock-window-1" timestamp="1621592103869">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="-19" y="30" width="1382" height="816" maximized="true" key="dock-window-1/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621493131936" />
+    <state x="-122" y="6" width="1382" height="807" maximized="true" key="dock-window-1/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621592103869" />
+    <state x="-19" y="30" width="1382" height="816" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1621512941741" />
     <state x="0" y="0" width="1285" height="780" key="dock-window-2" timestamp="1621425112169">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -915,10 +908,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="170" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1620187367535" />
-    <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup" timestamp="1621504168336">
+    <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup" timestamp="1621599042914">
       <screen x="-1920" y="-114" width="1920" height="1040" />
     </state>
-    <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621504168336" />
+    <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621599042914" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1620188472893" />
   </component>
 </project>
