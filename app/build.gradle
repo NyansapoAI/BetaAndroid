@@ -175,6 +175,10 @@ dependencies {
     implementation 'com.google.mlkit:digital-ink-recognition:16.2.0'
     // fix for Duplicate class com.google.common.util.concurrent.ListenableFuture found in modules jetified-guava-26.0-android (com.google.guava:guava:26.0-android) and jetified-listenablefuture-1.0 (com.google.guava:listenablefuture:1.0)
     implementation 'com.google.guava:guava:27.0.1-android'
+
+
+    //circular image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
 
 kapt {

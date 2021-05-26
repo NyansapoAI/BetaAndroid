@@ -71,7 +71,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="lAssessmentFragment">
+                  <entry key="letterAssessmentFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -79,6 +79,15 @@
                             <option name="x" value="12" />
                             <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_letterAssessmentFragment_to_thankYouFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -94,7 +103,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_paragraphAssessmentFragment_self">
+                            <entry key="action_paragraphAssessmentFragment_to_storyAssessmentFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -206,6 +215,27 @@
                             <option name="y" value="-521" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_storyAssessmentFragment_to_thankYouFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="storyQuestionsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-259" />
+                            <option name="y" value="-828" />
+                          </Point>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -229,6 +259,20 @@
                             <option name="x" value="2504" />
                             <option name="y" value="256" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_wordAssessmentFragment_to_letterAssessmentFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_wordAssessmentFragment_to_thankYouFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

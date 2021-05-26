@@ -6,9 +6,9 @@ import androidx.annotation.DrawableRes
 import com.example.edward.nyansapo.*
 import com.example.edward.nyansapo.presentation.ui.attendance.CurrentDate
 import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
-import com.example.edward.nyansapo.presentation.ui.home.Camp
-import com.example.edward.nyansapo.presentation.ui.home.Group
-import com.example.edward.nyansapo.presentation.ui.home.Program
+import com.example.edward.nyansapo.presentation.ui.change_program.Camp
+import com.example.edward.nyansapo.presentation.ui.change_program.Group
+import com.example.edward.nyansapo.presentation.ui.change_program.Program
 import com.google.android.gms.tasks.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth

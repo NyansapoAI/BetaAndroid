@@ -10,7 +10,7 @@ import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentRepo
 import com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentRepo
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingRepository
 import com.example.edward.nyansapo.presentation.ui.grouping.Repository_G
-import com.example.edward.nyansapo.presentation.ui.home.HomeRepository
+import com.example.edward.nyansapo.presentation.ui.change_program.HomeRepository
 import com.example.edward.nyansapo.presentation.ui.preassessment.MainRepository
 import dagger.Module
 import dagger.Provides

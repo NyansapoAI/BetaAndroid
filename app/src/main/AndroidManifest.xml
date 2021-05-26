@@ -69,7 +69,7 @@
         <activity android:name="com.example.edward.nyansapo.paragraph_chooser.ParagraphChooserActivity" />
         <activity android:name="com.example.edward.nyansapo.assess_process.paragraph.paragraph_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.story.story_assessment" />
-        <activity android:name="com.example.edward.nyansapo.storyQuestions" />
+        <activity android:name="com.example.edward.nyansapo.assess_process.story_questions.storyQuestions" />
         <activity android:name="com.example.edward.nyansapo.assess_process.word.word_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.letter.letter_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.thank_you.thankYou" />

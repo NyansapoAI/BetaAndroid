@@ -34,7 +34,7 @@ import kotlin.collections.ArrayList
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Assessment
 import com.example.edward.nyansapo.Assessment_Content
-import com.example.edward.nyansapo.storyQuestions
+import com.example.edward.nyansapo.assess_process.story_questions.storyQuestions
 import com.example.edward.nyansapo.assess_process.thank_you.thankYou
 
 class story_assessment : AppCompatActivity() {
@@ -106,6 +106,7 @@ class story_assessment : AppCompatActivity() {
 
 
     }
+
     private fun checkIfWeHavePermissions() {
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -116,6 +117,7 @@ class story_assessment : AppCompatActivity() {
             recordStudent()
         }
     }
+
     private fun startVoiceRecording() {
         Log.d(TAG, "startVoiceRecording: Environment.getexternalStorageDirectory():${Environment.getExternalStorageDirectory()}")
         recorder = MediaRecorder()
@@ -124,7 +126,7 @@ class story_assessment : AppCompatActivity() {
             Log.d(TAG, "startVoiceRecording: sd card mounted")
             val timeStamp = Calendar.getInstance().time.time
 
-           // val student= studentDocumentSnapshot!!.toObject(Student::class.java)
+            // val student= studentDocumentSnapshot!!.toObject(Student::class.java)
             val directory = File(Environment.getExternalStorageDirectory().absolutePath + "/nyansapo_recording/storys/${studentDocumentSnapshot!!.id}/${assessment?.id}")
             directory.mkdirs()
             file = File(directory, "$sentence_count.wav")
@@ -159,7 +161,6 @@ class story_assessment : AppCompatActivity() {
 
     var drawable: Drawable? = null
     fun recordStudent() {
-
 
 
         if (!transcriptStarted) {
@@ -336,19 +337,17 @@ class story_assessment : AppCompatActivity() {
                             Toast.makeText(story_view!!.context, "Try Again!", Toast.LENGTH_LONG).show()
                         } else {
 
-                            if (countErrorFromSentence != 0) {
-                                story_words_wrong += error_txt
-                                error_count += countErrorFromSentence
-
-                            }
-                            nextParagraph()
-                        }
-                    } else {
-                        if (countErrorFromSentence != 0) { //there is an error
                             story_words_wrong += error_txt
                             error_count += countErrorFromSentence
 
+
+                            nextParagraph()
                         }
+                    } else {
+                             story_words_wrong += error_txt
+                            error_count += countErrorFromSentence
+
+
                         //    error_count += countErrorFromSentence
                         nextParagraph()
                     }
@@ -415,7 +414,7 @@ class story_assessment : AppCompatActivity() {
             }*/
 
 
-     }
+    }
 
     fun getStory(key: String?): String {
         return when (key) {

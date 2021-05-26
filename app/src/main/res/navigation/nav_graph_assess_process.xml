@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_storyAssessmentFragment_to_thankYouFragment"
             app:destination="@id/thankYouFragment" />
+        <action
+            android:id="@+id/action_storyAssessmentFragment_to_storyQuestionsFragment"
+            app:destination="@id/storyQuestionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/letterAssessmentFragment"
@@ -159,5 +162,16 @@
         <argument
             android:name="student"
             app:argType="com.example.edward.nyansapo.Student" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyQuestionsFragment"
+        android:name="com.example.edward.nyansapo.assess_process.story_questions.StoryQuestionsFragment"
+        android:label="StoryQuestionsFragment" >
+        <argument
+            android:name="assessment"
+            app:argType="com.example.edward.nyansapo.Assessment" />
+        <argument
+            android:name="question"
+            app:argType="integer" />
     </fragment>
 </navigation>

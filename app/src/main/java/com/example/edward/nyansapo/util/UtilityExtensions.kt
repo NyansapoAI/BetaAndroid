@@ -1,6 +1,8 @@
 package com.example.edward.nyansapo.util
 
 import androidx.appcompat.widget.SearchView
+import java.text.SimpleDateFormat
+import java.util.*
 
 inline fun SearchView.onQueryTextChanged(crossinline listener: (String) -> Unit) {
     this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -28,3 +30,6 @@ val String.sentenceToList: List<String>
     }.filter {
         it.isNotBlank()
     }
+
+val Date.dateToString: String
+    get() = SimpleDateFormat("dd-MM-yyyy").format(this)

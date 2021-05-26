@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.assess_process.story_questions.storyQuestions
 
 class QuestionStory : AppCompatActivity() {
     var story_view: TextView? = null

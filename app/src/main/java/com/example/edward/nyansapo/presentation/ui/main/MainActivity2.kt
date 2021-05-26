@@ -22,7 +22,7 @@ import com.example.edward.nyansapo.numeracy.NumeracyActivity
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment2
 import com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingFragment3
-import com.example.edward.nyansapo.presentation.ui.home.HomePageFragment2
+import com.example.edward.nyansapo.presentation.ui.change_program.ChangeProgramFragment
 import com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment
 import com.example.edward.nyansapo.util.Constants
 import com.example.edward.nyansapo.util.FirebaseUtils
@@ -349,7 +349,7 @@ companion object{
 
                 if (item.itemId == R.id.action_home) {
 
-                    supportFragmentManager.beginTransaction().replace(R.id.container, HomePageFragment2()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.container, ChangeProgramFragment()).commit()
                     return true
                 }
 
@@ -375,7 +375,7 @@ companion object{
                     R.id.action_home -> {
                         Log.d(TAG, "home clicked: ")
 
-                        supportFragmentManager.beginTransaction().replace(R.id.container, HomePageFragment2()).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.container, ChangeProgramFragment()).commit()
 
                     }
                     R.id.action_assess -> {
