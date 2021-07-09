@@ -331,7 +331,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
     }
 
     private fun startSettingQuestions(isParagraph: Boolean) {
-        val questions = getQuestions(assessment.assessmentKey)
+        val questions = getQuestions(assessment.assessmentKey.toString())
 
         binding.q1TxtView.text = "Q1. ${questions[0]} "
         binding.q2TxtView.text = "Q2. ${questions[1]} "
@@ -348,7 +348,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
     private fun startSettingStory() {
         Log.d(TAG, "startSettingStory: ")
-        val wholeStory = getStory(assessment.assessmentKey)
+        val wholeStory = getStory(assessment.assessmentKey.toString())
 
 
         val wordtoSpan: Spannable = SpannableString(wholeStory)
@@ -419,7 +419,7 @@ class AssessmentResultsFragment : Fragment(R.layout.activity_individual_student_
 
     private fun startSettingParagraphs() {
         Log.d(TAG, "startSettingParagraphs: ")
-        val wholeParagraph = getPara(assessment.assessmentKey)[assessment.paragraphChoosen]
+        val wholeParagraph = getPara(assessment.assessmentKey.toString())[assessment.paragraphChoosen]
 
         val wordtoSpan: Spannable = SpannableString(wholeParagraph)
 

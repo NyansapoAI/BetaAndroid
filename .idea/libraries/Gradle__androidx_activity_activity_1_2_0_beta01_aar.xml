@@ -4,10 +4,8 @@
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/16be60a615e57eb8c4314e4d59bb4eb6/jetified-activity-1.2.0-beta01/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cbdd61bcba7719af67195f029c926e27/jetified-activity-1.2.0-beta01/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/de632583b153840f9e1ff8662ba510e6/jetified-activity-1.2.0-beta01/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/16be60a615e57eb8c4314e4d59bb4eb6/jetified-activity-1.2.0-beta01/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/16be60a615e57eb8c4314e4d59bb4eb6/jetified-activity-1.2.0-beta01/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/16be60a615e57eb8c4314e4d59bb4eb6/jetified-activity-1.2.0-beta01/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/16be60a615e57eb8c4314e4d59bb4eb6/jetified-activity-1.2.0-beta01/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

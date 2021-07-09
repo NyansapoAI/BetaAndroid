@@ -4,9 +4,9 @@
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7208b03256674f1ce1b4f4bcf945a851/recyclerview-1.2.0-alpha04/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7208b03256674f1ce1b4f4bcf945a851/recyclerview-1.2.0-alpha04/AndroidManifest.xml" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7208b03256674f1ce1b4f4bcf945a851/recyclerview-1.2.0-alpha04/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7208b03256674f1ce1b4f4bcf945a851/recyclerview-1.2.0-alpha04/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7208b03256674f1ce1b4f4bcf945a851/recyclerview-1.2.0-alpha04/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

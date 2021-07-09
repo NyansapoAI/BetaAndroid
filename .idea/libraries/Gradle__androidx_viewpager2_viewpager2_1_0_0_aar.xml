@@ -4,8 +4,8 @@
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ce6bb149b56a7e164e8624afdf3c741f/jetified-viewpager2-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ce6bb149b56a7e164e8624afdf3c741f/jetified-viewpager2-1.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ce6bb149b56a7e164e8624afdf3c741f/jetified-viewpager2-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ce6bb149b56a7e164e8624afdf3c741f/jetified-viewpager2-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/ce6bb149b56a7e164e8624afdf3c741f/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

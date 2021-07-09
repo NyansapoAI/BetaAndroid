@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/799ca8a68c0e551f4a6b3079cf90e0ee/asynclayoutinflater-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/5d1dc093390e82ebbf6e1aa2b05ed4c1/asynclayoutinflater-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f82c9e35bfc3394e533045ff61b55a96/asynclayoutinflater-1.0.0/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f82c9e35bfc3394e533045ff61b55a96/asynclayoutinflater-1.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f82c9e35bfc3394e533045ff61b55a96/asynclayoutinflater-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f82c9e35bfc3394e533045ff61b55a96/asynclayoutinflater-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f82c9e35bfc3394e533045ff61b55a96/asynclayoutinflater-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

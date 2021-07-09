@@ -4,10 +4,8 @@
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d8aef9b5961c530f5534416a1e1a41c7/print-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1ebdc771a4906a9a7ed757864f16cc36/print-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/75a99d36f3e99a745f9521e4c0cdd8c3/print-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d8aef9b5961c530f5534416a1e1a41c7/print-1.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d8aef9b5961c530f5534416a1e1a41c7/print-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d8aef9b5961c530f5534416a1e1a41c7/print-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/d8aef9b5961c530f5534416a1e1a41c7/print-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

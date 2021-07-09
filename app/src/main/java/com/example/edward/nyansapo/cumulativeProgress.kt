@@ -27,7 +27,7 @@ class cumulativeProgress : AppCompatActivity() {
     var list_paragraph: ArrayList<Student>? = null
     var list_story: ArrayList<Student>? = null
     var assessments: ArrayList<Assessment>? = null
-    var dataBaseHandler: dataBaseHandler? = null
+    //var dataBaseHandler: dataBaseHandler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cumulative_progress)
@@ -43,7 +43,7 @@ class cumulativeProgress : AppCompatActivity() {
         }
         val intent = this.intent
          missed_words = findViewById(R.id.missed_words)
-        dataBaseHandler = dataBaseHandler(this)
+       // dataBaseHandler = dataBaseHandler(this)
         students = ArrayList()
         list_letters = ArrayList()
         list_words = ArrayList()
@@ -107,9 +107,9 @@ class cumulativeProgress : AppCompatActivity() {
 
     fun setMissedWords() {
 
-        val dataBaseHandler=dataBaseHandler(this)
+       // val dataBaseHandler=dataBaseHandler(this)
         val my_dict = Hashtable<String, Int>()
-        assessments = dataBaseHandler!!.allAssessment as ArrayList<Assessment>?
+      // assessments = dataBaseHandler!!.allAssessment as ArrayList<Assessment>?
         var words_wrong = ""
         for (assessment in assessments!!) {
             words_wrong = words_wrong + assessment.wordsWrong + assessment.paragraphWordsWrong

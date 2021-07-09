@@ -4,10 +4,8 @@
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0126f5181cc2eed807fb578e1342bc2a/swiperefreshlayout-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/13293d77c933e487c9d744a12c0730ae/swiperefreshlayout-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/3cd411691f6bbb56bd32b31f90c4e6ba/swiperefreshlayout-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0126f5181cc2eed807fb578e1342bc2a/swiperefreshlayout-1.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0126f5181cc2eed807fb578e1342bc2a/swiperefreshlayout-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0126f5181cc2eed807fb578e1342bc2a/swiperefreshlayout-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0126f5181cc2eed807fb578e1342bc2a/swiperefreshlayout-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

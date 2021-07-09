@@ -1,20 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.andrognito.patternlockview:patternlockview:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1208b8f3c5dd3dd00e248a7752e6b5d8/jetified-patternlockview-1.0.0/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c82f5aa5db3dfa14093f39668acfe281/jetified-patternlockview-1.0.0/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfc3cd1f46a19cf017686c93b9a17302/jetified-patternlockview-1.0.0/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/23d6bfb5e39581b76f45a93005cf5a45/jetified-patternlockview-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1208b8f3c5dd3dd00e248a7752e6b5d8/jetified-patternlockview-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1208b8f3c5dd3dd00e248a7752e6b5d8/jetified-patternlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1208b8f3c5dd3dd00e248a7752e6b5d8/jetified-patternlockview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c82f5aa5db3dfa14093f39668acfe281/jetified-patternlockview-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c82f5aa5db3dfa14093f39668acfe281/jetified-patternlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/c82f5aa5db3dfa14093f39668acfe281/jetified-patternlockview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfc3cd1f46a19cf017686c93b9a17302/jetified-patternlockview-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfc3cd1f46a19cf017686c93b9a17302/jetified-patternlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfc3cd1f46a19cf017686c93b9a17302/jetified-patternlockview-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/23d6bfb5e39581b76f45a93005cf5a45/jetified-patternlockview-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/23d6bfb5e39581b76f45a93005cf5a45/jetified-patternlockview-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/23d6bfb5e39581b76f45a93005cf5a45/jetified-patternlockview-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.andrognito.patternlockview/patternlockview/1.0.0/b9ff2b969b97532fc830d416f48aa5bf5ae683a1/patternlockview-1.0.0-javadoc.jar!/" />

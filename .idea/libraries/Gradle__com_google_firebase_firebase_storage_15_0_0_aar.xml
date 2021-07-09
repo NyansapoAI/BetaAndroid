@@ -1,17 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-storage:15.0.0@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/245623cb78cadc79b818fb5ca774e35c/jetified-firebase-storage-15.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/3366332ee5db847451ee8ec7efe035f5/jetified-firebase-storage-15.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/4042c5aefb41bbfb8a11a780e9b0e5b0/jetified-firebase-storage-15.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/4042c5aefb41bbfb8a11a780e9b0e5b0/jetified-firebase-storage-15.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/4042c5aefb41bbfb8a11a780e9b0e5b0/jetified-firebase-storage-15.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/91c2a389e4a00ec70f0d9820ded22fcc/jetified-firebase-storage-15.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/91c2a389e4a00ec70f0d9820ded22fcc/jetified-firebase-storage-15.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/91c2a389e4a00ec70f0d9820ded22fcc/jetified-firebase-storage-15.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/8d0bd90fd7bed9fb4e285f9b31da3ff0/jetified-firebase-storage-15.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/8d0bd90fd7bed9fb4e285f9b31da3ff0/jetified-firebase-storage-15.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/8d0bd90fd7bed9fb4e285f9b31da3ff0/jetified-firebase-storage-15.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/985b1d20ba65d74e4768ed79fa693801/jetified-firebase-storage-15.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/985b1d20ba65d74e4768ed79fa693801/jetified-firebase-storage-15.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/985b1d20ba65d74e4768ed79fa693801/jetified-firebase-storage-15.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

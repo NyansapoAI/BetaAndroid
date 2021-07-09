@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_changeProgramFragment"
+            app:destination="@id/changeProgramFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_selectTaskFragment"
+            app:destination="@id/selectTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_patternsFragment"
+            app:destination="@id/patternsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectTaskFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.select_task.SelectTaskFragment"
+        android:label="SelectTaskFragment" />
+    <fragment
+        android:id="@+id/changeProgramFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.change_program.ChangeProgramFragment"
+        android:label="ChangeProgramFragment" />
+    <fragment
+        android:id="@+id/patternsFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment"
+        android:label="PatternsFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>

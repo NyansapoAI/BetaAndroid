@@ -1,10 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:protolite-well-known-types:17.0.0@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/e451d8f72913c1aa4073861583bd0a61/jetified-protolite-well-known-types-17.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/dee0234351f1b2afd269304b560d7f08/jetified-protolite-well-known-types-17.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1cdd58d6e29becc320df97cb53a6ebb5/jetified-protolite-well-known-types-17.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1cdd58d6e29becc320df97cb53a6ebb5/jetified-protolite-well-known-types-17.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1cdd58d6e29becc320df97cb53a6ebb5/jetified-protolite-well-known-types-17.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1cdd58d6e29becc320df97cb53a6ebb5/jetified-protolite-well-known-types-17.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

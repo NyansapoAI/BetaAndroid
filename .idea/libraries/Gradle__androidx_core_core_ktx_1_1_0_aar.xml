@@ -1,10 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core-ktx:1.1.0@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/f02f4c5a8b637888d59876d8e6b1522b/jetified-core-ktx-1.1.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/61ac2ff9ef4e81c2605409f5684798aa/jetified-core-ktx-1.1.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/175a0624b8c443b084ab812ea85f1853/jetified-core-ktx-1.1.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/175a0624b8c443b084ab812ea85f1853/jetified-core-ktx-1.1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/175a0624b8c443b084ab812ea85f1853/jetified-core-ktx-1.1.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/175a0624b8c443b084ab812ea85f1853/jetified-core-ktx-1.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

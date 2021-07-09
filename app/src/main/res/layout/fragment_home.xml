@@ -1,137 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nyansapo_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstructorName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Instructor Name" />
 
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/nyansapo_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvCurriculum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructorName"
+        tools:text="English Literacy Currriculum" />
 
-        <TextView
-            android:id="@+id/tvInstructorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Instructor Name" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2" />
 
-        <TextView
-            android:id="@+id/tvCurriculum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInstructorName"
-            tools:text="English Literacy Currriculum" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivPerformance"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_performance"
-            app:layout_constraintEnd_toStartOf="@+id/ivTasks"
-            app:layout_constraintHorizontal_bias="0.566"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
 
-        <TextView
-            android:id="@+id/tvPerformance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="17dp"
-            android:text="Performance"
-            app:layout_constraintEnd_toEndOf="@+id/ivPerformance"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/ivPerformance"
-            app:layout_constraintTop_toBottomOf="@+id/ivPerformance" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivPerformance"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_performance"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
-        <TextView
-            android:id="@+id/tvTasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tasks"
-            app:layout_constraintEnd_toEndOf="@+id/ivTasks"
-            app:layout_constraintStart_toStartOf="@+id/ivTasks"
-            app:layout_constraintTop_toBottomOf="@+id/ivTasks" />
+    <TextView
+        android:id="@+id/tvPerformance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Performance"
+        app:layout_constraintEnd_toEndOf="@+id/ivPerformance"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/ivPerformance"
+        app:layout_constraintTop_toBottomOf="@+id/ivPerformance" />
 
-        <TextView
-            android:id="@+id/tvSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Settings"
-            app:layout_constraintEnd_toEndOf="@+id/ivSettings"
-            app:layout_constraintHorizontal_bias="0.604"
-            app:layout_constraintStart_toStartOf="@+id/ivSettings"
-            app:layout_constraintTop_toBottomOf="@+id/ivSettings" />
+    <TextView
+        android:id="@+id/tvTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Tasks"
+        app:layout_constraintEnd_toEndOf="@+id/ivTasks"
+        app:layout_constraintStart_toStartOf="@+id/ivTasks"
+        app:layout_constraintTop_toBottomOf="@+id/ivTasks" />
 
-        <TextView
-            android:id="@+id/tvChange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Change School,Group,or Camp"
-            app:layout_constraintEnd_toEndOf="@+id/ivChange"
-            app:layout_constraintStart_toStartOf="@+id/ivChange"
-            app:layout_constraintTop_toBottomOf="@+id/ivChange" />
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="@+id/ivSettings"
+        app:layout_constraintStart_toStartOf="@+id/ivSettings"
+        app:layout_constraintTop_toBottomOf="@+id/ivSettings" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivTasks"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="68dp"
-            android:src="@drawable/ic_tasks"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Change\nSchool,Group,\nor Camp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/ivChange"
+        app:layout_constraintStart_toStartOf="@+id/ivChange"
+        app:layout_constraintTop_toBottomOf="@+id/ivChange" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivSettings"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_settings"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivTasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_tasks"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivChange"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="68dp"
-            android:src="@drawable/ic_change"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivSettings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerformance" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="192dp" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivChange"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_change"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvTasks" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>

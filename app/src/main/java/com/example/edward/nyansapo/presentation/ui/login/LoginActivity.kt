@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.edward.nyansapo.R
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
+import com.example.edward.nyansapo.presentation.ui.main.MainActivity3
 import com.example.edward.nyansapo.util.FirebaseUtils
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.*
@@ -80,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMainScreen() {
-        val intent = Intent(this, MainActivity2::class.java)
+        val intent = Intent(this, MainActivity3::class.java)
         startActivity(intent)
         finish()
     }

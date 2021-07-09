@@ -1,15 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.nightonke:blurlockview:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/9f57303e4c9db62f2f3fba348b0bbd84/jetified-blurlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/9f57303e4c9db62f2f3fba348b0bbd84/jetified-blurlockview-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/9f57303e4c9db62f2f3fba348b0bbd84/jetified-blurlockview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/655322f3c6de8386ae5a40e7eafd1001/jetified-blurlockview-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/655322f3c6de8386ae5a40e7eafd1001/jetified-blurlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/655322f3c6de8386ae5a40e7eafd1001/jetified-blurlockview-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/925b2360b70fb41f275e5fae86c123d7/jetified-blurlockview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/925b2360b70fb41f275e5fae86c123d7/jetified-blurlockview-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/925b2360b70fb41f275e5fae86c123d7/jetified-blurlockview-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/15889237f22c5a93804746d15b4b07b6/jetified-blurlockview-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/15889237f22c5a93804746d15b4b07b6/jetified-blurlockview-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/15889237f22c5a93804746d15b4b07b6/jetified-blurlockview-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.nightonke/blurlockview/1.0.0/56945a551e8bf88b58d30caa2d4408f1f6e58531/blurlockview-1.0.0-javadoc.jar!/" />

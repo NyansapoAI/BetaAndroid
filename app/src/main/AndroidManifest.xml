@@ -17,7 +17,8 @@
         android:roundIcon="@drawable/small_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.edward.nyansapo.assess_process.AssessProcessActivity"></activity>
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity3"></activity>
+        <activity android:name="com.example.edward.nyansapo.assess_process.AssessProcessActivity" />
         <activity android:name="com.example.edward.nyansapo.numeracy.NumeracyActivity" />
         <activity android:name="com.example.edward.nyansapo.presentation.ui.main.MainActivity2" />
         <activity android:name="com.example.edward.nyansapo.presentation.ui.login.LoginActivity">

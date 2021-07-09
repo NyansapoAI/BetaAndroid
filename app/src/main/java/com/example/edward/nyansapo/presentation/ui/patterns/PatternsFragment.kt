@@ -285,7 +285,7 @@ class PatternsFragment: Fragment(R.layout.fragment_data_analytics) {
     }
 
     private fun getStudents(onComplete: (QuerySnapshot) -> Unit) {
-        val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences = MainActivity2.sharedPref
 
         val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
         val groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)

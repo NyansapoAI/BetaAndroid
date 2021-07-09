@@ -1,15 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.jjoe64:graphview:4.2.2@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/6f758dd568e49d2f57fa959896fdf69b/jetified-graphview-4.2.2/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/6f758dd568e49d2f57fa959896fdf69b/jetified-graphview-4.2.2/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/6f758dd568e49d2f57fa959896fdf69b/jetified-graphview-4.2.2/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1dc2aa48b64aaf4d8f66f73d0b0e1d77/jetified-graphview-4.2.2/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1dc2aa48b64aaf4d8f66f73d0b0e1d77/jetified-graphview-4.2.2/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/1dc2aa48b64aaf4d8f66f73d0b0e1d77/jetified-graphview-4.2.2/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/b5832536bf3c3968386b1b2f08a88296/jetified-graphview-4.2.2/res" />
-      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/b5832536bf3c3968386b1b2f08a88296/jetified-graphview-4.2.2/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/b5832536bf3c3968386b1b2f08a88296/jetified-graphview-4.2.2/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/07bfffc55bf9e507b98ba959284beea0/jetified-graphview-4.2.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/07bfffc55bf9e507b98ba959284beea0/jetified-graphview-4.2.2/res" />
+      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/07bfffc55bf9e507b98ba959284beea0/jetified-graphview-4.2.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.jjoe64/graphview/4.2.2/f99aaac74cae0d1bfad1e46354e7fbbe7fb49206/graphview-4.2.2-javadoc.jar!/" />

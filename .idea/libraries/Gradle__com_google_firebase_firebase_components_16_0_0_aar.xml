@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-components:16.0.0@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/0ff8f5fd7390bc7bb153bccff31b6a89/jetified-firebase-components-16.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/7c4de2d7a676a7694789b94a747ce653/jetified-firebase-components-16.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfeeb9e7ca9f1e1332dacfd6812a40e5/jetified-firebase-components-16.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfeeb9e7ca9f1e1332dacfd6812a40e5/jetified-firebase-components-16.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../../../caches/transforms-2/files-2.1/cfeeb9e7ca9f1e1332dacfd6812a40e5/jetified-firebase-components-16.0.0/AndroidManifest.xml" />

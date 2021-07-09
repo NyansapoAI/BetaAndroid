@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.edward.nyansapo.R
-import com.edward.nyansapo.databinding.FragmentHomePageBinding
+import com.edward.nyansapo.databinding.FragmentChangeProgramBinding
 import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceFragment
 import com.example.edward.nyansapo.presentation.ui.main.*
 import com.example.edward.nyansapo.util.FirebaseUtils
@@ -27,7 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_home_page.*
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -47,12 +46,12 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
     lateinit var groupNames: QuerySnapshot
     lateinit var campNames: QuerySnapshot
     lateinit var sharedPreferences: SharedPreferences
-    lateinit var binding: FragmentHomePageBinding
+    lateinit var binding: FragmentChangeProgramBinding
 
     private val viemModel: ChangeProgramViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHomePageBinding.bind(view)
+        binding = FragmentChangeProgramBinding.bind(view)
         sharedPreferences = MainActivity2.sharedPref
         Log.d(TAG, "onViewCreated: ")
         setOnClickListeners()
@@ -137,7 +136,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
                         val spinnerValue = groups.map {
                             "Group: ${it.toObject(Group::class.java).number}"
                         }
-                        val adapter = SpinnerAdapter(MainActivity2.activityContext!!, groupNames, spinnerValue, { deleteItem(it) }) { documentReference, documentSnapshot ->
+                        val adapter = SpinnerAdapter(requireContext()!!, groupNames, spinnerValue, { deleteItem(it) }) { documentReference, documentSnapshot ->
                             val group = documentSnapshot.toObject(Group::class.java)
 
                             editItem(TYPE_GROUP, documentReference, group!!)
@@ -183,7 +182,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
                             "Camp: ${it.toObject(Camp::class.java).number}"
 
                         }
-                        val adapter = SpinnerAdapter(MainActivity2.activityContext!!, campNames!!, spinnerValue, { deleteItem(it) }) { documentReference, documentSnapshot ->
+                        val adapter = SpinnerAdapter(requireContext()!!, campNames!!, spinnerValue, { deleteItem(it) }) { documentReference, documentSnapshot ->
                             val camp = documentSnapshot.toObject(Camp::class.java)
 
                             editItem(TYPE_CAMP, documentReference, camp!!)
@@ -212,8 +211,8 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         super.onResume()
         Log.d(TAG, "onResume: ")
         //setting main activity toolbar to visible
-        (MainActivity2.activityContext!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = true
-        (MainActivity2.activityContext!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).title = "Home"
+//        (requireContext()!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = true
+      //  (requireContext()!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).title = "Home"
     }
 
 
@@ -240,7 +239,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
 
     private fun showToast(message: String) {
 
-        Toasty.info(MainActivity2.activityContext!!, message, Toasty.LENGTH_LONG).show()
+        Toasty.info(requireContext()!!, message, Toasty.LENGTH_LONG).show()
 
     }
 
@@ -294,7 +293,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         binding.campSpinner.setOnItemSelectedListener(object : OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
 
-                Log.d(TAG, "onItemSelected: camp spinner current pos: ${campSpinner.selectedItemPosition}")
+                Log.d(TAG, "onItemSelected: camp spinner current pos: ${binding.campSpinner.selectedItemPosition}")
                 if (++groupCheck > 1) {
                     //saving campId to be accessed in other screens
                     updateCampSharedPref()
@@ -385,7 +384,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
     }
 
     private fun setDataForDrawer() {
-        val menu = (MainActivity2.activityContext!! as MainActivity2).binding.navView.menu
+/*        val menu = (requireContext()!! as MainActivity2).binding.navView.menu
         FirebaseUtils.firebaseAuth.currentUser.apply {
             menu.findItem(R.id.instructorNameItem).title = "${this?.displayName} "
         }
@@ -416,7 +415,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         } catch (e: Exception) {
             menu.findItem(R.id.campNumberItem).title = "No camp selected"
             e.printStackTrace()
-        }
+        }*/
 
     }
 
@@ -451,17 +450,17 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
 
     private fun createBtnClicked() {
         Log.d(TAG, "createBtnClicked: ")
-        MainActivity2.activityContext!!.supportFragmentManager.beginTransaction().replace(R.id.container, CreateFragment()).addToBackStack(null).commit()
+       // requireContext()!!.supportFragmentManager.beginTransaction().replace(R.id.container, CreateFragment()).addToBackStack(null).commit()
     }
 
     private fun attendanceBtnClicked() {
         Log.d(TAG, "attendanceBtnClicked: ")
         val attendanceFragment = AttendanceFragment()
-        MainActivity2.activityContext!!
+  /*      requireContext()!!
                 .supportFragmentManager
                 .beginTransaction().replace(R.id.container, attendanceFragment)
                 .addToBackStack(null).commit()
-    }
+*/    }
 
     /* private fun getInfoBundle(): Bundle? {
          binding.apply {
@@ -496,7 +495,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         } else {
             //valid position
             binding.programNameSpinner.setSelection(programPos)
-            setDataForDrawer()
+        setDataForDrawer()
         }
 
 
@@ -541,7 +540,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
 
 
         //setting main activity toolbar to invisible
-        (MainActivity2.activityContext)!!.binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = false
+      //  (requireContext())!!.binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = false
 
         //  updateProgramSharedPref()
         // updateGroupSharedPref()
@@ -551,12 +550,12 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
 
     fun createAlertDialog(title: String, message: String, documentReference: DocumentReference, organisation: Organisation) {
 
-        val edittext = EditText(MainActivity2.activityContext!!)
+        val edittext = EditText(requireContext()!!)
         edittext.setTextColor(Color.WHITE)
         edittext.setText(organisation.name)
 
-        MaterialAlertDialogBuilder(MainActivity2.activityContext!!)
-                .setBackground(MainActivity2.activityContext!!.getDrawable(R.drawable.bg_dialog)).setIcon(R.drawable.ic_edit)
+        MaterialAlertDialogBuilder(requireContext()!!)
+                .setBackground(requireContext()!!.getDrawable(R.drawable.bg_dialog)).setIcon(R.drawable.ic_edit)
                 .setTitle(title).setMessage(message).setView(edittext)
                 .setNegativeButton("Cancel") { dialog, which -> //
                     // what to execute on cancel
