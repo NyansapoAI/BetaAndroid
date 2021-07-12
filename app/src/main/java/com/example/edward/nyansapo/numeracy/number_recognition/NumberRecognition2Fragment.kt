@@ -19,8 +19,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumberRecognition2Binding
+import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.util.GlobalData
 import com.example.edward.nyansapo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -33,12 +36,20 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     private val TAG = "NumberRecognition2Fragm"
     private val RC_PERMISSION = 9
     private val viewModel: NumberRecognitionViewModel by viewModels()
+    private val navArgs:NumberRecognition2FragmentArgs by navArgs()
     lateinit var binding: FragmentNumberRecognition2Binding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: assessmentNumeracy:${navArgs.assessmentNumeracy}")
         binding = FragmentNumberRecognition2Binding.bind(view)
         initProgressBar()
         subScribeToObservers()
+        setDefaults()
+    }
+
+    private fun setDefaults() {
+        binding.imvAvatar.setImageResource(GlobalData.avatar)
+
     }
 
     private fun subScribeToObservers() {
@@ -100,7 +111,12 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     }
 
     private fun finished() {
-        findNavController().navigate(R.id.action_numberRecognition2Fragment_to_additionFragment)
+        goToAddition()
+      }
+
+    private fun goToAddition() {
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy( correctNumberRecognition = viewModel.correctCount)
+        findNavController().navigate(NumberRecognition2FragmentDirections.actionNumberRecognition2FragmentToAdditionFragment(assessmentNumeracy))
     }
 
     private fun displayNumber() {
@@ -122,7 +138,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
             avatarClicked()
         }
         binding.skipTxtView.setOnClickListener {
-            findNavController().navigate(R.id.action_numberRecognition2Fragment_to_additionFragment)
+         goToAddition()
         }
     }
 

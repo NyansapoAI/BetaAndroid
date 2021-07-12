@@ -329,14 +329,17 @@ object FirebaseUtils {
 
 
     }
+fun  collectionAssessments(programId: String, groupId: String, campId: String, studentId: String)=  firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS)
 
-    fun addAssessmentForStudent(programId: String, groupId: String, campId: String, studentId: String, assessment: Assessment, onComplete: (DocumentReference) -> Unit) {
-        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS).add(assessment).addOnSuccessListener {
+fun addAssessmentForStudent(programId: String, groupId: String, campId: String, studentId: String, assessment: Assessment, onComplete: (DocumentReference) -> Unit) {
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY).add(assessment).addOnSuccessListener {
             onComplete(it)
         }
 
 
     }
+
+
 
 
     fun showAlertDialog(context: Context, @DrawableRes icon: Int, title: String, message: String, onYes: () -> Unit, onNo: () -> Unit) {

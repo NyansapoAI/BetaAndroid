@@ -16,8 +16,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentAdditionBinding
+import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.numeracy.Operators
+import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2.*
+import com.example.edward.nyansapo.util.GlobalData
 import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.vision.digitalink.Ink
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,19 +36,29 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
     private val TAG = "AdditionFragment"
 
     private lateinit var binding: FragmentAdditionBinding
-    private val viewModel: AdditionViewModel by viewModels()
+    private val viewModel: AdditionViewModel_2 by viewModels()
+    private val navArgs: AdditionFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: assessmentNumeracy:${navArgs.assessmentNumeracy}")
         binding = FragmentAdditionBinding.bind(view)
         initProgressBar()
+        viewModel.setOperation(Operators.ADDITION)
+        setDefaults()
         subScribeToObservers()
 
+    }
+
+    private fun setDefaults() {
+        binding.imvAvatar.setImageResource(GlobalData.avatar)
+        binding.tvHeader.text = "Addition"
+        binding.tvSymbol.text = "+"
     }
 
     private fun subScribeToObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             launch {
-                viewModel.getAddition.collect {
+                viewModel.getData.collect {
                     Log.d(TAG, "subScribeToObservers: getAddition:${it.status.name}")
                     when (it.status) {
                         Resource.Status.LOADING -> {
@@ -66,7 +81,7 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
                     Log.d(TAG, "subScribeToObservers: modelPresentStatus:${it.status.name}")
                     when (it.status) {
                         Resource.Status.LOADING -> {
-                        initProgressBar(it.message!!)
+                            initProgressBar(it.message!!)
                             showProgress(true)
 
                         }
@@ -134,8 +149,13 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
     }
 
     private fun finished() {
-        findNavController().navigate(R.id.action_additionFragment_to_subtractionFragment)
+        goToSubtractionScreen()
 
+    }
+
+    private fun goToSubtractionScreen() {
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctAddition = viewModel.correctCount)
+        findNavController().navigate(AdditionFragmentDirections.actionAdditionFragmentToSubtractionFragment(assessmentNumeracy))
     }
 
     private fun modelIsAbsent() {
@@ -147,12 +167,12 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
     }
 
     private fun setOnClickListener() {
-        binding.imageViewAvatar.setOnClickListener {
+        binding.imvAvatar.setOnClickListener {
             viewModel.setEvent(Event.StartAnalysis(binding.answerTxtView.inkBuilder))
         }
 
         binding.skipTxtView.setOnClickListener {
-            findNavController().navigate(R.id.action_additionFragment_to_wordProblemFragment)
+           goToSubtractionScreen()
         }
 
         binding.apply {
@@ -164,7 +184,6 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
             }
         }
     }
-
 
 
     private fun goToNext() {
@@ -185,19 +204,9 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
         binding.apply {
             firstNumberTxtView.text = viewModel.getCurrentNumber().first.toString()
             secondNumberTxtView.text = viewModel.getCurrentNumber().second.toString()
-            symbolTxtView.text = "+"
         }
     }
 
-    sealed class Event {
-        object RecordStudent : Event()
-        data class CheckIfCorrect(val recorded: String) : Event()
-        object CheckIfModelIsDownloaded : Event()
-        object StartModelDownload : Event()
-        data class StartAnalysis(val inkBuilder: Ink.Builder) : Event()
-        object Next : Event()
-        object Finished : Event()
-    }
 
     /////////////////////PROGRESS_BAR////////////////////////////
     lateinit var dialog: AlertDialog

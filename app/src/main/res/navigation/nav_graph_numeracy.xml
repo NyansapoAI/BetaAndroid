@@ -19,11 +19,10 @@
         <action
             android:id="@+id/action_numberRecognition2Fragment_to_additionFragment"
             app:destination="@id/additionFragment" />
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
     </fragment>
-    <fragment
-        android:id="@+id/numberRecognition3Fragment"
-        android:name="com.example.edward.nyansapo.numeracy.NumberRecognition3Fragment"
-        android:label="NumberRecognition3Fragment" />
     <fragment
         android:id="@+id/additionFragment"
         android:name="com.example.edward.nyansapo.numeracy.addition.AdditionFragment"
@@ -34,21 +33,60 @@
         <action
             android:id="@+id/action_additionFragment_to_wordProblemFragment"
             app:destination="@id/wordProblemFragment" />
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
     </fragment>
     <fragment
         android:id="@+id/subtractionFragment"
-        android:name="com.example.edward.nyansapo.numeracy.SubtractionFragment"
-        android:label="SubtractionFragment" />
+        android:name="com.example.edward.nyansapo.numeracy.subtraction.SubtractionFragment"
+        android:label="SubtractionFragment" >
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
+        <action
+            android:id="@+id/action_subtractionFragment_to_multiplicationFragment"
+            app:destination="@id/multiplicationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/multiplicationFragment"
-        android:name="com.example.edward.nyansapo.numeracy.MultiplicationFragment"
-        android:label="MultiplicationFragment" />
+        android:name="com.example.edward.nyansapo.numeracy.multiplication.MultiplicationFragment"
+        android:label="MultiplicationFragment" >
+        <action
+            android:id="@+id/action_multiplicationFragment_to_divisionFragment"
+            app:destination="@id/divisionFragment" />
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
+    </fragment>
     <fragment
         android:id="@+id/divisionFragment"
-        android:name="com.example.edward.nyansapo.numeracy.DivisionFragment"
-        android:label="DivisionFragment" />
+        android:name="com.example.edward.nyansapo.numeracy.division.DivisionFragment"
+        android:label="DivisionFragment" >
+        <action
+            android:id="@+id/action_divisionFragment_to_wordProblemFragment"
+            app:destination="@id/wordProblemFragment" />
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
+    </fragment>
     <fragment
         android:id="@+id/wordProblemFragment"
         android:name="com.example.edward.nyansapo.numeracy.word_problem.WordProblemFragment"
-        android:label="WordProblemFragment" />
+        android:label="WordProblemFragment" >
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
+        <action
+            android:id="@+id/action_wordProblemFragment_to_thankYouFragment2"
+            app:destination="@id/thankYouFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/thankYouFragment2"
+        android:name="com.example.edward.nyansapo.assess_process.thank_you.ThankYouFragment"
+        android:label="ThankYouFragment" >
+        <argument
+            android:name="assessmentNumeracy"
+            app:argType="com.example.edward.nyansapo.numeracy.AssessmentNumeracy" />
+    </fragment>
 </navigation>

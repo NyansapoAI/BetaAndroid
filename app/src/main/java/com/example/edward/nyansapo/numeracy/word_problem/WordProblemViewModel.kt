@@ -18,10 +18,10 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
     val getWordProblem = repository.wordProblem
 
-    fun setEvent(event: WordProblemFragment.Event) {
+    fun setEvent(event: Event) {
         viewModelScope.launch {
             when (event) {
-                is WordProblemFragment.Event.StartAnalysis -> {
+                is Event.StartAnalysis -> {
                     startAnalysis(event.inkBuilder)
                 }
 
@@ -29,7 +29,7 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
         }
     }
 
-    private val _analysesStatus = Channel<Resource<String>>()
+    private val _analysesStatus = Channel<Resource<Boolean>>()
     val analysesStatus = _analysesStatus.receiveAsFlow()
 
     private suspend fun startAnalysis(inkBuilder: Ink.Builder) {
@@ -48,8 +48,7 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
                     }
                     viewModelScope.launch {
-                        _analysesStatus.send(Resource.success(result.candidates[0].text))
-                        answerReceived(result.candidates[0].text)
+                         answerReceived(result.candidates)
                     }
 
                 }
@@ -63,19 +62,30 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
     }
 
-    private suspend fun answerReceived(writtenAnswer: String) {
-        Log.d(TAG, "answerReceived: writtenAnswer:$writtenAnswer")
+    private suspend fun answerReceived(writtenAnswer: List<RecognitionCandidate>) {
 
-        val expectedAnswer=getWordProblem.value.data!!.second
-        if (writtenAnswer==expectedAnswer){
+        val correctAnswer = getWordProblem.value.data!!.second
+        if (answerIsCorrect(writtenAnswer, correctAnswer)) {
             Log.d(TAG, "answerReceived: correct")
-
-        }else{
+            _analysesStatus.send(Resource.success(true))
+        } else {
+            _analysesStatus.send(Resource.success(false))
             Log.d(TAG, "answerReceived: wrong")
 
         }
     }
 
+    private fun answerIsCorrect(writtenAnswer: List<RecognitionCandidate>, correctAnswer: String): Boolean {
+        writtenAnswer.forEachIndexed { index, recognitionCandidate ->
+            if (recognitionCandidate.text.trim().equals(correctAnswer)) {
+                Log.d(TAG, "answerReceived:${recognitionCandidate.text} :correctAnswer:$correctAnswer")
+                return true
+            }
+        }
+        Log.d(TAG, "answerReceived:${writtenAnswer[0].text} :correctAnswer:$correctAnswer")
+
+        return false
+    }
 
     private fun getDigitalInkRecognizer(): DigitalInkRecognizer {
         Log.d(TAG, "getDigitalInkRecognizer: ")
@@ -101,6 +111,11 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
                         DigitalInkRecognizerOptions.builder(model).build())
 
         return recognizer
+    }
+
+    sealed class Event {
+        data class StartAnalysis(val inkBuilder: Ink.Builder) : Event()
+
     }
 
 }

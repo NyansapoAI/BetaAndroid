@@ -1,7 +1,9 @@
 package com.example.edward.nyansapo.select_assessment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +12,7 @@ import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ActivitySelectAssesmentBinding
 import com.edward.nyansapo.databinding.ActivitySelectAssessmentBinding
 import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.numeracy.NumeracyActivity
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.modal_layout.*
@@ -34,12 +37,23 @@ class SelectAssessmentFragment : Fragment(R.layout.activity_select_assessment), 
                 viewModel.selectAssessmentEvents.collect {
                     when (it) {
                         is Event.GoToPreAssessment -> {
-                            goToPreAssessment(it.assessmentKey, it.student)
+                            // goToPreAssessment(it.assessmentKey, it.student)
+                            goToNumeracyAssessments(it.student)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun goToNumeracyAssessments(student: Student) {
+
+        val intent = Intent(requireContext(), NumeracyActivity::class.java)
+        val bundle = Bundle()
+        bundle.putParcelable("student", student)
+        intent.putExtras(bundle)
+        startActivity(intent)
+
     }
 
     private fun goToPreAssessment(assessmentKey: Int, student: Student) {

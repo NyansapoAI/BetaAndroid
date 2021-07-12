@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentChangeProgramBinding
 import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceFragment
@@ -212,7 +213,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         Log.d(TAG, "onResume: ")
         //setting main activity toolbar to visible
 //        (requireContext()!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = true
-      //  (requireContext()!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).title = "Home"
+        //  (requireContext()!! as MainActivity2).binding.root.findViewById<Toolbar>(R.id.toolbar).title = "Home"
     }
 
 
@@ -348,13 +349,12 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         Log.d(TAG, "updateCampSharedPref: updating camp")
 
 
-
-            val camp = binding.campSpinner.selectedCamp?.toObject(Camp::class.java)
-            val campId = binding.campSpinner.selectedCamp?.id
-            sharedPreferences.campId = campId
-            val campPos = binding.campSpinner.selectedItemPosition
-            sharedPreferences.campPos = campPos
-            Log.d(TAG, "updateCampSharedPref: camp:$camp")
+        val camp = binding.campSpinner.selectedCamp?.toObject(Camp::class.java)
+        val campId = binding.campSpinner.selectedCamp?.id
+        sharedPreferences.campId = campId
+        val campPos = binding.campSpinner.selectedItemPosition
+        sharedPreferences.campPos = campPos
+        Log.d(TAG, "updateCampSharedPref: camp:$camp")
 
         setDataForDrawer()
     }
@@ -444,23 +444,25 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
             val campPos = sharedPreferences.campPos
 
             Log.d(TAG, "onStop:programPos:$programPos: :groupPos::$groupPos::campPos::$campPos")
+            createBtnClicked()
 
         }
     }
 
     private fun createBtnClicked() {
         Log.d(TAG, "createBtnClicked: ")
-       // requireContext()!!.supportFragmentManager.beginTransaction().replace(R.id.container, CreateFragment()).addToBackStack(null).commit()
+        findNavController().navigate(R.id.action_changeProgramFragment_to_createFragment)
     }
 
     private fun attendanceBtnClicked() {
         Log.d(TAG, "attendanceBtnClicked: ")
         val attendanceFragment = AttendanceFragment()
-  /*      requireContext()!!
-                .supportFragmentManager
-                .beginTransaction().replace(R.id.container, attendanceFragment)
-                .addToBackStack(null).commit()
-*/    }
+        /*      requireContext()!!
+                      .supportFragmentManager
+                      .beginTransaction().replace(R.id.container, attendanceFragment)
+                      .addToBackStack(null).commit()
+      */
+    }
 
     /* private fun getInfoBundle(): Bundle? {
          binding.apply {
@@ -495,7 +497,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
         } else {
             //valid position
             binding.programNameSpinner.setSelection(programPos)
-        setDataForDrawer()
+            setDataForDrawer()
         }
 
 
@@ -540,7 +542,7 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
 
 
         //setting main activity toolbar to invisible
-      //  (requireContext())!!.binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = false
+        //  (requireContext())!!.binding.root.findViewById<Toolbar>(R.id.toolbar).isVisible = false
 
         //  updateProgramSharedPref()
         // updateGroupSharedPref()

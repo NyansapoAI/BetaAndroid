@@ -150,7 +150,7 @@ class AssessmentFragment2 : Fragment(R.layout.fragment_assessment) {
     }
 
     private fun setUpRecyclerView() {
-        recyclerAdapter = GroupingAdapter2(onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
+        recyclerAdapter = GroupingAdapter2(requireContext(),onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
         binding.recyclerview.apply {
             layoutManager = LinearLayoutManager(MainActivity2.activityContext)
             adapter = recyclerAdapter

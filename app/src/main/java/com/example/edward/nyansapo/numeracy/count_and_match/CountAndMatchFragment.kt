@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentCountAndMatchBinding
+import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.util.GlobalData
 import com.example.edward.nyansapo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -31,11 +34,22 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
     @Inject
     lateinit var requestManager: RequestManager
     private val viewModel: CountAndMatchViewModel by viewModels()
+    private lateinit var student: Student
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            student = it.getParcelable("student") as Student
+            Log.d(TAG, "onViewCreated: student:$student")
+        }
         binding = FragmentCountAndMatchBinding.bind(view)
+        setDefaults()
         subScribeToObservers()
+    }
+
+    private fun setDefaults() {
+        binding.imvAvatar.setImageResource(GlobalData.avatar)
+
     }
 
     private fun subScribeToObservers() {
@@ -62,7 +76,7 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
                             goToNext()
                         }
                         is Event.Finished -> {
-                            findNavController().navigate(R.id.action_countAndMatchFragment_to_numberRecognition2Fragment)
+                            finished()
 
                         }
                         is Event.EnableChoices -> {
@@ -75,6 +89,10 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
                 }
             }
         }
+    }
+
+    private fun finished() {
+        goToNumberRecognition()
     }
 
     private fun setClickListenersForBalls() {
@@ -100,8 +118,14 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
 
 
         binding.skipTxtView.setOnClickListener {
-            findNavController().navigate(R.id.action_countAndMatchFragment_to_numberRecognition2Fragment)
+            goToNumberRecognition()
         }
+    }
+
+    private fun goToNumberRecognition() {
+        val assessmentNumeracy = AssessmentNumeracy().copy(student = student, correctCountAndMatch = viewModel.correctCount)
+        findNavController().navigate(CountAndMatchFragmentDirections.actionCountAndMatchFragmentToNumberRecognition2Fragment(assessmentNumeracy))
+
     }
 
     private fun choiceClicked(number: Int) {

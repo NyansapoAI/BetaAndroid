@@ -19,13 +19,10 @@ import java.util.*
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         checkIfUserIsLoggedIn()
+        checkIfUserIsLoggedIn()
     }
 
     private fun checkIfUserIsLoggedIn() {
-
-     //   val intent=Intent(null)
-  //      Uri.parse()
 
         Log.d(TAG, "checkIfUserIsLoggedIn: checking if user is logged in")
         if (!FirebaseUtils.isLoggedIn) {
@@ -34,9 +31,10 @@ class LoginActivity : AppCompatActivity() {
                             .createSignInIntentBuilder()
                             .setLogo(R.drawable.logo_wrapper)
                             .setAvailableProviders(Arrays.asList(
-                                 //   GoogleBuilder().build(),
+                                    //   GoogleBuilder().build(),
                                     EmailBuilder().build(),
-                                    PhoneBuilder().build() //     new   AuthUI.IdpConfig.AnonymousBuilder().build()
+                                    PhoneBuilder().build(),
+                                    AnonymousBuilder().build()
                             ))
                             .build(),
                     RC_SIGN_IN)
@@ -70,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 if (response.error!!.errorCode == ErrorCodes.NO_NETWORK) {
                     Log.d(TAG, "onActivityResult: no internet connection")
-                    Log.d(TAG, "onActivityResult: ",response.error)
+                    Log.d(TAG, "onActivityResult: ", response.error)
                     showToast("no internet connection")
                     return
                 }

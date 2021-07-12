@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.widget.*
 
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentCreateNewPageBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
@@ -52,7 +53,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
     private fun setUpTypeSpinner() {
         val spinnerValue = arrayOf("Program", "Group", "Camp")
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(MainActivity2.activityContext!!, R.layout.item_spinner_normal, spinnerValue)
+        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext()!!, R.layout.item_spinner_normal, spinnerValue)
         arrayAdapter.setDropDownViewResource(R.layout.item_spinner_normal_dropdown)
         binding.typeSpinner.adapter = arrayAdapter
 
@@ -102,7 +103,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
             val spinnerValue = groups.map {
                 "Group: ${it.toObject(Group::class.java).number}"
             }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(MainActivity2.activityContext!!, R.layout.item_spinner_normal, spinnerValue)
+            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext()!!, R.layout.item_spinner_normal, spinnerValue)
             arrayAdapter.setDropDownViewResource(R.layout.item_spinner_normal_dropdown)
             binding.groupSpinner.adapter = arrayAdapter
 
@@ -142,7 +143,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
 
             if (programs.isEmpty) {
-                Toasty.error(MainActivity2.activityContext!!, "you must first create a program before you proceed").show()
+                Toasty.error(requireContext()!!, "you must first create a program before you proceed").show()
 
                 return@getProgramNamesOnce
             }
@@ -151,7 +152,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
             val spinnerValue = programs.map {
                 "Program: ${it.toObject(Program::class.java).number}"
             }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(MainActivity2.activityContext!!, R.layout.item_spinner_normal, spinnerValue)
+            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext()!!, R.layout.item_spinner_normal, spinnerValue)
             arrayAdapter.setDropDownViewResource(R.layout.item_spinner_normal_dropdown)
 
             binding.programNameSpinner.adapter = arrayAdapter
@@ -171,14 +172,14 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
         FirebaseUtils.getGroupNamesOnce(programID) { groups ->
 
             if (groups.isEmpty) {
-                Toasty.error(MainActivity2.activityContext!!, "you must first create a group before you proceed").show()
+                Toasty.error(requireContext()!!, "you must first create a group before you proceed").show()
             }
             groupNames = groups
 
             val spinnerValue = groups.map {
                 "Group: ${it.toObject(Group::class.java).number}"
             }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(MainActivity2.activityContext!!, R.layout.item_spinner_normal, spinnerValue)
+            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext()!!, R.layout.item_spinner_normal, spinnerValue)
             arrayAdapter.setDropDownViewResource(R.layout.item_spinner_normal_dropdown)
 
             binding.groupSpinner.adapter = arrayAdapter
@@ -205,7 +206,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
             val spinnerValue = programs.map {
                 "Program: ${it.toObject(Program::class.java).number}"
             }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(MainActivity2.activityContext!!, R.layout.item_spinner_normal, spinnerValue)
+            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext()!!, R.layout.item_spinner_normal, spinnerValue)
             arrayAdapter.setDropDownViewResource(R.layout.item_spinner_normal_dropdown)
 
             binding.programNameSpinner.adapter = arrayAdapter
@@ -241,7 +242,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
         val campNumber = binding.campEdtTxt.editableText.toString().trim()
 
         if (groupNumber.isEmpty() || campNumber.isEmpty()) {
-            Toasty.error(MainActivity2.activityContext!!, "Please enter Number of groups or Camps To create").show()
+            Toasty.error(requireContext()!!, "Please enter Number of groups or Camps To create").show()
 
         } else {
             Log.d(TAG, "create_Group_Camp: groupNumber:$groupNumber: :campNumber:$campNumber")
@@ -299,7 +300,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
         val programName = binding.programNameEdtTxt.editableText.toString().trim()
         if (TextUtils.isEmpty(programName)) {
             Log.d(TAG, "create_Program_Group_Camp: please enter program name")
-            Toasty.error(MainActivity2.activityContext!!, "Please enter Program Name ").show()
+            Toasty.error(requireContext()!!, "Please enter Program Name ").show()
         } else {
             startProgramCreation(programName)
         }
@@ -312,7 +313,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
         val campNumber = binding.campEdtTxt.editableText.toString().trim()
 
         if (TextUtils.isEmpty(groupNumber) || TextUtils.isEmpty(campNumber)) {
-            Toasty.error(MainActivity2.activityContext!!, "please enter group number or camp number").show()
+            Toasty.error(requireContext()!!, "please enter group number or camp number").show()
 
 
         } else {
@@ -345,7 +346,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
 
         } else {
-            Toasty.error(MainActivity2.activityContext!!, "Please enter Number of Camps To create").show()
+            Toasty.error(requireContext()!!, "Please enter Number of Camps To create").show()
 
         }
 
@@ -357,8 +358,8 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
 
             showProgress(false)
-            (MainActivity2.activityContext as MainActivity2).supportFragmentManager.popBackStackImmediate()
-
+            //       (requireContext() as MainActivity2).supportFragmentManager.popBackStackImmediate()
+            //findNavController().popBackStack()
 
             campNames = camps
             var start: Int
@@ -399,7 +400,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
 
     private fun showToast(message: String) {
-        Toasty.error(MainActivity2.activityContext!!, message).show()
+        Toasty.error(requireContext()!!, message).show()
 
     }
 
@@ -420,7 +421,7 @@ class CreateFragment : Fragment(R.layout.fragment_create_new_page) {
 
     private fun initProgressBar() {
 
-        dialog = setProgressDialog(MainActivity2.activityContext!!, "Loading..")
+        dialog = setProgressDialog(requireContext()!!, "Loading..")
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
     }

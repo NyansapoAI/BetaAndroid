@@ -288,6 +288,7 @@
 
     <ImageView
         android:layout_width="100dp"
+        android:id="@+id/imvAvatar"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"

@@ -23,11 +23,22 @@
     <fragment
         android:id="@+id/selectTaskFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.select_task.SelectTaskFragment"
-        android:label="SelectTaskFragment" />
+        android:label="SelectTaskFragment" >
+        <action
+            android:id="@+id/action_selectTaskFragment_to_assessmentFragment"
+            app:destination="@id/assessmentFragment" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_numeracyLearningLevelFragment"
+            app:destination="@id/numeracyLearningLevelFragment" />
+    </fragment>
     <fragment
         android:id="@+id/changeProgramFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.change_program.ChangeProgramFragment"
-        android:label="ChangeProgramFragment" />
+        android:label="ChangeProgramFragment" >
+        <action
+            android:id="@+id/action_changeProgramFragment_to_createFragment"
+            app:destination="@id/createFragment" />
+    </fragment>
     <fragment
         android:id="@+id/patternsFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.patterns.PatternsFragment"
@@ -36,4 +47,50 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/assessmentFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.AssessmentFragment"
+        android:label="AssessmentFragment" >
+        <action
+            android:id="@+id/action_assessmentFragment_to_beginAssessmentFragment"
+            app:destination="@id/beginAssessmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beginAssessmentFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentFragment"
+        android:label="BeginAssessmentFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_beginAssessmentFragment_to_avatarChooserFragment2"
+            app:destination="@id/avatarChooserFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/avatarChooserFragment2"
+        android:name="com.example.edward.nyansapo.presentation.ui.assessment.AvatarChooserFragment"
+        android:label="AvatarChooserFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+        <action
+            android:id="@+id/action_avatarChooserFragment2_to_selectAssessmentFragment2"
+            app:destination="@id/selectAssessmentFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectAssessmentFragment2"
+        android:name="com.example.edward.nyansapo.select_assessment.SelectAssessmentFragment"
+        android:label="SelectAssessmentFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+    </fragment>
+    <fragment
+        android:id="@+id/numeracyLearningLevelFragment"
+        android:name="com.example.edward.nyansapo.numeracy.numeracy_learning_level.NumeracyLearningLevelFragment"
+        android:label="NumeracyLearningLevelFragment" />
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.change_program.CreateFragment"
+        android:label="CreateFragment" />
 </navigation>

@@ -6,13 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edward.nyansapo.numeracy.Operators
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
+import com.example.edward.nyansapo.util.Constants
 import com.example.edward.nyansapo.util.Resource
+import com.example.edward.nyansapo.util.exhaustive
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.vision.digitalink.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -21,24 +24,39 @@ import kotlinx.coroutines.tasks.await
 class AdditionViewModel_2 @ViewModelInject constructor(private val repository: NumeracyRepository) : ViewModel() {
 
     private val TAG = "AdditionViewModel2"
-    var operator = Operators.ADDITION
+    lateinit var operator: Operators
     var counter = 0
-    val getAddition = repository.getAddition
+    lateinit var getData: MutableStateFlow<Resource<Array<Pair<Int, Int>>>>
     var correctCount = 0
     fun getCurrentNumber(): Pair<Int, Int> {
-        return getAddition.value.data!![counter]
+        return getData.value.data!![counter]
     }
 
-    private val _additionEvents = Channel<AdditionFragment.Event>()
+
+    fun setOperation(operators: Operators) {
+        operator = operators
+        getData = getData()
+    }
+
+    private fun getData() =
+            when (operator) {
+                Operators.ADDITION -> repository.getAddition
+                Operators.SUBTRACTION -> repository.getSubtraction
+                Operators.MULTIPLICATION -> repository.getMultiplication
+                Operators.DIVISION -> repository.getDivision
+            }.exhaustive
+
+
+    private val _additionEvents = Channel<Event>()
     val additionEvents = _additionEvents.receiveAsFlow()
 
-    fun setEvent(event: AdditionFragment.Event) {
+    fun setEvent(event: Event) {
         viewModelScope.launch {
             when (event) {
-                is AdditionFragment.Event.StartModelDownload -> {
+                is Event.StartModelDownload -> {
                     startModelDownload()
                 }
-                is AdditionFragment.Event.StartAnalysis -> {
+                is Event.StartAnalysis -> {
                     startAnalysis(event.inkBuilder)
                 }
 
@@ -72,7 +90,7 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
                     }
                     viewModelScope.launch {
                         _analysesStatus.send(Resource.success(result.candidates[0].text))
-                        answerReceived(result.candidates[0].text)
+                        answerReceived(result.candidates)
                     }
 
                 }
@@ -86,24 +104,57 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
 
     }
 
-    private suspend fun answerReceived(writtenAnswer: String) {
-        Log.d(TAG, "answerReceived: writtenAnswer:$writtenAnswer")
+    private suspend fun answerReceived(writtenAnswers: List<RecognitionCandidate>) {
+        val correctAnswer = getCorrectAnswer()
+        Log.d(TAG, "answerReceived: :correctAnswer:$correctAnswer")
 
-        val current = getCurrentNumber()
-        val answer = current.first + current.second
-        if (writtenAnswer == answer.toString()) {
+        if (answerIsCorrect(writtenAnswers, correctAnswer)) {
             Log.d(TAG, "answerReceived: correct")
             correctCount++
         } else {
             Log.d(TAG, "answerReceived: wrong")
         }
         counter++
-        if (counter < getAddition.value.data!!.size) {
-            _additionEvents.send(AdditionFragment.Event.Next)
+        if (counter < getData.value.data!!.size) {
+            _additionEvents.send(Event.Next)
         } else {
-            _additionEvents.send(AdditionFragment.Event.Finished)
+            _additionEvents.send(Event.Finished)
 
         }
+    }
+
+    private fun answerIsCorrect(writtenAnswer: List<RecognitionCandidate>, correctAnswer: String): Boolean {
+        writtenAnswer.forEachIndexed { index, recognitionCandidate ->
+            if (recognitionCandidate.text.trim().equals(correctAnswer)) {
+                Log.d(TAG, "answerReceived:${recognitionCandidate.text} :correctAnswer:$correctAnswer")
+                return true
+            }
+        }
+        Log.d(TAG, "answerReceived:${writtenAnswer[0].text} :correctAnswer:$correctAnswer")
+
+        return false
+    }
+
+    private fun getCorrectAnswer(): String {
+        val current = getCurrentNumber()
+        var answer: Int = 0
+        when (operator) {
+            Operators.ADDITION -> {
+                answer = current.first + current.second
+            }
+            Operators.SUBTRACTION -> {
+                answer = current.first - current.second
+            }
+            Operators.MULTIPLICATION -> {
+                answer = current.first * current.second
+            }
+            Operators.DIVISION -> {
+                answer = current.first / current.second
+            }
+        }
+
+        return answer.toString()
+
     }
 
 
@@ -169,11 +220,16 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
                 }
     }
 
-    var modelIsPresent = false
+    var modelIsPresent = Constants.modelIsPresent
     private val _modelDownloadStatus = Channel<Resource<Boolean>>()
     val modelDownloadStatus = _modelDownloadStatus.receiveAsFlow()
     private val _modelPresentStatus = Channel<Resource<Boolean>>()
     val modelPresentStatus = callbackFlow<Resource<Boolean>> {
+        if (Constants.modelIsPresent) {
+            awaitClose { }
+
+            return@callbackFlow
+        }
 
         Log.d(TAG, "checkIfModelIsDownloaded: ")
         // Specify the recognition model for a language
@@ -194,6 +250,7 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
 
         send(Resource.loading("Checking If Model Exists"))
         modelIsPresent = remoteModelManager.isModelDownloaded(model).await()
+        Constants.modelIsPresent = modelIsPresent
         if (modelIsPresent) {
             send(Resource.success(true))
         } else {
@@ -203,4 +260,13 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
 
     }
 
+    sealed class Event {
+        object RecordStudent : Event()
+        data class CheckIfCorrect(val recorded: String) : Event()
+        object CheckIfModelIsDownloaded : Event()
+        object StartModelDownload : Event()
+        data class StartAnalysis(val inkBuilder: Ink.Builder) : Event()
+        object Next : Event()
+        object Finished : Event()
+    }
 }

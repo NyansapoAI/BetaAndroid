@@ -53,7 +53,7 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
 
     private fun subScribeToObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            launch {
+/*            launch {
                 viewModel.getStudent.collect {
                     Log.d(TAG, "subScribeToObservers: getStudent:${it.status.name}")
                     when (it.status) {
@@ -69,17 +69,8 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
 
                     }
                 }
-            }
+            }*/
 
-            launch {
-                viewModel.beginAssessmentEvents.collect {
-                    when (it) {
-                        is Event.BeginAssessmentClicked -> {
-                            goToAvatarChooser(it.student)
-                        }
-                    }
-                }
-            }
 
             launch {
                 viewModel.getAssessmentsStatus.collect {
@@ -123,12 +114,14 @@ class BeginAssessmentFragment : Fragment(R.layout.activity_begin_assessement) {
 
     private fun setOnClickListeners() {
         binding.beginAssessmentBtn.setOnClickListener {
-            viewModel.setEvent(Event.BeginAssessmentClicked(navArgs.student))
+            goToAvatarChooser(navArgs.student)
         }
+
+
     }
 
     private fun goToAvatarChooser(student: Student) {
-        findNavController().navigate(BeginAssessmentFragmentDirections.actionBeginAssessmentFragmentToAvatarChooserFragment(student))
+        findNavController().navigate(BeginAssessmentFragmentDirections.actionBeginAssessmentFragmentToAvatarChooserFragment2(student))
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.edward.nyansapo.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.edward.nyansapo.data.repositories.ProductionRepository
@@ -11,7 +13,9 @@ import com.example.edward.nyansapo.presentation.ui.assessment.BeginAssessmentRep
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingRepository
 import com.example.edward.nyansapo.presentation.ui.grouping.Repository_G
 import com.example.edward.nyansapo.presentation.ui.change_program.HomeRepository
+import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.ui.preassessment.MainRepository
+import com.example.edward.nyansapo.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,19 +33,22 @@ object AppModule {
 
         return MainRepository()
     }
+
     @Provides
     @Singleton
     fun provideRepository(): Repository {
 
         return ProductionRepository()
     }
+
     @Provides
     @Singleton
     fun providesAssRepo(): AssessmentRepo {
 
         return AssessmentRepo()
     }
-   @Provides
+
+    @Provides
     @Singleton
     fun providesBeginAssessmentRepo(): BeginAssessmentRepo {
 
@@ -50,9 +57,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNumeracyRepository(): NumeracyRepository {
+    fun provideNumeracyRepository(sharedPreferences: SharedPreferences): NumeracyRepository {
 
-        return NumeracyRepository()
+        return NumeracyRepository(sharedPreferences)
     }
 
     @Provides
@@ -73,5 +80,13 @@ object AppModule {
     @Singleton
     fun provideRepository_H(): HomeRepository {
         return HomeRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
+        val sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+
+        return sharedPreferences
     }
 }

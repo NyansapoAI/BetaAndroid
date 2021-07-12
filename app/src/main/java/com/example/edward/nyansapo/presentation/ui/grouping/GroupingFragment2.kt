@@ -121,7 +121,7 @@ class GroupingFragment2 : Fragment(R.layout.fragment_learning_level), SwipeListe
             MainActivity2.activityContext!!.supportFragmentManager.popBackStackImmediate()
         }
 
-        adapter = GroupingAdapter2(this, {
+        adapter = GroupingAdapter2(requireContext(),this, {
             searchViewIsEmpty()
         },
                 {

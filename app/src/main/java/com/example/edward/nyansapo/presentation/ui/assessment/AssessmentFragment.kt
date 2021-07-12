@@ -10,6 +10,7 @@ import android.widget.Filter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.FloatingSearchView.*
@@ -47,7 +48,6 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
         mSearchView = view.findViewById(R.id.mSearchView) as FloatingSearchView
 
-        setupDrawer()
         setOnClickListeners()
 
         fetchAllStudentFirst {
@@ -75,7 +75,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
     private fun setUpRecyclerView(querySnapshot: QuerySnapshot) {
         Log.d(TAG, "setUpRecyclerView: size:${querySnapshot.size()}")
-        val recyclerAdapter = GroupingAdapter2(onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
+        val recyclerAdapter = GroupingAdapter2(context = requireContext(),onStudentClick = { onStudentClicked(it.toObject(Student::class.java)!!) })
         recyclerAdapter.submitList(querySnapshot.documents)
         binding.recyclerview.apply {
             layoutManager = LinearLayoutManager(MainActivity2.activityContext)
@@ -90,13 +90,13 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
     }
 
     private fun addStudent() {
-        val intent = Intent(MainActivity2.activityContext!!, AddStudentFragment::class.java)
+        val intent = Intent(requireContext()!!, AddStudentFragment::class.java)
         startActivity(intent)
     }
 
 
     private fun fetchAllStudentFirst(onComplete: (QuerySnapshot) -> Unit) {
-        val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext()!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
         val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
         val groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)
@@ -104,8 +104,8 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
         val campPos = sharedPreferences.getInt(Constants.CAMP_POS, -1)
 
         if (campPos == -1) {
-            Toasty.error(MainActivity2.activityContext!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
-            MainActivity2.activityContext!!.supportFragmentManager.popBackStackImmediate()
+            Toasty.error(requireContext()!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
+          //  requireContext()!!.supportFragmentManager.popBackStackImmediate()
         }
 
 
@@ -193,7 +193,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
             } else {
 
                 //just print action
-                Toast.makeText(MainActivity2.activityContext!!, item.title,
+                Toast.makeText(requireContext()!!, item.title,
                         Toast.LENGTH_SHORT).show()
             }
         })
@@ -239,12 +239,16 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
             }
 
             studentDocumentSnapshot = currentSnapshot
-
-            MainActivity2.activityContext!!.supportFragmentManager.beginTransaction().replace(R.id.container, BeginAssessmentFragment()).addToBackStack(null).commit()
+            goToBeginAssessmentScreen(student)
+            // requireContext()!!.supportFragmentManager.beginTransaction().replace(R.id.container, BeginAssessmentFragment()).addToBackStack(null).commit()
 
         }
 
 
+    }
+
+    private fun goToBeginAssessmentScreen(student: Student) {
+        findNavController().navigate(AssessmentFragmentDirections.actionAssessmentFragmentToBeginAssessmentFragment(student))
     }
 
     private fun getStudentsAccordingToQuery(newQuery: String, onComplete: () -> Unit) {
@@ -281,7 +285,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
 
 
     private fun getSuggestions(number: Int, onComplete: (QuerySnapshot) -> Unit) {
-        val sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext()!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
         val programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
         val groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)
@@ -289,8 +293,8 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
         val campPos = sharedPreferences.getInt(Constants.CAMP_POS, -1)
 
         if (campPos == -1) {
-            Toasty.error(MainActivity2.activityContext!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
-            MainActivity2.activityContext!!.supportFragmentManager.popBackStackImmediate()
+            Toasty.error(requireContext()!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
+         //   requireContext()!!.supportFragmentManager.popBackStackImmediate()
         }
 
         FirebaseUtils.getCollectionStudentFromCamp_ReturnCollection(programId, groupId, campId).orderBy("timestamp", Query.Direction.DESCENDING).limit(number.toLong()).get().addOnSuccessListener {
@@ -309,10 +313,7 @@ class AssessmentFragment : Fragment(R.layout.fragment_assessment) {
         } else true
     }
 
-    private fun setupDrawer() {
-        binding.mSearchView.attachNavigationDrawerToMenuButton(MainActivity2.activityContext!!.binding.drawerLayout)
-        //   attachSearchViewActivityDrawer(mSearchView)
-    }
+
 
 }
 

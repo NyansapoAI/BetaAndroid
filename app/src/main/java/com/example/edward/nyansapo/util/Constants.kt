@@ -15,8 +15,10 @@ class Constants {
         const val PROGRAM_POS = "program_pos"
         const val GROUP_POS = "group_pos"
         const val CAMP_POS = "camp_pos"
-    }
 
+        var modelIsPresent=false
+
+    }
 }
 
 var studentDocumentSnapshot: DocumentSnapshot? = null
@@ -29,9 +31,11 @@ var answerQ2: String? = null
 val COLLECTION_ROOT = "nyansapo"
 val COLLECTION_STUDENTS = "students"
 val COLLECTION_ASSESSMENTS = "assessments"
+val COLLECTION_ASSESSMENTS_NUMERACY = "assessmentsNumeracy"
 
 
 val STUDENT_ID = "studentId"
 
 const val ASSEMENT_KEY_ARG = "assessmentKey"
 const val PARAGRAPH_ARG = "paragraph"
+

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2.*
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
 import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.common.MlKitException
@@ -28,16 +29,16 @@ class AdditionViewModel @ViewModelInject constructor(private val repository: Num
         return getAddition.value.data!![counter]
     }
 
-    private val _additionEvents = Channel<AdditionFragment.Event>()
+    private val _additionEvents = Channel<Event>()
     val additionEvents = _additionEvents.receiveAsFlow()
 
-    fun setEvent(event: AdditionFragment.Event) {
+    fun setEvent(event: Event) {
         viewModelScope.launch {
             when (event) {
-                is AdditionFragment.Event.StartModelDownload -> {
+                is Event.StartModelDownload -> {
                     startModelDownload()
                 }
-                is AdditionFragment.Event.StartAnalysis -> {
+                is Event.StartAnalysis -> {
                     startAnalysis(event.inkBuilder)
                 }
 
@@ -98,9 +99,9 @@ class AdditionViewModel @ViewModelInject constructor(private val repository: Num
         }
         counter++
         if (counter < getAddition.value.data!!.size) {
-            _additionEvents.send(AdditionFragment.Event.Next)
+            _additionEvents.send(Event.Next)
         } else {
-            _additionEvents.send(AdditionFragment.Event.Finished)
+            _additionEvents.send(Event.Finished)
 
         }
     }
@@ -201,5 +202,6 @@ class AdditionViewModel @ViewModelInject constructor(private val repository: Num
         awaitClose { }
 
     }
+
 
 }

@@ -19,7 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
 import es.dmoral.toasty.Toasty
 
-class GroupingAdapter2(val fragment2: GroupingFragment2?=null, val searchViewEmpty: () -> Unit={}, val onStudentClick: (DocumentSnapshot) -> Unit, val onStudentLongClicked: (DocumentSnapshot) -> Unit={}) : ListAdapter<DocumentSnapshot, GroupingAdapter2.ViewHolder>(DIFF_UTIL), Filterable {
+class GroupingAdapter2( context: Context,val fragment2: GroupingFragment2? = null, val searchViewEmpty: () -> Unit = {}, val onStudentClick: (DocumentSnapshot) -> Unit, val onStudentLongClicked: (DocumentSnapshot) -> Unit = {}) : ListAdapter<DocumentSnapshot, GroupingAdapter2.ViewHolder>(DIFF_UTIL), Filterable {
 
     private val TAG = "LearningLevelAdapter"
 
@@ -37,7 +37,7 @@ class GroupingAdapter2(val fragment2: GroupingFragment2?=null, val searchViewEmp
         }
     }
 
-    private val context: Context? = MainActivity2.activityContext!!
+    private val context: Context? = context
 
 
     private fun setOnClickListeners(holder: ViewHolder, positionDummy: Int) {

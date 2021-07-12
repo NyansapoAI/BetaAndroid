@@ -10,10 +10,14 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
 class ChangeProgramViewModel @ViewModelInject constructor(val repository: HomeRepository) : ViewModel() {
+
+
  
          private  val TAG="HomePageViewModel"
    
     //group
+
+    val name="justice"
     val programsStatus = flow {
         Log.d(TAG, "started fetching programs: ")
         emit(Resource.loading("loading"))

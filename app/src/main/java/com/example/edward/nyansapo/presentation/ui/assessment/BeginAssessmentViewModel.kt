@@ -17,15 +17,13 @@ import kotlinx.coroutines.launch
 class BeginAssessmentViewModel @ViewModelInject constructor(private val repo: BeginAssessmentRepo, @Assisted private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
 
-    val getStudent = repo.getStudent(savedStateHandle.get<Student>(STUDENT_ARG)!!.id!!)
+ //   val getStudent = repo.getStudent(savedStateHandle.get<Student>(STUDENT_ARG)!!.id!!)
     private val _beginAssessmentEvents = Channel<BeginAssessmentFragment.Event>()
     val beginAssessmentEvents = _beginAssessmentEvents.receiveAsFlow()
     fun setEvent(event: BeginAssessmentFragment.Event) {
         viewModelScope.launch {
             when (event) {
-                is BeginAssessmentFragment.Event.BeginAssessmentClicked -> {
-                    _beginAssessmentEvents.send(BeginAssessmentFragment.Event.BeginAssessmentClicked(event.student))
-                }
+
                 is BeginAssessmentFragment.Event.GetAssessments -> {
                     getAssessments(event.snapshot)
                 }

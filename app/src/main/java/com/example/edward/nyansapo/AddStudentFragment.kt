@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_register_student.*
 
 class AddStudentFragment : AppCompatActivity() {
 
-             private  val TAG="registerStudent"
+    private val TAG = "registerStudent"
 
     lateinit var binding: ActivityRegisterStudentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class AddStudentFragment : AppCompatActivity() {
 
         binding.apply {
 
-            if (editFirstname!!.text!!.isBlank() || editLastname!!.text!!.isBlank() || editAge!!.text!!.isBlank() || editNotes!!.text!!.isBlank()|| editClass!!.text!!.isBlank()) {
+            if (editFirstname!!.text!!.isBlank() || editLastname!!.text!!.isBlank() || editAge!!.text!!.isBlank() || editNotes!!.text!!.isBlank() || editClass!!.text!!.isBlank()) {
                 Toasty.error(applicationContext, "Provide all fields", Toast.LENGTH_LONG).show()
             } else {
                 val student: Student
@@ -98,7 +98,7 @@ class AddStudentFragment : AppCompatActivity() {
 
         if (campPos == -1) {
             Toasty.error(this, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
-           onBackPressed()
+            onBackPressed()
         }
 
         showProgress(true)

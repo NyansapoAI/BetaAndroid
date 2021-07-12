@@ -64,7 +64,7 @@ class AvatarChooserFragment : Fragment(R.layout.activity_begin_assess_ment_choos
     }
 
     private fun goToSelectAssessment(student: Student) {
-        findNavController().navigate(AvatarChooserFragmentDirections.actionAvatarChooserFragmentToSelectAssessmentFragment(student))
+        findNavController().navigate(AvatarChooserFragmentDirections.actionAvatarChooserFragment2ToSelectAssessmentFragment2(student))
     }
 
     sealed class Event {
