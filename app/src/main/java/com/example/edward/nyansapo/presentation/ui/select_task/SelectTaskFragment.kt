@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentSelectTaskBinding
-import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
 
 class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
     private lateinit var binding: FragmentSelectTaskBinding
@@ -36,6 +36,7 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
                 goToAddStudent()
             }
             2 -> {
+                goToTakeAttendanceScreen()
 
             }
             3 -> {
@@ -48,13 +49,16 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
 
     }
 
+    private fun goToTakeAttendanceScreen() {
+        findNavController().navigate(R.id.action_selectTaskFragment_to_attendanceFragment)
+    }
+
     private fun goToNumeracyLearningLevelScreen() {
         findNavController().navigate(R.id.action_selectTaskFragment_to_numeracyLearningLevelFragment)
     }
 
     private fun goToAddStudent() {
-        val intent = Intent(requireContext(), AddStudentFragment::class.java)
-        startActivity(intent)
+        findNavController().navigate(R.id.action_selectTaskFragment_to_addStudentFragment)
     }
 
     private fun goToAssessmentScreen() {

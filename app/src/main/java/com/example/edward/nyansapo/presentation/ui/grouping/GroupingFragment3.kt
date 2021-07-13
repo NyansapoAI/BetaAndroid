@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentLearningLevelBinding
-import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
 import com.example.edward.nyansapo.Learning_Level
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.presentation.ui.student.StudentAssessmentListFragment

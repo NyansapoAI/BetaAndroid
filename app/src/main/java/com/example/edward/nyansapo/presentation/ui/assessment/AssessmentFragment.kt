@@ -22,7 +22,7 @@ import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.util.Constants
 import com.example.edward.nyansapo.util.FirebaseUtils
 import com.example.edward.nyansapo.util.studentDocumentSnapshot
-import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingAdapter2
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query

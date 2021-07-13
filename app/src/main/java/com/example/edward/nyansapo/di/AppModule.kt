@@ -27,12 +27,14 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
+/*
     @Provides
     @Singleton
     fun providePreAssessmentRepo(): MainRepository {
 
         return MainRepository()
     }
+*/
 
     @Provides
     @Singleton

@@ -1,96 +1,117 @@
 package com.example.edward.nyansapo.presentation.ui.attendance
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edward.nyansapo.R
-import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.ActivityAttendanceBinding
 import com.edward.nyansapo.databinding.ItemAttendanceBinding
+import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
+import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceViewModel.Event
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
 import com.example.edward.nyansapo.util.Constants
 import com.example.edward.nyansapo.util.FirebaseUtils
-import com.example.edward.nyansapo.AddStudentFragment
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.example.edward.nyansapo.util.Resource
+import com.example.edward.nyansapo.util.formatDate
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
+import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_home.*
-import java.text.SimpleDateFormat
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.*
 
-
+@AndroidEntryPoint
 class AttendanceFragment : Fragment(R.layout.activity_attendance) {
-
     private val TAG = "AttendanceFragment"
-
-    lateinit var sharedPreferences: SharedPreferences
-    lateinit var programId: String
-    lateinit var groupId: String
-    lateinit var campId: String
-
     lateinit var binding: ActivityAttendanceBinding
-    lateinit var adapter: AttendanceAdapter
-    lateinit var currentDateServer: Date
-
+    lateinit var attendanceAdapter: AttendanceAdapter2
+    private val viewModel: AttendanceViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated: ")
         binding = ActivityAttendanceBinding.bind(view)
-        sharedPreferences = MainActivity2.activityContext!!.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        initProgressBar()
         setUpToolBar()
-        setCurrentDate()
-        getCurrentInfo()
+        setLabel(Calendar.getInstance().time.formatDate)
         setOnClickListeners()
+        initRecyclerViewAdapter()
+        setSwipeListenerForItems()
+        val currentDate = Calendar.getInstance().time
+        initDataFetching(currentDate)
+        subScribeToObservers()
+    }
 
-        initDataFetching()
+    private fun subScribeToObservers() {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            launch {
+                viewModel.attendanceEvents.collect {
+                    when (it) {
+                        is Event.CorrectDateChoosen -> {
+                            initDataFetching(it.date)
+                        }
+                        is Event.FutureDateChoosen -> {
+                            futureDateChoosen()
+                        }
+                    }
+                }
+            }
+            launch {
+                viewModel.dataFetchingStatus.collect {
+                    Log.d(TAG, "subScribeToObservers: dataFetchingStatus:${it.status.name}")
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+                            showProgress(true)
+                        }
+                        Resource.Status.SUCCESS -> {
+                            showProgress(false)
+                            submitList(it.data!!)
+                        }
+                        Resource.Status.ERROR -> {
+                            showProgress(false)
+                            showToastInfo(it.exception!!.message!!)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    private fun submitList(data: List<DocumentSnapshot>) {
+        attendanceAdapter.submitList(data)
 
     }
 
-    private fun initDataFetching(datePickerDate: String? = null) {
+    private fun futureDateChoosen() {
+        showToastInfo("Please do not choose future date!!")
+    }
 
-        //checking if there is student in the database
-        checkIfWeHaveAnyStudentInTheCamp() { databaseIsEmpty, querySnapshot ->
+    private fun initDataFetching(date: Date) {
+        setLabel(date.formatDate)
+        viewModel.setEvent(Event.InitDataFetching(date))
+    }
 
-            //are we using date from the date picker or date from server
-            if (datePickerDate == null) {
-                Log.d(TAG, "initDataFetching: we using date from server")
-                getCurrentDateToPlaceInDatabase { date ->
-
-                    if (!databaseIsEmpty) {
-                        initRecyclerViewAdapter(date)
-                        setSwipeListenerForItems()
-                        startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty(date, querySnapshot)
-
-                    }
-
-                }
-            } else {
-                Log.d(TAG, "initDataFetching: we are using date from datepicker")
-                if (!databaseIsEmpty) {
-                    initRecyclerViewAdapter(datePickerDate)
-                    startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty(datePickerDate, querySnapshot)
-
-                }
-
-            }
-
-
-        }
+    private fun showToastInfo(message: String) {
+        Toasty.info(requireContext(), message).show()
     }
 
     private fun setOnClickListeners() {
@@ -106,91 +127,48 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
 
     private fun dateBtnClicked() {
         val myCalendar = Calendar.getInstance()
-        myCalendar.time = currentDateServer
-
-        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth -> // TODO Auto-generated method stub
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             myCalendar[Calendar.YEAR] = year
             myCalendar[Calendar.MONTH] = monthOfYear
             myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
-            //month usually starts from 0
-            updateLabel(dayOfMonth, monthOfYear + 1, year)
+            viewModel.setEvent(Event.CorrectDateChoosen(myCalendar.time))
         }
 
 
-        DatePickerDialog(MainActivity2.activityContext!!, dateSetListener, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
+        DatePickerDialog(requireContext(), dateSetListener, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
                 myCalendar[Calendar.DAY_OF_MONTH]).show()
 
 
     }
 
-    private fun updateLabel(dayOfMonth: Int, monthOfYear: Int, year: Int) {
-        val data = "$dayOfMonth" + "/" + "${monthOfYear}" + "/" + "$year"
-        Log.d(TAG, "updateLabel: ${data}")
-//check if we have choosen a future date and reject it if its future date
-
-        val myCalendar = Calendar.getInstance()
-        myCalendar.set(Calendar.YEAR, year);
-        myCalendar.set(Calendar.MONTH, monthOfYear - 1);
-        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        val choosenDate = myCalendar.time
-
-///checks if we are on same day
-        val cal1 = Calendar.getInstance()
-        val cal2 = Calendar.getInstance()
-        cal1.time = choosenDate
-        cal2.time = currentDateServer
-
-        val sameDay = cal1[Calendar.DAY_OF_YEAR] == cal2[Calendar.DAY_OF_YEAR] &&
-                cal1[Calendar.YEAR] == cal2[Calendar.YEAR]
-
-        if (sameDay) {
-            //nothing to do hear
-        } else if (choosenDate.after(currentDateServer)) {
-
-            myCalendar.get(Calendar.YEAR)
-
-            Toasty.error(MainActivity2.activityContext!!, "Please Don't Choose  Future date only past  can be choosen").show()
-            return
-        }
-
-        binding.dateBtn.text = data
-        var dateFormated = data.replace("/", "_")
-        dateFormated = dateFormated.replace("0", "")
-
-        //start fetching data again with new date from picker
-        initDataFetching(dateFormated)
-
-    }
 
     private fun submitBtnClicked() {
-        if (this::adapter.isInitialized) {
+        if (this::attendanceAdapter.isInitialized) {
             binding.submitBtn.isVisible = false
-
             //set edit item to visible
             binding.toolbar.root.menu.findItem(R.id.editItem).isVisible = true
-
             weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView(false)
 
         } else {
             Log.d(TAG, "submitBtnClicked: adapter not initialized maybe becos database is empty")
-            Toasty.info(MainActivity2.activityContext!!, "No Data In Database").show()
+            Toasty.info(requireContext(), "No Data In Database").show()
         }
 
     }
 
     private fun weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView(enabled: Boolean) {
-        if (adapter != null) {
+        if (attendanceAdapter != null) {
             Log.d(TAG, "weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView: started updading checkboxes")
             for (position in 0 until binding.recyclerview.adapter!!.itemCount) {
                 Log.d(TAG, "weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView: $position updated")
                 val binding = ItemAttendanceBinding.bind(binding.recyclerview.getChildAt(position))
                 binding.attendanceCheckbox.isEnabled = enabled
-                adapter.notifyDataSetChanged()
+                attendanceAdapter.notifyDataSetChanged()
 
 
             }
         } else {
-            Toasty.info(MainActivity2.activityContext!!, "Adapter is null").show()
+            Toasty.info(requireContext(), "Adapter is null").show()
             Log.d(TAG, "recreateAdapterWithCheckBoxesDisabled: adapter is null")
         }
 
@@ -198,7 +176,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
 
     private fun setUpToolBar() {
         binding.toolbar.root.inflateMenu(R.menu.attendance_menu)
-        binding.toolbar.root.title="Attendance"
+        binding.toolbar.root.title = "Attendance"
         binding.toolbar.root.setOnMenuItemClickListener { item ->
 
             when (item.itemId) {
@@ -219,75 +197,23 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView(true)
     }
 
-    private fun checkIfWeHaveAnyStudentInTheCamp(onComplete: (Boolean, QuerySnapshot) -> Unit) {
-        FirebaseUtils.getCollectionStudentFromCamp_ReturnSnapshot(programId, groupId, campId) {
-
-            if (it.isEmpty) {
-                Log.d(TAG, "checkIfWeHaveAnyStudentInTheGroup: not student in database")
-                Toasty.info(MainActivity2.activityContext!!, "No Student In the Database").show()
-
-                if (context!=null){
-                    MaterialAlertDialogBuilder(MainActivity2.activityContext!!).setBackground(MainActivity2.activityContext!!.getDrawable(R.drawable.button_first)).setIcon(R.drawable.ic_add_24).setTitle("Add Student").setMessage("Database is Empty,Do you want to add student? ").setNegativeButton("no") { dialog, which -> }.setPositiveButton("yes") { dialog, which -> goToAddStudent() }.show()
-
-                }
-
-            }
-
-            onComplete(it.isEmpty, it)
-        }
-
-    }
-
-    private fun startFetchingStudentFromCampAndPlaceThem_InAttendanceThatIsIfTheAttendanceIsEmpty(date: String, querySnapshot: QuerySnapshot) {
-        FirebaseUtils.getCollectionStudentFromCamp_attendance_ReturnSnapshot(programId, groupId, campId, date) {
-
-            if (it.isEmpty) {
-                addStudentsToAttendance(date, querySnapshot)
-            }
-
-        }
-
-    }
-
-    private fun addStudentsToAttendance(date: String, querySnapshot: QuerySnapshot) {
-        Log.d(TAG, "addStudentsToAttendance: Started adding students")
-
-        for (documentSnapshot in querySnapshot) {
-            val student = documentSnapshot.toObject(Student::class.java)
-
-            val studentAttendance = StudentAttendance(student.firstname + " " + student.lastname)
-
-            FirebaseUtils.addStudentsToAttendance(programId, groupId, campId, documentSnapshot.id, date, studentAttendance) {
-                Log.d(TAG, "addStudentsToAttendance: success adding student")
-            }
-
-
-        }
-
-
-    }
 
     private fun goToAddStudent() {
-        val myIntent = Intent(MainActivity2.activityContext!!, AddStudentFragment::class.java)
+        val myIntent = Intent(requireContext(), AddStudentFragment::class.java)
         startActivity(myIntent)
 
     }
 
-    private fun initRecyclerViewAdapter(date: String) {
-        Log.d(TAG, "initRecyclerViewAdapter: ")
-        val query: Query = FirebaseUtils.getCollectionStudentFromCamp_attendance_ReturnCollection(programId, groupId, campId, date)
-        val firestoreRecyclerOptions =
-                FirestoreRecyclerOptions.Builder<StudentAttendance>().setQuery(query, StudentAttendance::class.java)
-                        .setLifecycleOwner(viewLifecycleOwner).build()
-
-
-        adapter = AttendanceAdapter(firestoreRecyclerOptions) { documentSnapshot, isChecked ->
-            onCheckBoxClicked(documentSnapshot, isChecked)
+    private fun initRecyclerViewAdapter() {
+        attendanceAdapter = AttendanceAdapter2 { snapshot, isChecked ->
+            onCheckBoxClicked(snapshot, isChecked)
         }
-        recyclerview.setLayoutManager(LinearLayoutManager(MainActivity2.activityContext!!))
-        recyclerview.setAdapter(adapter)
-
+        binding.recyclerview.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = attendanceAdapter
+        }
     }
+
 
     private fun setSwipeListenerForItems() {
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -302,7 +228,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
     }
 
     private fun deleteFromDatabase(position: Int) {
-        adapter.snapshots.getSnapshot(position).reference.delete().addOnSuccessListener {
+        attendanceAdapter.currentList.get(position).reference.delete().addOnSuccessListener {
             Log.d(TAG, "deleteFromDatabase: success deleting attendance")
         }
     }
@@ -316,43 +242,78 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
     }
 
 
-    private fun getCurrentInfo() {
-        Log.d(TAG, "getCurrentInfo: getting stuff from shared preference")
-        programId = sharedPreferences.getString(Constants.KEY_PROGRAM_ID, null)
-        groupId = sharedPreferences.getString(Constants.KEY_GROUP_ID, null)
-        campId = sharedPreferences.getString(Constants.KEY_CAMP_ID, null)
-        val campPos = sharedPreferences.getInt(Constants.CAMP_POS, -1)
+    private fun setLabel(date: String) {
+        binding.dateBtn.text = date
 
-        if (campPos == -1) {
-            Toasty.error(MainActivity2.activityContext!!, "Please First create A camp before coming to this page", Toasty.LENGTH_LONG).show()
-            MainActivity2.activityContext!!.supportFragmentManager.popBackStackImmediate()
-        }
     }
 
-    private fun setCurrentDate() {
-        Log.d(TAG, "setCurrentDate: setting current date")
 
+    /////////////////////PROGRESS_BAR////////////////////////////
+    lateinit var dialog: AlertDialog
 
-        FirebaseUtils.getCurrentDate { date ->
-            Log.d(TAG, "setCurrentDate: date retrieved:${date}")
-            if (date == null) {
-                currentDateServer = Calendar.getInstance().time
-                binding.dateBtn.text = SimpleDateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+    private fun showProgress(show: Boolean) {
 
-            } else {
-                currentDateServer = date
-                binding.dateBtn.text = SimpleDateFormat.getDateTimeInstance().format(date)
-            }
+        if (show) {
+            dialog.show()
 
+        } else {
+            dialog.dismiss()
 
         }
+
     }
 
-    private fun getCurrentDateToPlaceInDatabase(onComplete: (String) -> Unit) {
-        Log.d(TAG, "setCurrentDate: setting current date")
-        FirebaseUtils.getCurrentDateFormatted {
+    private fun initProgressBar() {
 
-            onComplete(it!!)
+        dialog = setProgressDialog(requireContext(), "Loading..")
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+    }
+
+    fun setProgressDialog(context: Context, message: String): AlertDialog {
+        val llPadding = 30
+        val ll = LinearLayout(context)
+        ll.orientation = LinearLayout.HORIZONTAL
+        ll.setPadding(llPadding, llPadding, llPadding, llPadding)
+        ll.gravity = Gravity.CENTER
+        var llParam = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        ll.layoutParams = llParam
+
+        val progressBar = ProgressBar(context)
+        progressBar.isIndeterminate = true
+        progressBar.setPadding(0, 0, llPadding, 0)
+        progressBar.layoutParams = llParam
+
+        llParam = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+        llParam.gravity = Gravity.CENTER
+        val tvText = TextView(context)
+        tvText.text = message
+        tvText.setTextColor(Color.parseColor("#000000"))
+        tvText.textSize = 20.toFloat()
+        tvText.layoutParams = llParam
+
+        ll.addView(progressBar)
+        ll.addView(tvText)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(true)
+        builder.setView(ll)
+
+        val dialog = builder.create()
+        val window = dialog.window
+        if (window != null) {
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(dialog.window?.attributes)
+            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
+            dialog.window?.attributes = layoutParams
         }
+        return dialog
     }
+
+    //end progressbar
 }

@@ -23,7 +23,7 @@ class AttendanceAdapter2(val onStudentChecked: (documentSnapshot: DocumentSnapsh
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<DocumentSnapshot>() {
             override fun areItemsTheSame(oldItem: DocumentSnapshot, newItem: DocumentSnapshot): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.reference.path == newItem.reference.path
             }
 
             override fun areContentsTheSame(oldItem: DocumentSnapshot, newItem: DocumentSnapshot): Boolean {

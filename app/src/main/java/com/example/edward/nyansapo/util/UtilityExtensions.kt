@@ -31,5 +31,7 @@ val String.sentenceToList: List<String>
         it.isNotBlank()
     }
 
-val Date.dateToString: String
-    get() = SimpleDateFormat("dd-MM-yyyy").format(this)
+val Date.formatDate get() = SimpleDateFormat("dd/MM/yyyy").format(this)
+val String.cleanString
+    get() =
+        this.replace("/", "_")

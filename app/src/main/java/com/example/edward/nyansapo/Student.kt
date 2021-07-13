@@ -21,7 +21,7 @@ data class Student(
         var lastname: String? = null,
         var age: String? = null,
         var gender: String? = null,
-        var notes: String? = null,
+        var location: String? = null,
 
         @ServerTimestamp
         var timestamp: Date? = null,

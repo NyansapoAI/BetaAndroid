@@ -537,6 +537,22 @@ companion object{
 
 
 
+//Instructor Name
+var SharedPreferences.instructorName: String?
+    get() = this.getString("instructorName", null)
+    set(value) = this.edit().putString("instructorName", value).apply()
+//county
+var SharedPreferences.county: String?
+    get() = this.getString("county", null)
+    set(value) = this.edit().putString("county", value).apply()
+//school Name
+var SharedPreferences.schoolName: String?
+    get() = this.getString("schoolName", null)
+    set(value) = this.edit().putString("schoolName", value).apply()
+//school Name
+var SharedPreferences.curriculum: Int
+    get() = this.getInt("curriculum", 0)
+    set(value) = this.edit().putInt("curriculum", value).apply()
 //program
 var SharedPreferences.programId: String?
     get() = this.getString(Constants.KEY_PROGRAM_ID, null)

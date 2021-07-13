@@ -16,7 +16,7 @@ import com.edward.nyansapo.R
 import com.example.edward.nyansapo.Student
 import com.edward.nyansapo.databinding.FragmentAssessmentBinding
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.AddStudentFragment
+import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
 import com.example.edward.nyansapo.presentation.ui.grouping.GroupingAdapter2
 import com.example.edward.nyansapo.presentation.ui.main.campId
 import com.example.edward.nyansapo.presentation.ui.main.groupId

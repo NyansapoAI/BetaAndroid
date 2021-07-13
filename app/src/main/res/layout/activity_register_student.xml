@@ -163,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_gender">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_notes"
+                    android:id="@+id/edtLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="1"
@@ -173,7 +173,7 @@
 
 
             <Button
-                android:id="@+id/create_button"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:background="@android:color/holo_blue_dark"
                 android:layout_height="wrap_content"

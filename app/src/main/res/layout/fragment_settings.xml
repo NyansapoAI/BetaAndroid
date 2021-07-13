@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="8dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
     <LinearLayout
         android:id="@+id/linearLayoutRoot"
@@ -17,39 +17,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Instructor Name"
+            android:id="@+id/tvInstructorName"
             android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="County"
+            android:id="@+id/tvCounty"
             android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="School Name"
+            android:id="@+id/tvSchoolName"
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/tvGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Group"
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/tvCamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Camp Number"
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/tvCurriculumLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="______Curriculum"
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/tvAppVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="App Version #.#"
@@ -82,6 +89,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="18dp"
+        android:id="@+id/ivSwitchCurriculum"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="@+id/tvCurriculum"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +128,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="18dp"
         android:src="@drawable/ic_arrow_right"
+        android:id="@+id/ivExportData"
         app:layout_constraintBottom_toBottomOf="@+id/tvExport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvExport" />
@@ -157,6 +166,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="18dp"
         android:src="@drawable/ic_arrow_right"
+        android:id="@+id/ivAppTutorial"
         app:layout_constraintBottom_toBottomOf="@+id/tvTutorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvTutorial" />
@@ -193,6 +203,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="18dp"
+        android:id="@+id/ivLogout"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="@+id/tvLogout"
         app:layout_constraintEnd_toEndOf="parent"

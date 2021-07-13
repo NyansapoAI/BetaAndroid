@@ -56,7 +56,7 @@ class studentSettings : AppCompatActivity() {
         age = findViewById(R.id.edit_age)
         gender = findViewById(R.id.edit_gender)
         std_class = findViewById(R.id.edit_class)
-        notes = findViewById(R.id.edit_notes)
+        notes = findViewById(R.id.edtLocation)
 
         // buttons
         update = findViewById(R.id.std_update)
@@ -70,7 +70,7 @@ class studentSettings : AppCompatActivity() {
             student.lastname = lastname!!.getText().toString()
             student.age = age!!.getText().toString()
             student.gender = gender!!.getText().toString()
-            student.notes = notes!!.getText().toString()
+            student.location = notes!!.getText().toString()
             student.std_class = std_class!!.getText().toString()
 
 
@@ -118,7 +118,7 @@ class studentSettings : AppCompatActivity() {
         age!!.setText(student!!.age)
         gender!!.setText(student!!.gender)
         std_class!!.setText(student!!.std_class)
-        notes!!.setText(student!!.notes)
+        notes!!.setText(student!!.location)
     }
 
     /////////////////////PROGRESS_BAR////////////////////////////

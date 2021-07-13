@@ -16,6 +16,7 @@ import com.google.firebase.firestore.*
 import java.text.SimpleDateFormat
 import java.util.*
 import com.edward.nyansapo.R
+import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
 object FirebaseUtils {
@@ -273,10 +274,9 @@ object FirebaseUtils {
         return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS)
     }
 
-    fun addStudentsToAttendance(programId: String, groupId: String, campId: String, studentId: String, date: String, studentAttendance: StudentAttendance, onComplete: () -> Unit) {
-        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS).document(studentId).set(studentAttendance).addOnSuccessListener {
-            onComplete()
-        }
+    suspend fun addStudentsToAttendance(programId: String, groupId: String, campId: String, studentId: String, date: String, studentAttendance: StudentAttendance) {
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_ATTENDANCE).document(date).collection(COLLECTION_STUDENTS).document(studentId).set(studentAttendance).await()
+
     }
 
     fun getCollectionStudentFromCamp_attendance_ReturnSnapshot(programId: String, groupId: String, campId: String, date: String, onComplete: (QuerySnapshot) -> Unit) {
@@ -287,10 +287,14 @@ object FirebaseUtils {
 
     }
 
-    fun addStudentsToCamp(programId: String, groupId: String, campId: String, student: Student, onComplete: (DocumentReference) -> Unit) {
-        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).add(student).addOnSuccessListener {
-            onComplete(it)
-        }
+    suspend fun addStudentsToCamp(programId: String, groupId: String, campId: String, student: Student) {
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).add(student).await()
+
+    }
+
+    suspend fun addStudentToGroup(programId: String, groupId: String, student: Student) {
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_STUDENTS).add(student).await()
+
     }
 
 
@@ -329,17 +333,16 @@ object FirebaseUtils {
 
 
     }
-fun  collectionAssessments(programId: String, groupId: String, campId: String, studentId: String)=  firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS)
 
-fun addAssessmentForStudent(programId: String, groupId: String, campId: String, studentId: String, assessment: Assessment, onComplete: (DocumentReference) -> Unit) {
+    fun collectionAssessments(programId: String, groupId: String, campId: String, studentId: String) = firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS)
+
+    fun addAssessmentForStudent(programId: String, groupId: String, campId: String, studentId: String, assessment: Assessment, onComplete: (DocumentReference) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY).add(assessment).addOnSuccessListener {
             onComplete(it)
         }
 
 
     }
-
-
 
 
     fun showAlertDialog(context: Context, @DrawableRes icon: Int, title: String, message: String, onYes: () -> Unit, onNo: () -> Unit) {

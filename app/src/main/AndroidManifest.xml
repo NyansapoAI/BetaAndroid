@@ -74,7 +74,7 @@
         <activity android:name="com.example.edward.nyansapo.assess_process.word.word_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.letter.letter_assessment" />
         <activity android:name="com.example.edward.nyansapo.assess_process.thank_you.thankYou" />
-        <activity android:name="com.example.edward.nyansapo.AddStudentFragment" />
+        <activity android:name="com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

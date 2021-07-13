@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ import com.example.edward.nyansapo.util.Resource
 import com.google.firebase.firestore.DocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_numeracy_learning_level.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -38,6 +40,27 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
         initProgressBar()
         initRecyclerViewAdapters()
         subScribeToObservers()
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
+        binding.ivBeginner.setOnClickListener {
+            dropDownClicked()
+        }
+    }
+
+    private fun dropDownClicked() {
+        binding.apply {
+            if (rvBeginner.isVisible) {
+                ivBeginner.setImageResource(R.drawable.ic_arrow_up)
+                rvBeginner.isVisible = false
+            } else {
+                ivBeginner.setImageResource(R.drawable.ic_arrow_down)
+                rvBeginner.isVisible = true
+
+            }
+        }
+
     }
 
     lateinit var beginnerAdapter: NumeracyLearningLevelAdapter
@@ -45,14 +68,15 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
     private fun initRecyclerViewAdapters() {
         beginnerAdapter = NumeracyLearningLevelAdapter { onStudentClicked(it) }
         binding.rvBeginner.apply {
-            setHasFixedSize(true)
+            setHasFixedSize(false)
+            addItemDecoration(NumeracyItemDecoration())
             layoutManager = LinearLayoutManager(requireContext())
             adapter = beginnerAdapter
         }
 
         additionAdapter = NumeracyLearningLevelAdapter { onStudentClicked(it) }
         binding.rvAdd.apply {
-            setHasFixedSize(true)
+            setHasFixedSize(false)
             layoutManager = LinearLayoutManager(requireContext())
             adapter = additionAdapter
         }
