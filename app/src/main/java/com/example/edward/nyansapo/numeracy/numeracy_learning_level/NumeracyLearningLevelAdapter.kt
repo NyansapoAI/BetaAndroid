@@ -1,5 +1,6 @@
 package com.example.edward.nyansapo.numeracy.numeracy_learning_level
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -12,10 +13,12 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class NumeracyLearningLevelAdapter(val onStudentClicked: (DocumentSnapshot) -> Unit) : ListAdapter<DocumentSnapshot, NumeracyLearningLevelAdapter.ViewHolder>(DIFF_UTIL) {
 
+         private  val TAG="NumeracyLearningLevelAd"
+
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<DocumentSnapshot>() {
             override fun areItemsTheSame(oldItem: DocumentSnapshot, newItem: DocumentSnapshot): Boolean {
-                return oldItem.reference.path == oldItem.reference.path
+                return oldItem.reference.path == newItem.reference.path
             }
 
             override fun areContentsTheSame(oldItem: DocumentSnapshot, newItem: DocumentSnapshot): Boolean {
@@ -29,6 +32,7 @@ class NumeracyLearningLevelAdapter(val onStudentClicked: (DocumentSnapshot) -> U
     inner class ViewHolder(val binding: ItemNumeracyLearningLeveBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(snapshot: DocumentSnapshot) {
             val model = snapshot.toObject(Student::class.java)!!
+            Log.d(TAG, "bind: model:$model")
             binding.tvName.text = "${model.firstname} ${model.lastname}"
             setOnClickListener(snapshot)
         }

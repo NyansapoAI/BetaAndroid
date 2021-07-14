@@ -6,6 +6,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.numeracy.count_and_match.CountAndMatchViewModel
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
 import com.example.edward.nyansapo.util.Resource
 import com.microsoft.cognitiveservices.speech.ResultReason
@@ -23,6 +24,7 @@ import java.util.concurrent.ExecutionException
 class NumberRecognitionViewModel @ViewModelInject constructor(private val repository: NumeracyRepository, @ApplicationContext private val context: Context) : ViewModel() {
 
     private val TAG = "NumberRecognitionViewMo"
+    private val numberToPass = 4
 
     var counter = 0
     val getNumberRecogn_2 = repository.numberRecognition_2
@@ -31,24 +33,27 @@ class NumberRecognitionViewModel @ViewModelInject constructor(private val reposi
         return getNumberRecogn_2.value.data!![counter]
     }
 
-    private val _numberRecognitionEvents = Channel<NumberRecognition2Fragment.Event>()
+    private val _numberRecognitionEvents = Channel<Event>()
     val numberRecognitionEvents = _numberRecognitionEvents.receiveAsFlow()
 
     private val _recognitionStatus = Channel<Resource<String>>()
     val recognitionStatus = _recognitionStatus.receiveAsFlow()
-    fun setEvent(event: NumberRecognition2Fragment.Event) {
+    fun setEvent(event: Event) {
         viewModelScope.launch {
             when (event) {
-                is NumberRecognition2Fragment.Event.RecordStudent -> {
+                is Event.RecordStudent -> {
                     recordStudent()
                 }
-                is NumberRecognition2Fragment.Event.CheckIfCorrect -> {
+                is Event.CheckIfCorrect -> {
                     checkIfCorrect(event.recorded)
                 }
 
             }
         }
     }
+
+    private val correctList: MutableList<Int> = mutableListOf()
+    private val wrongList: MutableList<Int> = mutableListOf()
 
     private suspend fun checkIfCorrect(recorded: String) {
         Log.d(TAG, "checkIfCorrect: recorded:$recorded")
@@ -58,15 +63,21 @@ class NumberRecognitionViewModel @ViewModelInject constructor(private val reposi
         if (getCurrentNumber().toString() == cleanResult) {
             Log.d(TAG, "checkIfCorrect: correct")
             correctCount++
+            correctList.add(getCurrentNumber())
         } else {
             Log.d(TAG, "checkIfCorrect: wrong")
+            wrongList.add(getCurrentNumber())
+
         }
         counter++
         if (counter < getNumberRecogn_2.value.data!!.size) {
-            _numberRecognitionEvents.send(NumberRecognition2Fragment.Event.Next)
+            _numberRecognitionEvents.send(Event.Next)
         } else {
-            _numberRecognitionEvents.send(NumberRecognition2Fragment.Event.Finished)
-
+            if (correctCount >= numberToPass) {
+                _numberRecognitionEvents.send(Event.FinishedPassed(correctList, wrongList))
+            } else {
+                _numberRecognitionEvents.send(Event.FinishedFailed(correctList, wrongList))
+            }
         }
 
     }
@@ -109,6 +120,15 @@ class NumberRecognitionViewModel @ViewModelInject constructor(private val reposi
 
 
         }
+
+    }
+
+    sealed class Event {
+        object RecordStudent : Event()
+        data class CheckIfCorrect(val recorded: String) : Event()
+        object Next : Event()
+        data class FinishedPassed(val correctList: MutableList<Int>, val wrongList: MutableList<Int>) : Event()
+        data class FinishedFailed(val correctList: MutableList<Int>, val wrongList: MutableList<Int>) : Event()
 
     }
 

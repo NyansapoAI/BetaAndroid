@@ -5,6 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edward.nyansapo.numeracy.Operators
+import com.example.edward.nyansapo.numeracy.Problem
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
 import com.example.edward.nyansapo.util.Constants
 import com.example.edward.nyansapo.util.Resource
@@ -22,7 +23,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class AdditionViewModel_2 @ViewModelInject constructor(private val repository: NumeracyRepository) : ViewModel() {
-
+    private val numberOfCorrect = 2
+    private val correctList = mutableListOf<Problem>()
+    private val wrongList = mutableListOf<Problem>()
     private val TAG = "AdditionViewModel2"
     lateinit var operator: Operators
     var counter = 0
@@ -107,18 +110,32 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
     private suspend fun answerReceived(writtenAnswers: List<RecognitionCandidate>) {
         val correctAnswer = getCorrectAnswer()
         Log.d(TAG, "answerReceived: :correctAnswer:$correctAnswer")
-
+        var problem = Problem(first = getCurrentNumber().first, second = getCurrentNumber().second)
         if (answerIsCorrect(writtenAnswers, correctAnswer)) {
             Log.d(TAG, "answerReceived: correct")
             correctCount++
+
+            problem = problem.copy(answer = correctAnswer.toString())
+            correctList.add(problem)
         } else {
             Log.d(TAG, "answerReceived: wrong")
+
+
+            problem = problem.copy(answer = writtenAnswers[0].toString())
+            wrongList.add(problem)
+
         }
         counter++
         if (counter < getData.value.data!!.size) {
             _additionEvents.send(Event.Next)
         } else {
-            _additionEvents.send(Event.Finished)
+            if (correctCount >= numberOfCorrect) {
+                _additionEvents.send(Event.FinishedPassed(correctList, wrongList))
+
+            } else {
+                _additionEvents.send(Event.FinishedFailed(correctList, wrongList))
+
+            }
 
         }
     }
@@ -267,6 +284,7 @@ class AdditionViewModel_2 @ViewModelInject constructor(private val repository: N
         object StartModelDownload : Event()
         data class StartAnalysis(val inkBuilder: Ink.Builder) : Event()
         object Next : Event()
-        object Finished : Event()
+        data class FinishedPassed(val correctList: MutableList<Problem>, val wrongList: MutableList<Problem>) : Event()
+        data class FinishedFailed(val correctList: MutableList<Problem>, val wrongList: MutableList<Problem>) : Event()
     }
 }

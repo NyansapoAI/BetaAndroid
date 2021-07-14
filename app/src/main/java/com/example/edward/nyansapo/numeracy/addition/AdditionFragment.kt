@@ -20,11 +20,11 @@ import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentAdditionBinding
 import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
 import com.example.edward.nyansapo.numeracy.Operators
+import com.example.edward.nyansapo.numeracy.Problem
 import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2.*
-import com.example.edward.nyansapo.util.GlobalData
 import com.example.edward.nyansapo.util.Resource
-import com.google.mlkit.vision.digitalink.Ink
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.flow.collect
@@ -50,7 +50,7 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
     }
 
     private fun setDefaults() {
-        binding.imvAvatar.setImageResource(GlobalData.avatar)
+        binding.imvAvatar.setImageResource(navArgs.assessmentNumeracy.student.avatar)
         binding.tvHeader.text = "Addition"
         binding.tvSymbol.text = "+"
     }
@@ -139,8 +139,11 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
                         is Event.Next -> {
                             goToNext()
                         }
-                        is Event.Finished -> {
-                            finished()
+                        is Event.FinishedPassed -> {
+                            finishedPassed(it.correctList, it.wrongList)
+                        }
+                        is Event.FinishedFailed -> {
+                            finishedFailed(it.correctList, it.wrongList)
                         }
                     }
                 }
@@ -148,13 +151,26 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
         }
     }
 
-    private fun finished() {
-        goToSubtractionScreen()
+    private fun finishedFailed(correctList: MutableList<Problem>, wrongList: MutableList<Problem>) {
+        val student = navArgs.assessmentNumeracy.student
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctAddition = viewModel.correctCount, correctAdditionList = correctList, wrongAdditionList = wrongList, student = student)
+
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.ADDITION.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.ADDITION.name
+
+        }
+          goToSubtractionScreen(assessmentNumeracy.copy(student=student))
 
     }
 
-    private fun goToSubtractionScreen() {
-        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctAddition = viewModel.correctCount)
+    private fun finishedPassed(correctList: MutableList<Problem>, wrongList: MutableList<Problem>) {
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctAddition = viewModel.correctCount, correctAdditionList = correctList, wrongAdditionList = wrongList)
+        goToSubtractionScreen(assessmentNumeracy)
+    }
+
+
+    private fun goToSubtractionScreen(assessmentNumeracy: AssessmentNumeracy) {
         findNavController().navigate(AdditionFragmentDirections.actionAdditionFragmentToSubtractionFragment(assessmentNumeracy))
     }
 
@@ -172,7 +188,7 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
         }
 
         binding.skipTxtView.setOnClickListener {
-           goToSubtractionScreen()
+            goToSubtractionScreen(navArgs.assessmentNumeracy)
         }
 
         binding.apply {

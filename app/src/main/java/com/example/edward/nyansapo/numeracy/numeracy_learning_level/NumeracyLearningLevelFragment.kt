@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,10 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumeracyLearningLevelBinding
 import com.example.edward.nyansapo.util.Resource
+import com.example.edward.nyansapo.util.student
 import com.google.firebase.firestore.DocumentSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_numeracy_learning_level.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -40,50 +39,26 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
         initProgressBar()
         initRecyclerViewAdapters()
         subScribeToObservers()
-        setOnClickListeners()
     }
 
-    private fun setOnClickListeners() {
-        binding.ivBeginner.setOnClickListener {
-            dropDownClicked()
-        }
-    }
 
-    private fun dropDownClicked() {
-        binding.apply {
-            if (rvBeginner.isVisible) {
-                ivBeginner.setImageResource(R.drawable.ic_arrow_up)
-                rvBeginner.isVisible = false
-            } else {
-                ivBeginner.setImageResource(R.drawable.ic_arrow_down)
-                rvBeginner.isVisible = true
-
-            }
-        }
-
-    }
-
-    lateinit var beginnerAdapter: NumeracyLearningLevelAdapter
-    lateinit var additionAdapter: NumeracyLearningLevelAdapter
+    lateinit var levelSectionsAdapter: LevelSectionsAdapter
     private fun initRecyclerViewAdapters() {
-        beginnerAdapter = NumeracyLearningLevelAdapter { onStudentClicked(it) }
-        binding.rvBeginner.apply {
+        levelSectionsAdapter = LevelSectionsAdapter(requireContext()) { onStudentClicked(it) }
+        binding.recyclerview.apply {
             setHasFixedSize(false)
-            addItemDecoration(NumeracyItemDecoration())
+            //  addItemDecoration(NumeracyItemDecoration())
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = beginnerAdapter
-        }
+            adapter = levelSectionsAdapter
 
-        additionAdapter = NumeracyLearningLevelAdapter { onStudentClicked(it) }
-        binding.rvAdd.apply {
-            setHasFixedSize(false)
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = additionAdapter
         }
+        Data.setList()
+          levelSectionsAdapter.submitList(Data.list)
+
     }
 
     private fun onStudentClicked(snapshot: DocumentSnapshot) {
-        Log.d(TAG, "onStudentClicked: ")
+        Log.d(TAG, "onStudentClicked: student:${snapshot.student}")
     }
 
     private fun subScribeToObservers() {
@@ -118,20 +93,83 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
                     setAdditionData(it)
                 }
             }
+            launch {
+                viewModel.subtractionStudents.collect {
+                    setSubtractionData(it)
+                }
+            }
+            launch {
+                viewModel.multiplicationStudents.collect {
+                    setMultiplicationData(it)
+                }
+            }
+            launch {
+                viewModel.divisionStudents.collect {
+                    setDivisionData(it)
+                }
+            }
+            launch {
+                viewModel.aboveStudents.collect {
+                    setAboveData(it)
+                }
+            }
         }
     }
 
     private fun setBeginnerData(it: List<DocumentSnapshot>) {
-        Log.d(TAG, "setBeginnerData: size;${it.size}")
-        beginnerAdapter.submitList(it)
-
+        Log.d(TAG, "setBeginnerData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[0].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
     }
 
     private fun setAdditionData(it: List<DocumentSnapshot>) {
-        Log.d(TAG, "setAdditionData: size;${it.size}")
-        additionAdapter.submitList(it)
-
+        Log.d(TAG, "setAdditionData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[1].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
     }
+
+    private fun setSubtractionData(it: List<DocumentSnapshot>) {
+        Log.d(TAG, "setSubtractionData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[2].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
+    }
+
+    private fun setMultiplicationData(it: List<DocumentSnapshot>) {
+        Log.d(TAG, "setMultiplicationData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[3].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
+    }
+
+    private fun setDivisionData(it: List<DocumentSnapshot>) {
+        Log.d(TAG, "setDivisionData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[4].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
+    }
+
+    private fun setAboveData(it: List<DocumentSnapshot>) {
+        Log.d(TAG, "setAboveData: size:${it.size}")
+        if (it.size > 0) {
+            val newList = Data.list
+            newList[5].students = it.toMutableList()
+            levelSectionsAdapter.submitList(newList)
+        }
+    }
+
 
     private fun showToastInfo(message: String) {
         Toasty.info(requireContext(), message).show()

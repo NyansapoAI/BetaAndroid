@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.edward.nyansapo.numeracy.Problem
+import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2
 import com.example.edward.nyansapo.numeracy.count_and_match.NumeracyRepository
 import com.example.edward.nyansapo.util.Resource
 import com.google.mlkit.common.MlKitException
@@ -48,7 +50,7 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
                     }
                     viewModelScope.launch {
-                         answerReceived(result.candidates)
+                        answerReceived(result.candidates)
                     }
 
                 }
@@ -62,13 +64,18 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
     }
 
+    private val _wordProblemEvents = Channel<Event>()
+    val wordProblemEvents = _wordProblemEvents.receiveAsFlow()
     private suspend fun answerReceived(writtenAnswer: List<RecognitionCandidate>) {
 
         val correctAnswer = getWordProblem.value.data!!.second
         if (answerIsCorrect(writtenAnswer, correctAnswer)) {
             Log.d(TAG, "answerReceived: correct")
             _analysesStatus.send(Resource.success(true))
+            _wordProblemEvents.send(Event.FinishedPassed(correctAnswer.toInt() ,writtenAnswer[0].text))
+
         } else {
+            _wordProblemEvents.send(Event.FinishedFailed(correctAnswer.toInt() ,writtenAnswer[0].text))
             _analysesStatus.send(Resource.success(false))
             Log.d(TAG, "answerReceived: wrong")
 
@@ -115,6 +122,8 @@ class WordProblemViewModel @ViewModelInject constructor(private val repository: 
 
     sealed class Event {
         data class StartAnalysis(val inkBuilder: Ink.Builder) : Event()
+        data class FinishedPassed(val correctAnswer: Int, val writtenAnwer:String) : Event()
+        data class FinishedFailed(val correctAnswer: Int, val writtenAnwer:String) : Event()
 
     }
 

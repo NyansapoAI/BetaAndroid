@@ -20,6 +20,8 @@ import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentWordProblemBinding
 import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
+import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2
 import com.example.edward.nyansapo.numeracy.subtraction.SubtractionFragmentDirections
 import com.example.edward.nyansapo.numeracy.word_problem.WordProblemViewModel.*
 import com.example.edward.nyansapo.util.GlobalData
@@ -48,7 +50,7 @@ class WordProblemFragment : Fragment(R.layout.fragment_word_problem) {
     }
 
     private fun setDefaults() {
-        binding.imvAvatar.setImageResource(GlobalData.avatar)
+        binding.imvAvatar.setImageResource(navArgs.assessmentNumeracy.student.avatar)
 
     }
 
@@ -81,11 +83,23 @@ class WordProblemFragment : Fragment(R.layout.fragment_word_problem) {
                         }
                         Resource.Status.SUCCESS -> {
                             showProgress(false)
-                            goTo(it.data!!)
                         }
                         Resource.Status.ERROR -> {
                             showProgress(false)
                             showToastInfo("Error: ${it.exception?.message}")
+                        }
+                    }
+                }
+            }
+            launch {
+                viewModel.wordProblemEvents.collect {
+                    when (it) {
+
+                        is Event.FinishedPassed -> {
+                            finishedPassed(it.correctAnswer, it.writtenAnwer)
+                        }
+                        is Event.FinishedFailed -> {
+                            finishedFailed(it.correctAnswer, it.writtenAnwer)
                         }
                     }
                 }
@@ -95,8 +109,31 @@ class WordProblemFragment : Fragment(R.layout.fragment_word_problem) {
 
     }
 
-    private fun goTo(isCorrect: Boolean) {
-        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(wordProblemIsCorrect = isCorrect)
+
+    private fun finishedPassed(correctAnswer: Int, writtenAnwer: String) {
+        val student = navArgs.assessmentNumeracy.student
+
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(wordProblemIsCorrect = true, correctWordProblemAnswer = correctAnswer, wrongWordProblemAnswer = writtenAnwer)
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.ABOVE.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.ABOVE.name
+        }
+        goTo(assessmentNumeracy.copy(student = student))
+
+    }
+
+    private fun finishedFailed(correctAnswer: Int, writtenAnwer: String) {
+        val student = navArgs.assessmentNumeracy.student
+
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(wordProblemIsCorrect = false, correctWordProblemAnswer = correctAnswer, wrongWordProblemAnswer = writtenAnwer)
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.DIVISION.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.DIVISION.name
+        }
+        goTo(assessmentNumeracy.copy(student = student))
+    }
+
+    private fun goTo(assessmentNumeracy: AssessmentNumeracy) {
         findNavController().navigate(WordProblemFragmentDirections.actionWordProblemFragmentToThankYouFragment2(assessmentNumeracy))
     }
 

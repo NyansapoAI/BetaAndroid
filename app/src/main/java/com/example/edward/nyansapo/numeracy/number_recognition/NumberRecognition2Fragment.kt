@@ -23,7 +23,8 @@ import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumberRecognition2Binding
 import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
-import com.example.edward.nyansapo.util.GlobalData
+import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
+import com.example.edward.nyansapo.numeracy.number_recognition.NumberRecognitionViewModel.*
 import com.example.edward.nyansapo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -36,7 +37,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     private val TAG = "NumberRecognition2Fragm"
     private val RC_PERMISSION = 9
     private val viewModel: NumberRecognitionViewModel by viewModels()
-    private val navArgs:NumberRecognition2FragmentArgs by navArgs()
+    private val navArgs: NumberRecognition2FragmentArgs by navArgs()
     lateinit var binding: FragmentNumberRecognition2Binding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +49,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     }
 
     private fun setDefaults() {
-        binding.imvAvatar.setImageResource(GlobalData.avatar)
+        binding.imvAvatar.setImageResource(navArgs.assessmentNumeracy.student.avatar)
 
     }
 
@@ -99,10 +100,16 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
                         Event.Next -> {
                             goToNext()
                         }
-                        Event.Finished -> {
-                            finished()
-                        }
+                        is
+                        Event.FinishedPassed -> {
+                            finishedPassed(it.correctList, it.wrongList)
 
+                        }
+                        is
+                        Event.FinishedFailed -> {
+                            finishedFailed(it.correctList, it.wrongList)
+
+                        }
                     }
                 }
             }
@@ -110,17 +117,29 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
         }
     }
 
-    private fun finished() {
-        goToAddition()
-      }
+    private fun finishedFailed(correctList: MutableList<Int>, wrongList: MutableList<Int>) {
+        val student = navArgs.assessmentNumeracy.student
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctNumberRecognition = viewModel.correctCount, correctNumberRecognitionList = correctList, wrongNumberRecognitionList = wrongList, student = student)
 
-    private fun goToAddition() {
-        val assessmentNumeracy = navArgs.assessmentNumeracy.copy( correctNumberRecognition = viewModel.correctCount)
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.BEGINNER.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.BEGINNER.name
+        }
+
+        goToAddition(assessmentNumeracy.copy(student=student))
+    }
+
+    private fun finishedPassed(correctList: MutableList<Int>, wrongList: MutableList<Int>) {
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctNumberRecognition = viewModel.correctCount, correctNumberRecognitionList = correctList, wrongNumberRecognitionList = wrongList)
+        goToAddition(assessmentNumeracy)
+    }
+
+    private fun goToAddition(assessmentNumeracy: AssessmentNumeracy) {
         findNavController().navigate(NumberRecognition2FragmentDirections.actionNumberRecognition2FragmentToAdditionFragment(assessmentNumeracy))
     }
 
     private fun displayNumber() {
-         Log.d(TAG, "displayNumber: getCurrentNumber:${viewModel.getCurrentNumber()}")
+        Log.d(TAG, "displayNumber: getCurrentNumber:${viewModel.getCurrentNumber()}")
         Log.d(TAG, "displayNumber: counter:${viewModel.counter}")
         Log.d(TAG, "displayNumber: correctCount:${viewModel.correctCount}")
         binding.numberRecognTxtView.setBackgroundResource(R.drawable.bg_number_recognition_not_recording)
@@ -138,7 +157,7 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
             avatarClicked()
         }
         binding.skipTxtView.setOnClickListener {
-         goToAddition()
+            goToAddition(navArgs.assessmentNumeracy)
         }
     }
 
@@ -172,8 +191,6 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
     }
 
 
-
-
     private fun goToNext() {
         displayNumber()
     }
@@ -182,12 +199,6 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
         Toasty.info(requireContext(), message).show()
     }
 
-    sealed class Event {
-        object RecordStudent : Event()
-        data class CheckIfCorrect(val recorded: String) : Event()
-        object Next : Event()
-        object Finished : Event()
-    }
 
     /////////////////////PROGRESS_BAR////////////////////////////
     lateinit var dialog: AlertDialog

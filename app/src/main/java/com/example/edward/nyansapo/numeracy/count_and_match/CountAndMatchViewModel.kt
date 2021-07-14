@@ -12,6 +12,7 @@ class CountAndMatchViewModel @ViewModelInject constructor(private val repository
 
     private val TAG = "CountAndMatchViewModel"
 
+    private val numberToPass = 4
     var counter = 0
     val getCountAndMatch = repository.countAndMatch
     var correctCount = 0
@@ -19,18 +20,18 @@ class CountAndMatchViewModel @ViewModelInject constructor(private val repository
         return getCountAndMatch.value.data!![counter]
     }
 
-    private val _countAndMatchEvents = Channel<CountAndMatchFragment.Event>()
+    private val _countAndMatchEvents = Channel<Event>()
     val countAndMatchEvents = _countAndMatchEvents.receiveAsFlow()
-    fun setEvent(event: CountAndMatchFragment.Event) {
+    fun setEvent(event: Event) {
         viewModelScope.launch {
             when (event) {
-                is CountAndMatchFragment.Event.ChoiceClicked -> {
+                is Event.ChoiceClicked -> {
                     choiceClicked(event.choice)
                 }
-                is CountAndMatchFragment.Event.BallClicked -> {
+                is Event.BallClicked -> {
                     ballClicked()
                 }
-                is CountAndMatchFragment.Event.Refresh -> {
+                is Event.Refresh -> {
                     refresh()
                 }
 
@@ -40,31 +41,51 @@ class CountAndMatchViewModel @ViewModelInject constructor(private val repository
 
     private suspend fun refresh() {
         numberOfSelectedBalls = 0
-        _countAndMatchEvents.send(CountAndMatchFragment.Event.Refresh)
+        _countAndMatchEvents.send(Event.Refresh)
     }
 
     private suspend fun ballClicked() {
         numberOfSelectedBalls++
         if (numberOfSelectedBalls == getCurrent()) {
-            _countAndMatchEvents.send(CountAndMatchFragment.Event.EnableChoices)
+            _countAndMatchEvents.send(Event.EnableChoices)
         }
     }
 
+    private val correctList: MutableList<Int> = mutableListOf()
+    private val wrongList: MutableList<Int> = mutableListOf()
     private suspend fun choiceClicked(choice: Int) {
         if (choice == getCurrent()) {
             correctCount++
             Log.d(TAG, "choiceClicked: answer correct")
+            correctList.add(getCurrent())
         } else {
             Log.d(TAG, "choiceClicked: answer wrong")
+            wrongList.add(getCurrent())
         }
         //increment counter
         counter++
         if (counter < getCountAndMatch.value.data!!.size) {
-            _countAndMatchEvents.send(CountAndMatchFragment.Event.Next)
+            _countAndMatchEvents.send(Event.Next)
         } else {
-            _countAndMatchEvents.send(CountAndMatchFragment.Event.Finished)
+
+            if (correctCount >= numberToPass) {
+                _countAndMatchEvents.send(Event.FinishedPassed(correctList, wrongList))
+            } else {
+                _countAndMatchEvents.send(Event.FinishedFailed(correctList, wrongList))
+            }
+
         }
     }
 
     var numberOfSelectedBalls = 0
+
+    sealed class Event {
+        data class ChoiceClicked(val choice: Int) : Event()
+        object Next : Event()
+        data class FinishedPassed(val correctList: MutableList<Int>, val wrongList: MutableList<Int>) : Event()
+        data class FinishedFailed(val correctList: MutableList<Int>, val wrongList: MutableList<Int>) : Event()
+        object BallClicked : Event()
+        object EnableChoices : Event()
+        object Refresh : Event()
+    }
 }

@@ -20,7 +20,9 @@ import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentAdditionBinding
 import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
 import com.example.edward.nyansapo.numeracy.Operators
+import com.example.edward.nyansapo.numeracy.Problem
 import com.example.edward.nyansapo.numeracy.addition.AdditionViewModel_2
 import com.example.edward.nyansapo.numeracy.subtraction.SubtractionFragmentArgs
 import com.example.edward.nyansapo.util.GlobalData
@@ -52,7 +54,9 @@ class DivisionFragment : Fragment(R.layout.fragment_addition) {
 
     }
 
-    private fun setDefaults() {  binding.imvAvatar.setImageResource(GlobalData.avatar)
+    private fun setDefaults() {
+        binding.imvAvatar.setImageResource(navArgs.assessmentNumeracy.student.avatar)
+
 
         binding.tvHeader.text = "Division"
         binding.tvSymbol.text = "/"
@@ -143,8 +147,11 @@ class DivisionFragment : Fragment(R.layout.fragment_addition) {
                         is AdditionViewModel_2.Event.Next -> {
                             goToNext()
                         }
-                        is AdditionViewModel_2.Event.Finished -> {
-                            finished()
+                        is AdditionViewModel_2.Event.FinishedPassed -> {
+                            finishedPassed(it.correctList, it.wrongList)
+                        }
+                        is AdditionViewModel_2.Event.FinishedFailed -> {
+                            finishedFailed(it.correctList, it.wrongList)
                         }
                     }
                 }
@@ -152,14 +159,25 @@ class DivisionFragment : Fragment(R.layout.fragment_addition) {
         }
     }
 
-    private fun finished() {
-        goTo()
+    private fun finishedFailed(correctList: MutableList<Problem>, wrongList: MutableList<Problem>) {
+        val student = navArgs.assessmentNumeracy.student
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctDivision = viewModel.correctCount, correctDivisionList = correctList, wrongDivisionList = wrongList, student = student)
+
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.DIVISION.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.DIVISION.name
+        }
+         goTo(assessmentNumeracy.copy(student=student))
 
     }
 
-    private fun goTo() {
-        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctDivision = viewModel.correctCount)
-           findNavController().navigate(DivisionFragmentDirections.actionDivisionFragmentToWordProblemFragment(assessmentNumeracy))
+    private fun finishedPassed(correctList: MutableList<Problem>, wrongList: MutableList<Problem>) {
+        val assessmentNumeracy = navArgs.assessmentNumeracy.copy(correctDivision = viewModel.correctCount, correctDivisionList = correctList, wrongDivisionList = wrongList)
+        goTo(assessmentNumeracy)
+    }
+
+    private fun goTo(assessmentNumeracy: AssessmentNumeracy) {
+        findNavController().navigate(DivisionFragmentDirections.actionDivisionFragmentToWordProblemFragment(assessmentNumeracy))
     }
 
     private fun modelIsAbsent() {
@@ -176,7 +194,7 @@ class DivisionFragment : Fragment(R.layout.fragment_addition) {
         }
 
         binding.skipTxtView.setOnClickListener {
-            goTo()
+            goTo(navArgs.assessmentNumeracy)
         }
 
         binding.apply {
@@ -191,7 +209,6 @@ class DivisionFragment : Fragment(R.layout.fragment_addition) {
 
 
     private fun goToNext() {
-
         displayNumbers()
     }
 

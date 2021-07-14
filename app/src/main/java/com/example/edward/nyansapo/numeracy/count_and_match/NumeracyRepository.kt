@@ -22,7 +22,7 @@ import javax.inject.Inject
 class NumeracyRepository @Inject constructor(private val sharedPref: SharedPreferences) {
     fun updateStudentLearningLevel(assessmentNumeracy: AssessmentNumeracy) = flow<Resource<AssessmentNumeracy>> {
         emit(Resource.loading("updating..."))
-        val map = mapOf("learningLevelNumeracy" to assessmentNumeracy?.learningLevel)
+        val map = mapOf("learningLevelNumeracy" to assessmentNumeracy?.learningLevelNumeracy)
         try {
             FirebaseUtils.getCollectionStudentFromCamp_ReturnCollection(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!).document(assessmentNumeracy.student.id!!).set(map, SetOptions.merge()).await()
             emit(Resource.success(assessmentNumeracy))

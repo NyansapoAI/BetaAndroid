@@ -38,7 +38,7 @@ data class Student(
     }
 
     override fun toString(): String {
-        return "Names: $firstname $lastname :Id:$id:LearningLevel:$learningLevel"
+        return "Names: $firstname $lastname :Id:$id:LearningLevel:$learningLevel:learningLevelNumeracy:$learningLevelNumeracy"
 
     }
 }

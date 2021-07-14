@@ -15,7 +15,8 @@ import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentCountAndMatchBinding
 import com.example.edward.nyansapo.Student
 import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
-import com.example.edward.nyansapo.util.GlobalData
+import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
+import com.example.edward.nyansapo.numeracy.count_and_match.CountAndMatchViewModel.Event
 import com.example.edward.nyansapo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
@@ -48,7 +49,7 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
     }
 
     private fun setDefaults() {
-        binding.imvAvatar.setImageResource(GlobalData.avatar)
+        binding.imvAvatar.setImageResource(student.avatar)
 
     }
 
@@ -75,15 +76,20 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
                         is Event.Next -> {
                             goToNext()
                         }
-                        is Event.Finished -> {
-                            finished()
 
-                        }
                         is Event.EnableChoices -> {
                             enableChoices()
                         }
                         is Event.Refresh -> {
                             refresh()
+                        }
+                        is Event.FinishedPassed -> {
+                            finishedPassed(it.correctList, it.wrongList)
+
+                        }
+                        is Event.FinishedFailed -> {
+                            finishedFailed(it.correctList, it.wrongList)
+
                         }
                     }
                 }
@@ -91,9 +97,6 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
         }
     }
 
-    private fun finished() {
-        goToNumberRecognition()
-    }
 
     private fun setClickListenersForBalls() {
         for (index in 1..TOTAL_NO_OF_BALLS) {
@@ -118,12 +121,29 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
 
 
         binding.skipTxtView.setOnClickListener {
-            goToNumberRecognition()
+            val assessmentNumeracy = AssessmentNumeracy().copy(correctCountAndMatch = viewModel.correctCount, student = student)
+
+            goToNumberRecognition(assessmentNumeracy)
         }
     }
 
-    private fun goToNumberRecognition() {
-        val assessmentNumeracy = AssessmentNumeracy().copy(student = student, correctCountAndMatch = viewModel.correctCount)
+    private fun finishedFailed(correctList: MutableList<Int>, wrongList: MutableList<Int>) {
+        val assessmentNumeracy = AssessmentNumeracy().copy(correctCountAndMatch = viewModel.correctCount, correctCountAndMatchList = correctList, wrongCountAndMatchList = wrongList, student = student)
+
+        if (assessmentNumeracy.learningLevelNumeracy.equals(Numeracy_Learning_Levels.UNKNOWN.name)) {
+            student.learningLevelNumeracy = Numeracy_Learning_Levels.BEGINNER.name
+            assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.BEGINNER.name
+        }
+
+         goToNumberRecognition(assessmentNumeracy.copy(student=student))
+    }
+
+    private fun finishedPassed(correctList: MutableList<Int>, wrongList: MutableList<Int>) {
+        val assessmentNumeracy = AssessmentNumeracy().copy(correctCountAndMatch = viewModel.correctCount, correctCountAndMatchList = correctList, wrongCountAndMatchList = wrongList, student = student)
+        goToNumberRecognition(assessmentNumeracy)
+    }
+
+    private fun goToNumberRecognition(assessmentNumeracy: AssessmentNumeracy) {
         findNavController().navigate(CountAndMatchFragmentDirections.actionCountAndMatchFragmentToNumberRecognition2Fragment(assessmentNumeracy))
 
     }
@@ -200,12 +220,5 @@ class CountAndMatchFragment : Fragment(R.layout.fragment_count_and_match) {
         Toasty.info(requireContext(), message).show()
     }
 
-    sealed class Event {
-        data class ChoiceClicked(val choice: Int) : Event()
-        object Next : Event()
-        object Finished : Event()
-        object BallClicked : Event()
-        object EnableChoices : Event()
-        object Refresh : Event()
-    }
+
 }

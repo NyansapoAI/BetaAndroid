@@ -1,6 +1,10 @@
 package com.example.edward.nyansapo.util
 
 import androidx.appcompat.widget.SearchView
+import com.example.edward.nyansapo.Assessment
+import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
+import com.google.firebase.firestore.DocumentSnapshot
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,3 +39,8 @@ val Date.formatDate get() = SimpleDateFormat("dd/MM/yyyy").format(this)
 val String.cleanString
     get() =
         this.replace("/", "_")
+
+
+val DocumentSnapshot.student get() = this.toObject(Student::class.java)!!
+val DocumentSnapshot.assessment get() = this.toObject(Assessment::class.java)!!
+val DocumentSnapshot.assessmentNumeracy get() = this.toObject(AssessmentNumeracy::class.java)!!
