@@ -15,18 +15,18 @@ import com.edward.nyansapo.databinding.ItemNumeracyLearningLeveBinding
 import com.example.edward.nyansapo.Student
 import com.google.firebase.firestore.DocumentSnapshot
 
-class LevelSectionsAdapter(private val context: Context, val onStudentClicked: (DocumentSnapshot) -> Unit) : ListAdapter<LevelSections, LevelSectionsAdapter.ViewHolder>(DIFF_UTIL) {
+class LevelSectionsAdapter(private val contextMain: Context, val onStudentClicked: (DocumentSnapshot) -> Unit) : ListAdapter<LevelSections, LevelSectionsAdapter.ViewHolder>(DIFF_UTIL) {
 
     private val TAG = "LevelSectionsAdapter"
 
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<LevelSections>() {
             override fun areItemsTheSame(oldItem: LevelSections, newItem: LevelSections): Boolean {
-                return oldItem.header==newItem.header
+                return oldItem.header == newItem.header
             }
 
             override fun areContentsTheSame(oldItem: LevelSections, newItem: LevelSections): Boolean {
-            return oldItem.equals(newItem)
+                return oldItem.equals(newItem)
             }
 
         }
@@ -52,7 +52,7 @@ class LevelSectionsAdapter(private val context: Context, val onStudentClicked: (
             binding.rvBeginner.apply {
                 setHasFixedSize(false)
                 addItemDecoration(NumeracyItemDecoration())
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = LinearLayoutManager(contextMain)
                 adapter = beginnerAdapter
             }
 

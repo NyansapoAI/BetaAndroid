@@ -42,9 +42,10 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
     }
 
 
-    lateinit var levelSectionsAdapter: LevelSectionsAdapter
+    lateinit var levelSectionsAdapter: LevelSectionsAdapter2
     private fun initRecyclerViewAdapters() {
-        levelSectionsAdapter = LevelSectionsAdapter(requireContext()) { onStudentClicked(it) }
+        //  levelSectionsAdapter = LevelSectionsAdapter(requireContext()) { onStudentClicked(it) }
+        levelSectionsAdapter = LevelSectionsAdapter2(requireContext()){ onStudentClicked(it) }
         binding.recyclerview.apply {
             setHasFixedSize(false)
             //  addItemDecoration(NumeracyItemDecoration())
@@ -52,8 +53,7 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
             adapter = levelSectionsAdapter
 
         }
-        Data.setList()
-          levelSectionsAdapter.submitList(Data.list)
+        levelSectionsAdapter.submitList(Data.getList())
 
     }
 
@@ -118,56 +118,46 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
 
     private fun setBeginnerData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setBeginnerData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[0].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+        val newList = Data.getList()
+        newList[0].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
     }
 
     private fun setAdditionData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setAdditionData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[1].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+        val newList = Data.getList()
+        newList[1].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
     }
 
     private fun setSubtractionData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setSubtractionData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[2].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+        val newList = Data.getList()
+        newList[2].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
     }
 
     private fun setMultiplicationData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setMultiplicationData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[3].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+        val newList = Data.getList()
+        newList[3].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
     }
 
     private fun setDivisionData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setDivisionData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[4].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+        val newList = Data.getList()
+        newList[4].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
     }
 
     private fun setAboveData(it: List<DocumentSnapshot>) {
         Log.d(TAG, "setAboveData: size:${it.size}")
-        if (it.size > 0) {
-            val newList = Data.list
-            newList[5].students = it.toMutableList()
-            levelSectionsAdapter.submitList(newList)
-        }
+
+        val newList = Data.getList()
+        newList[5].students = it.toMutableList()
+        levelSectionsAdapter.submitList(newList)
+
     }
 
 

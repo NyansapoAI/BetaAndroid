@@ -107,4 +107,8 @@
         android:id="@+id/addStudentFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment"
         android:label="AddStudentFragment" />
+    <fragment
+        android:id="@+id/beginnerLevelAssessmentResultFragment"
+        android:name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result.BeginnerLevelAssessmentResultFragment"
+        android:label="BeginnerLevelAssessmentResultFragment" />
 </navigation>

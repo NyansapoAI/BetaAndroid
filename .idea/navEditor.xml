@@ -374,6 +374,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="beginnerLevelAssessmentResultFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-124" />
+                            <option name="y" value="138" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="changeProgramFragment">
                     <value>
                       <LayoutPositions>
@@ -490,7 +502,17 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_selectTaskFragment_to_addStudentFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_selectTaskFragment_to_assessmentFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_selectTaskFragment_to_attendanceFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
