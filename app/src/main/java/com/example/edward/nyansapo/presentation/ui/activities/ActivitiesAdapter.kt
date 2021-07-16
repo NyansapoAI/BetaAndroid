@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.ItemStudentBinding
 
-class ActivitiesAdapter(val fragment: ActivitiesFragment, val onSearchViewEmpty: () -> Unit, val onActivityClicked: (Activity) -> Unit) : ListAdapter<Activity, ActivitiesAdapter.ViewHolder>(DIFF_UTIL), Filterable {
+class ActivitiesAdapter( val onActivityClicked: (Activity) -> Unit) : ListAdapter<Activity, ActivitiesAdapter.ViewHolder>(DIFF_UTIL) {
 
          private  val TAG="ActivitiesAdapter"
 
@@ -50,38 +50,7 @@ class ActivitiesAdapter(val fragment: ActivitiesFragment, val onSearchViewEmpty:
 
 
 
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(string: CharSequence?): FilterResults {
-                val list = mutableListOf<Activity>()
-                for (actitity in fragment.originalList!!) {
-                    if (actitity.level.contains(string!!, ignoreCase = true)) {
-                        list.add(actitity)
-                    } else if (actitity.name.contains(string!!, ignoreCase = true)) {
-                        list.add(actitity)
-                    }
 
-                }
-
-                val results = FilterResults()
-                results.values = list
-
-                return results
-
-            }
-
-            override fun publishResults(string: CharSequence?, results: FilterResults?) {
-
-                if (string?.isBlank()!!) {
-                    onSearchViewEmpty()
-                } else {
-                    submitList(results?.values as List<Activity>?)
-
-                }
-
-            }
-        }
-    }
 
 
 }

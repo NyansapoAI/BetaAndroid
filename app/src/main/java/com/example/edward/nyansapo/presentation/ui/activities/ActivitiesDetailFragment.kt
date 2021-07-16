@@ -6,22 +6,26 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentIndividualActivitiesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActivitiesDetailFragment: Fragment(R.layout.fragment_individual_activities) {
 
 
     private val TAG = "IndividualActivitiesFra"
 
-    lateinit var binding: FragmentIndividualActivitiesBinding
-    lateinit var activity: Activity
+   private lateinit var binding: FragmentIndividualActivitiesBinding
+    private lateinit var activity: Activity
+    private val navArgs:ActivitiesDetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentIndividualActivitiesBinding.bind(view)
 
-        activity = requireArguments().getParcelable("activity")
+        activity = navArgs.activity
         Log.d(TAG, "onViewCreated: activity:$activity")
 
         setDefaultValues()

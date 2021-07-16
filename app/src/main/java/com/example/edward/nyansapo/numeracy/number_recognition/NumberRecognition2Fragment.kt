@@ -157,6 +157,8 @@ class NumberRecognition2Fragment : Fragment(R.layout.fragment_number_recognition
             avatarClicked()
         }
         binding.skipTxtView.setOnClickListener {
+
+          //  navArgs.assessmentNumeracy.copy(wrongCountAndMatchList = viewModel.)
             goToAddition(navArgs.assessmentNumeracy)
         }
     }

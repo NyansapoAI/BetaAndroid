@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_selectTaskFragment_to_attendanceFragment"
             app:destination="@id/attendanceFragment" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_activitiesFragment3"
+            app:destination="@id/activitiesFragment3" />
     </fragment>
     <fragment
         android:id="@+id/changeProgramFragment"
@@ -94,7 +97,11 @@
     <fragment
         android:id="@+id/numeracyLearningLevelFragment"
         android:name="com.example.edward.nyansapo.numeracy.numeracy_learning_level.NumeracyLearningLevelFragment"
-        android:label="NumeracyLearningLevelFragment" />
+        android:label="NumeracyLearningLevelFragment" >
+        <action
+            android:id="@+id/action_numeracyLearningLevelFragment_to_numeracyAssessmentResultFragment"
+            app:destination="@id/numeracyAssessmentResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createFragment"
         android:name="com.example.edward.nyansapo.presentation.ui.change_program.CreateFragment"
@@ -109,6 +116,30 @@
         android:label="AddStudentFragment" />
     <fragment
         android:id="@+id/beginnerLevelAssessmentResultFragment"
-        android:name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result.BeginnerLevelAssessmentResultFragment"
+        android:name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result.beginner.BeginnerLevelAssessmentResultFragment"
         android:label="BeginnerLevelAssessmentResultFragment" />
+    <fragment
+        android:id="@+id/numeracyAssessmentResultFragment"
+        android:name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result.NumeracyAssessmentResultFragment"
+        android:label="NumeracyAssessmentResultFragment" >
+        <argument
+            android:name="student"
+            app:argType="com.example.edward.nyansapo.Student" />
+    </fragment>
+    <fragment
+        android:id="@+id/activitiesFragment3"
+        android:name="com.example.edward.nyansapo.presentation.ui.activities.ActivitiesFragment3"
+        android:label="ActivitiesFragment3" >
+        <action
+            android:id="@+id/action_activitiesFragment3_to_activitiesDetailFragment"
+            app:destination="@id/activitiesDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activitiesDetailFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.activities.ActivitiesDetailFragment"
+        android:label="ActivitiesDetailFragment" >
+        <argument
+            android:name="activity"
+            app:argType="com.example.edward.nyansapo.presentation.ui.activities.Activity" />
+    </fragment>
 </navigation>

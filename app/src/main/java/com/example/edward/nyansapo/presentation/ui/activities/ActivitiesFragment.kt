@@ -51,17 +51,17 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
     }
 
     private fun setUpRecyclerView() {
-        adapter = ActivitiesAdapter(this, {
+   /*     adapter = ActivitiesAdapter(this, {
             onSearchViewEmpty()
         }) {
             onActivityClicked(it)
         }
 
-
-        adapter.filter.filter(Learning_Level.BEGINNER.name)
+*/
+     /*   adapter.filter.filter(Learning_Level.BEGINNER.name)
 
         binding.recyclerview.layoutManager = LinearLayoutManager(MainActivity2.activityContext!!)
-        binding.recyclerview.adapter = adapter
+        binding.recyclerview.adapter = adapter*/
     }
 
     private fun onSearchViewEmpty() {
@@ -110,7 +110,7 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
                 Log.d(TAG, "onQueryTextChange: ")
                 if (newText != null && newText.isNotEmpty()) {
                     showTabs(false)
-                    adapter.filter.filter(newText?.toLowerCase())
+                   // adapter.filter.filter(newText?.toLowerCase())
 
                 } else {
                     Log.d(TAG, "onQueryTextChange: searchview empty")
@@ -181,7 +181,7 @@ class ActivitiesFragment : Fragment(R.layout.fragment_activities), SwipeListener
 
     private fun initRecyclerViewAdapter(learninglevel: String) {
 
-        adapter.filter.filter(learninglevel.toLowerCase())
+      //  adapter.filter.filter(learninglevel.toLowerCase())
     }
 
     override fun onSwipeLeft() {

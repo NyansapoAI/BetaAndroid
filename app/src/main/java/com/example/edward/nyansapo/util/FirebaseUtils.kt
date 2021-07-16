@@ -333,8 +333,14 @@ object FirebaseUtils {
 
 
     }
+    fun getAssessmentsNumeracyFromStudent_Collection(programId: String, groupId: String, campId: String, studentId: String): CollectionReference {
+        return firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY)
+
+
+    }
 
     fun collectionAssessments(programId: String, groupId: String, campId: String, studentId: String) = firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS)
+    fun collectionAssessmentsNumeracy(programId: String, groupId: String, campId: String, studentId: String) = firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY)
 
     fun addAssessmentForStudent(programId: String, groupId: String, campId: String, studentId: String, assessment: Assessment, onComplete: (DocumentReference) -> Unit) {
         firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY).add(assessment).addOnSuccessListener {

@@ -52,7 +52,7 @@ class ActivitiesFragment2 : Fragment(R.layout.fragment_activities), SwipeListene
 
     private fun subScribeToObservers() {
         lifecycleScope.launchWhenStarted {
-            viewModel.activitiesFlow.collect {
+            viewModel.getActivitiesStatus.collect {
                 Log.d(TAG, "subScribeToObservers::activitiesFlow status:${it.status}")
                 when (it.status) {
                     Resource.Status.SUCCESS -> {

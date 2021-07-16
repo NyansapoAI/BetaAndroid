@@ -17,7 +17,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="NumeracyLearningLevelFr" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ActivitiesFragment" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -41,11 +41,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0994166-8f47-4f0f-a1f8-b9e3b781f54e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/BeginnerLevelAssessmentResultFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/LevelSectionsAdapter2.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_number_recog.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beginner_level_assessment_result.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_numeracy_assessment_results.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/NumeracyAssessmentResultFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/NumeracyAssessmentResultViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/addition/AdditionLevelAssessmentResultFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter3.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment3.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitySections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_number_recog_red.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_arrow_left.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_activities3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_numeracy_assessment_result.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -57,11 +62,26 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/AssessmentNumeracy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/AssessmentNumeracy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/NumeracyRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/count_and_match/NumeracyRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognition2Fragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/number_recognition/NumberRecognition2Fragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/BeginnerLevelAssessmentResultFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_assessment_result/beginner/BeginnerLevelAssessmentResultFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/Data.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/Data.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/LevelSectionsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/LevelSectionsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/LevelSections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/LevelSections.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/NumeracyLearningLevelFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/numeracy/numeracy_learning_level/NumeracyLearningLevelFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesDetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesDetailFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesFragment2.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/activities/ActivitiesViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/MainRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/preassessment/MainRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/select_task/SelectTaskFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/presentation/ui/select_task/SelectTaskFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/FirebaseUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/edward/nyansapo/util/FirebaseUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_count_and_match.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_count_and_match.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_numeracy_assessment_results.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_addition_level_assessment_result.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,9 +140,9 @@
         <option value="Class" />
         <option value="navigationResourceFile" />
         <option value="resourceFile" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -143,6 +163,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="NZM7KR8HTODUDMFA" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-16T05:01:18.702Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -163,7 +185,7 @@
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/com.github.arimorty/floatingsearchview/2.1.1/5af5c30598fc2a62289e6870cf51cf8aea0ccc48/floatingsearchview-2.1.1-sources.jar!/com/arlib/floatingsearchview/FloatingSearchView.java_SELECTED" value="FloatingSearchView" />
     <property name="android-custom-viewC:/caches/modules-2/files-2.1/com.nightonke/blurlockview/1.0.0/f01ce0c37b685c96fa78d87d8c858143a29a3d41/blurlockview-1.0.0-sources.jar!/com/nightonke/blurlockview/BlurLockView.java_SELECTED" value="BlurLockView" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="multi-representation-previewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/view/View.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/AppData/Local/Android/Sdk/sources/android-28/android/widget/AdapterView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/user/Documents/NyansapCopy/app/src/main/java/com/example/edward/nyansapo/numeracy/addition/CustomLinearLayout.java_selected" value="Custom views" />
@@ -197,8 +219,8 @@
       <recent name="com.nyansapo.presentation.ui.begin_assessment_chooser" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\drawable" />
       <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\layout" />
+      <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\drawable" />
       <recent name="C:\Users\user\Documents\NyansapCopy\app\src\main\res\mipmap-hdpi" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\mipmap-hdpi" />
       <recent name="C:\Users\user\Documents\Android\app\src\main\res\layout" />
@@ -216,11 +238,11 @@
       <recent name="com.nyansapo.presentation.ui.student" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo.presentation.ui.activities" />
       <recent name="com.example.edward.nyansapo.numeracy.numeracy_learning_level" />
       <recent name="com.example.edward.nyansapo.presentation.ui.attendance" />
       <recent name="com.example.edward.nyansapo.presentation.ui.add_student" />
       <recent name="com.example.edward.nyansapo.presentation.ui.assessment" />
-      <recent name="com.example.edward.nyansapo.numeracy.addition" />
     </key>
     <key name="android.template.1502989668">
       <recent name="com.nyansapo.presentation.main" />
@@ -252,11 +274,11 @@
       <recent name="com.nyansapo.presentation.ui.home" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result.beginner" />
       <recent name="com.example.edward.nyansapo.numeracy.numeracy_assessment_result" />
       <recent name="com.example.edward.nyansapo.presentation.ui.add_student" />
       <recent name="com.example.edward.nyansapo.numeracy.subtraction" />
       <recent name="com.example.edward.nyansapo.numeracy.number_recognition" />
-      <recent name="com.example.edward.nyansapo.numeracy.multiplication" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -733,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626262736903</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="fixed learning level list bug">
+      <created>1626360741216</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1626360741217</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -760,7 +789,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Index2.kt is first page" />
     <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="3" />
@@ -785,7 +813,8 @@
     <MESSAGE value="implemented NumeracyRepository.kt" />
     <MESSAGE value="implemented AttendanceFragment.kt" />
     <MESSAGE value="implemented NumeracyLearningLevelFragment.kt" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented NumeracyLearningLevelFragment.kt" />
+    <MESSAGE value="fixed learning level list bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed learning level list bug" />
   </component>
   <component name="WindowStateProjectService">
     <state x="392" y="0" key="#app" timestamp="1625726953772">
@@ -798,10 +827,10 @@
     <state x="-1254" y="13" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626325264195" />
     <state x="-1254" y="-1" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621836781144" />
     <state x="474" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1620050217428" />
-    <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1626071316494">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="-1341" y="119" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1626431097971">
+      <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state x="-1341" y="119" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1625901055639" />
+    <state x="-1341" y="119" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626431097971" />
     <state x="412" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626071316494" />
     <state x="252" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1620015429670">
       <screen x="0" y="0" width="1366" height="728" />
@@ -821,55 +850,55 @@
     <state x="-1340" y="57" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626160332925" />
     <state x="-1340" y="43" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626070934601" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1620028740900" />
-    <state x="-1317" y="121" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1626327374601">
+    <state x="-1317" y="121" width="659" height="418" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1626409367636">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state x="-1317" y="121" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626327374601" />
+    <state x="-1317" y="121" width="659" height="418" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626409367636" />
     <state x="-1317" y="107" width="621" height="425" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621834457902" />
     <state x="429" y="155" width="565" height="418" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1620039963500" />
     <state x="263" y="118" key="AndroidCreateResourceDirectoryDialog" timestamp="1620015654656">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="263" y="118" key="AndroidCreateResourceDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1620015654656" />
-    <state x="-1550" y="69" key="AndroidCreateResourceFileDialog" timestamp="1626327647503">
+    <state x="-1550" y="69" key="AndroidCreateResourceFileDialog" timestamp="1626418711424">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state x="-1550" y="69" key="AndroidCreateResourceFileDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626327647503" />
+    <state x="-1550" y="69" key="AndroidCreateResourceFileDialog/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626418711424" />
     <state x="-1550" y="55" key="AndroidCreateResourceFileDialog/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626067381721" />
     <state x="263" y="118" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1620185854762" />
-    <state x="87" y="0" width="745" height="728" key="CommitChangelistDialog2" timestamp="1626262705562">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="-1754" y="-114" width="745" height="728" key="CommitChangelistDialog2" timestamp="1626360725276">
+      <screen x="-1920" y="-114" width="1920" height="1040" />
     </state>
-    <state x="-1754" y="-114" key="CommitChangelistDialog2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626088070788" />
+    <state x="-1754" y="-114" key="CommitChangelistDialog2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626360725276" />
     <state x="87" y="0" width="745" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1626262705562" />
-    <state width="1877" height="362" key="GridCell.Tab.0.bottom" timestamp="1626326883944">
+    <state width="1877" height="148" key="GridCell.Tab.0.bottom" timestamp="1626429038698">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626326883944" />
+    <state width="1877" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626429038698" />
     <state width="1877" height="362" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626166664953" />
     <state width="958" height="1060" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1620282268265" />
     <state width="1323" height="255" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
     <state width="1005" height="562" key="GridCell.Tab.0.bottom/1920.0.1366.728/0.0.1920.1160@0.0.1920.1160" timestamp="1620280340028" />
-    <state width="1877" height="362" key="GridCell.Tab.0.center" timestamp="1626326883943">
+    <state width="1877" height="148" key="GridCell.Tab.0.center" timestamp="1626429038697">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626326883943" />
+    <state width="1877" height="148" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626429038697" />
     <state width="1877" height="362" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626166664953" />
     <state width="958" height="1060" key="GridCell.Tab.0.center/0.0.1366.728/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1620282268265" />
     <state width="1323" height="255" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
     <state width="1005" height="562" key="GridCell.Tab.0.center/1920.0.1366.728/0.0.1920.1160@0.0.1920.1160" timestamp="1620280340028" />
-    <state width="1877" height="362" key="GridCell.Tab.0.left" timestamp="1626326883943">
+    <state width="1877" height="148" key="GridCell.Tab.0.left" timestamp="1626429038696">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626326883943" />
+    <state width="1877" height="148" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626429038696" />
     <state width="1877" height="362" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626166664953" />
     <state width="958" height="1060" key="GridCell.Tab.0.left/0.0.1366.728/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1620282268265" />
     <state width="1323" height="255" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
     <state width="1005" height="562" key="GridCell.Tab.0.left/1920.0.1366.728/0.0.1920.1160@0.0.1920.1160" timestamp="1620280340028" />
-    <state width="1877" height="362" key="GridCell.Tab.0.right" timestamp="1626326883944">
+    <state width="1877" height="148" key="GridCell.Tab.0.right" timestamp="1626429038698">
       <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626326883944" />
+    <state width="1877" height="148" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626429038698" />
     <state width="1877" height="362" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626166664953" />
     <state width="958" height="1060" key="GridCell.Tab.0.right/0.0.1366.728/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1620282268265" />
     <state width="1323" height="255" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620206184608" />
@@ -879,19 +908,19 @@
     </state>
     <state x="-1661" y="-103" key="SettingsEditor/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1621420059328" />
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620032370433" />
-    <state x="275" y="83" key="Vcs.Push.Dialog.v2" timestamp="1626262740778">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="-1533" y="5" key="Vcs.Push.Dialog.v2" timestamp="1626360766759">
+      <screen x="-1920" y="-114" width="1920" height="1040" />
     </state>
-    <state x="-1533" y="5" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626088111998" />
+    <state x="-1533" y="5" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626360766759" />
     <state x="275" y="83" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1626262740778" />
     <state x="164" y="141" key="chooseDestDirectoryDialog" timestamp="1620028728013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="164" y="141" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1620028728013" />
-    <state x="0" y="0" width="1382" height="816" key="dock-window-1" timestamp="1626360665228">
+    <state x="0" y="0" width="1369" height="809" key="dock-window-1" timestamp="1626435797178">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="0" y="0" width="1382" height="816" key="dock-window-1/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626325816065" />
+    <state x="0" y="0" width="1369" height="809" key="dock-window-1/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626435797178" />
     <state x="0" y="0" width="1382" height="816" key="dock-window-1/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626360665228" />
     <state x="-7" y="67" width="1378" height="668" maximized="true" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1626180785089" />
     <state x="0" y="0" width="1382" height="816" maximized="true" key="dock-window-2" timestamp="1621838034293">
@@ -907,10 +936,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="170" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1620187367535" />
-    <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup" timestamp="1626360558227">
-      <screen x="-1920" y="-114" width="1920" height="1040" />
+    <state x="-1434" y="-31" width="945" height="969" key="search.everywhere.popup" timestamp="1626435459042">
+      <screen x="-1920" y="-100" width="1920" height="1040" />
     </state>
-    <state x="-1434" y="-31" width="945" height="969" key="search.everywhere.popup/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626328659267" />
+    <state x="-1434" y="-31" width="945" height="969" key="search.everywhere.popup/0.0.1366.728/-1920.-100.1920.1040/1366.-660.1080.1880@-1920.-100.1920.1040" timestamp="1626435459042" />
     <state x="-1434" y="-45" width="945" height="969" key="search.everywhere.popup/0.0.1366.728/-1920.-114.1920.1040@-1920.-114.1920.1040" timestamp="1626360558227" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1626183179687" />
   </component>

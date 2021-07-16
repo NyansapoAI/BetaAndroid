@@ -45,8 +45,15 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
             4 -> {
                 goToNumeracyLearningLevelScreen()
             }
+            5 -> {
+                goToActivitiesScreen()
+            }
         }
 
+    }
+
+    private fun goToActivitiesScreen() {
+        findNavController().navigate(R.id.action_selectTaskFragment_to_activitiesFragment3)
     }
 
     private fun goToTakeAttendanceScreen() {
@@ -72,9 +79,9 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
         list.add("Assess Student  ")
         list.add("View Grouping  ")
         list.add("View All Activities  ")
-        list.add("Create an Activity  ")
-        list.add("Create Session Plan  ")
-        list.add("View Session Plan  ")
+     //   list.add("Create an Activity  ")
+      //  list.add("Create Session Plan  ")
+       // list.add("View Session Plan  ")
 
         return list
 

@@ -34,7 +34,7 @@ class NumeracyRepository @Inject constructor(private val sharedPref: SharedPrefe
     fun addAssessment(assessmentNumeracy: AssessmentNumeracy)= flow<Resource<AssessmentNumeracy>> {
         emit(Resource.loading("adding..."))
         try {
-            FirebaseUtils.collectionAssessments(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!,assessmentNumeracy.student.id!!).add(assessmentNumeracy).await()
+            FirebaseUtils.collectionAssessmentsNumeracy(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!,assessmentNumeracy.student.id!!).add(assessmentNumeracy).await()
             emit(Resource.success(assessmentNumeracy))
         } catch (e: Exception) {
             emit(Resource.error(e))

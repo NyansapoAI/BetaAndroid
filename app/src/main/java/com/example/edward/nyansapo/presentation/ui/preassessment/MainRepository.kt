@@ -13,6 +13,7 @@ import com.example.edward.nyansapo.util.cleanString
 import com.example.edward.nyansapo.util.formatDate
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
@@ -90,6 +91,25 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
 
     suspend fun addStudentToAttenance(studentId: String, date: String, studentAttendance: StudentAttendance) =
             FirebaseUtils.addStudentsToAttendance(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!, studentId, date, studentAttendance)
+
+    suspend fun fetchAssessments(id: String) = callbackFlow<Resource<List<DocumentSnapshot>>> {
+        resetListener()
+        offer(Resource.loading("fetching assessments..."))
+        listener = FirebaseUtils.getAssessmentsNumeracyFromStudent_Collection(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!, id).orderBy("timestamp",Query.Direction.DESCENDING).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                offer(Resource.error(firebaseFirestoreException))
+            } else if(querySnapshot!!.isEmpty) {
+                offer(Resource.empty())
+            }else{
+                offer(Resource.success(querySnapshot!!.documents))
+            }
+
+        }
+
+        awaitClose {
+            resetListener()
+        }
+    }
 
 
 }

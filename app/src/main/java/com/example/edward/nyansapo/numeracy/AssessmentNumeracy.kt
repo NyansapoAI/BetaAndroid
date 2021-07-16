@@ -2,7 +2,9 @@ package com.example.edward.nyansapo.numeracy
 
 import android.os.Parcelable
 import com.example.edward.nyansapo.Student
+import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 data class AssessmentNumeracy(
@@ -31,4 +33,6 @@ data class AssessmentNumeracy(
         val correctWordProblemAnswer: Int = 0,
         val wrongWordProblemAnswer: String = "",
         var learningLevelNumeracy: String = Numeracy_Learning_Levels.UNKNOWN.name,
+        @ServerTimestamp
+        val timestamp: Date? = null,
 ) : Parcelable

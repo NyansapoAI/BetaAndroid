@@ -16,17 +16,37 @@ import kotlinx.coroutines.launch
 class ActivitiesViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
 
     private val TAG = "ActivitiesViewModel"
-
-    private val _activitiesFlow: Flow<Resource<List<Activity>>> = flow {
+    val getActivitiesStatus get() = _getActivitiesStatus
+    private val _getActivitiesStatus: Flow<Resource<List<Activity>>> = flow {
         emit(Resource.loading("loading"))
         val activities = repository.getActivities()
         if (activities == null || activities?.isEmpty()) {
             emit(Resource.error<List<Activity>>(Exception("no activities available")))
         } else {
+            allActivitiesFlow.value=activities
             emit(Resource.success(activities))
+            startSortingActivities(activities)
         }
     }
-    val activitiesFlow get() = _activitiesFlow
+
+
+    val allActivitiesFlow= MutableStateFlow(listOf<Activity>())
+
+    val wholeClassFlow= MutableStateFlow(listOf<Activity>())
+    val beginnerFlow= MutableStateFlow(listOf<Activity>())
+    val letterFlow= MutableStateFlow(listOf<Activity>())
+    val wordFlow= MutableStateFlow(listOf<Activity>())
+    val paragraphFlow= MutableStateFlow(listOf<Activity>())
+    val storyFlow= MutableStateFlow(listOf<Activity>())
+    private fun startSortingActivities(activities: List<Activity>) {
+       wholeClassFlow.value=activities.filter { it.level.contains("all") }
+       beginnerFlow.value=activities.filter { it.level.contains("beginner") }
+       letterFlow.value=activities.filter { it.level.contains("letter") }
+       wordFlow.value=activities.filter { it.level.contains("word") }
+       paragraphFlow.value=activities.filter { it.level.contains("paragraph") }
+       storyFlow.value=activities.filter { it.level.contains("story") }
+    }
+
 
     private val _activitiesQueryStatus = MutableStateFlow(Resource.empty<List<Activity>>())
     val activitiesQueryStatus get() = _activitiesQueryStatus
