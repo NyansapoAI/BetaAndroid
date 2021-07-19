@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentSettingsBinding
 import com.example.edward.nyansapo.presentation.ui.main.*
@@ -15,14 +16,24 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SettingsFragment() : Fragment(R.layout.fragment_settings) {
     @Inject
-     lateinit var sharePref: SharedPreferences
+    lateinit var sharePref: SharedPreferences
     private lateinit var binding: FragmentSettingsBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSettingsBinding.bind(view)
         setDefaults()
         setOnClickListeners()
+        setUpToolBar()
     }
+
+    private fun setUpToolBar() {
+        binding.toolbar.root.inflateMenu(R.menu.overflow_menu)
+        binding.toolbar.root.title = "Settings"
+        binding.toolbar.root.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
 
     private fun setOnClickListeners() {
         binding.apply {

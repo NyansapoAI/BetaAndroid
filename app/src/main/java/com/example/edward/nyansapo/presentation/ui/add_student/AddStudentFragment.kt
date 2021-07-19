@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentAddStudentBinding
 import com.example.edward.nyansapo.Student
@@ -50,7 +51,16 @@ class AddStudentFragment() : Fragment(R.layout.fragment_add_student) {
         initProgressBar()
         setOnClickListener()
         subScribeToObservers()
+        setUpToolBar()
 
+    }
+
+    private fun setUpToolBar() {
+        binding.toolbar.root.inflateMenu(R.menu.overflow_menu)
+        binding.toolbar.root.title = "Add Student"
+        binding.toolbar.root.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun subScribeToObservers() {
@@ -114,8 +124,6 @@ class AddStudentFragment() : Fragment(R.layout.fragment_add_student) {
         }
         return student
     }
-
-
 
 
     /////////////////////PROGRESS_BAR////////////////////////////

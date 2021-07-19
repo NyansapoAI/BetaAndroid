@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_selectTaskFragment_to_activitiesFragment3"
             app:destination="@id/activitiesFragment3" />
+        <action
+            android:id="@+id/action_selectTaskFragment_to_createActivityFragment"
+            app:destination="@id/createActivityFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeProgramFragment"
@@ -101,6 +104,9 @@
         <action
             android:id="@+id/action_numeracyLearningLevelFragment_to_numeracyAssessmentResultFragment"
             app:destination="@id/numeracyAssessmentResultFragment" />
+        <action
+            android:id="@+id/action_numeracyLearningLevelFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
@@ -142,4 +148,8 @@
             android:name="activity"
             app:argType="com.example.edward.nyansapo.presentation.ui.activities.Activity" />
     </fragment>
+    <fragment
+        android:id="@+id/createActivityFragment"
+        android:name="com.example.edward.nyansapo.presentation.ui.activities.create_activity.CreateActivityFragment"
+        android:label="CreateActivityFragment" />
 </navigation>

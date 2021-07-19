@@ -5,7 +5,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edward.nyansapo.data.repositories.Repository
+import com.example.edward.nyansapo.presentation.ui.preassessment.MainRepository
 import com.example.edward.nyansapo.util.Resource
+import com.example.edward.nyansapo.util.activity
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,38 +15,80 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-class ActivitiesViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+class ActivitiesViewModel @ViewModelInject constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "ActivitiesViewModel"
-    val getActivitiesStatus get() = _getActivitiesStatus
-    private val _getActivitiesStatus: Flow<Resource<List<Activity>>> = flow {
-        emit(Resource.loading("loading"))
-        val activities = repository.getActivities()
-        if (activities == null || activities?.isEmpty()) {
-            emit(Resource.error<List<Activity>>(Exception("no activities available")))
-        } else {
-            allActivitiesFlow.value=activities
-            emit(Resource.success(activities))
-            startSortingActivities(activities)
+
+
+    fun setEvent(event: Event) {
+        viewModelScope.launch {
+            when (event) {
+                is Event.StartQuery -> {
+                    startQuery(event.query)
+                }
+            }
         }
     }
 
 
-    val allActivitiesFlow= MutableStateFlow(listOf<Activity>())
+    private fun startQuery(query: String) {
+        Log.d(TAG, "startQuery: query:$query")
+        val activities = allActivitiesFlow.value.filter { it.name.contains(query, ignoreCase = true) }
+        wholeClassFlow.value = activities.filter { it.level.contains("all", ignoreCase = true) }
+        beginnerFlow.value = activities.filter { it.level.contains("beginner", ignoreCase = true) }
+        letterFlow.value = activities.filter { it.level.contains("letter", ignoreCase = true) }
+        wordFlow.value = activities.filter { it.level.contains("word", ignoreCase = true) }
+        paragraphFlow.value = activities.filter { it.level.contains("paragraph", ignoreCase = true) }
+        storyFlow.value = activities.filter { it.level.contains("story", ignoreCase = true) }
 
-    val wholeClassFlow= MutableStateFlow(listOf<Activity>())
-    val beginnerFlow= MutableStateFlow(listOf<Activity>())
-    val letterFlow= MutableStateFlow(listOf<Activity>())
-    val wordFlow= MutableStateFlow(listOf<Activity>())
-    val paragraphFlow= MutableStateFlow(listOf<Activity>())
-    val storyFlow= MutableStateFlow(listOf<Activity>())
+    }
+
+
+    val getActivitiesStatus get() = _getActivitiesStatus
+    private val _getActivitiesStatus: Flow<Resource<List<Activity>>> = flow {
+        allActivitiesFlow.value.clear()
+        emit(Resource.loading("loading"))
+        val activities = repository.getActivities()
+        allActivitiesFlow.value.addAll(activities.toMutableList())
+        try {
+            val result = repository.getRemoteActivities()
+            Log.d(TAG, "remoteActivites:Size:${result.size} ")
+            val remoteActivities = result.map {
+                it.activity
+            }
+            allActivitiesFlow.value.addAll(remoteActivities.toMutableList())
+        } catch (e: Exception) {
+            emit(Resource.error<List<Activity>>(e))
+
+        }
+        if (allActivitiesFlow.value.isEmpty()) {
+            emit(Resource.error<List<Activity>>(Exception("no activities available")))
+        } else {
+            emit(Resource.success(allActivitiesFlow.value))
+            startSortingActivities(allActivitiesFlow.value)
+        }
+    }
+
+
+    val allActivitiesFlow = MutableStateFlow(mutableListOf<Activity>())
+
+    val wholeClassFlow = MutableStateFlow(listOf<Activity>())
+    val beginnerFlow = MutableStateFlow(listOf<Activity>())
+    val letterFlow = MutableStateFlow(listOf<Activity>())
+    val wordFlow = MutableStateFlow(listOf<Activity>())
+    val paragraphFlow = MutableStateFlow(listOf<Activity>())
+    val storyFlow = MutableStateFlow(listOf<Activity>())
     private fun startSortingActivities(activities: List<Activity>) {
-       wholeClassFlow.value=activities.filter { it.level.contains("all") }
-       beginnerFlow.value=activities.filter { it.level.contains("beginner") }
-       letterFlow.value=activities.filter { it.level.contains("letter") }
-       wordFlow.value=activities.filter { it.level.contains("word") }
-       paragraphFlow.value=activities.filter { it.level.contains("paragraph") }
-       storyFlow.value=activities.filter { it.level.contains("story") }
+        Log.d(TAG, "startSortingActivities: size:${activities.size}")
+        activities.forEachIndexed { index, activity ->
+            Log.d(TAG, "startSortingActivities: activity $index::$activity")
+        }
+        wholeClassFlow.value = activities.filter { it.level.contains("all", ignoreCase = true) }
+        beginnerFlow.value = activities.filter { it.level.contains("beginner", ignoreCase = true) }
+        letterFlow.value = activities.filter { it.level.contains("letter", ignoreCase = true) }
+        wordFlow.value = activities.filter { it.level.contains("word", ignoreCase = true) }
+        paragraphFlow.value = activities.filter { it.level.contains("paragraph", ignoreCase = true) }
+        storyFlow.value = activities.filter { it.level.contains("story", ignoreCase = true) }
     }
 
 
@@ -158,6 +202,10 @@ class ActivitiesViewModel @ViewModelInject constructor(private val repository: R
             _channelClickEvents.send(event)
 
         }
+    }
+
+    sealed class Event {
+        data class StartQuery(val query: String) : Event()
     }
 
 

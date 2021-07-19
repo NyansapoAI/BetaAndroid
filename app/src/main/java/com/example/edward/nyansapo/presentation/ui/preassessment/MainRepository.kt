@@ -3,6 +3,8 @@ package com.example.edward.nyansapo.presentation.ui.preassessment
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.edward.nyansapo.Student
+import com.example.edward.nyansapo.data.StaticData
+import com.example.edward.nyansapo.presentation.ui.activities.Activity
 import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
 import com.example.edward.nyansapo.presentation.ui.main.campId
 import com.example.edward.nyansapo.presentation.ui.main.groupId
@@ -16,6 +18,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -45,6 +48,8 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
 
         awaitClose { }
     }
+
+    suspend fun getActivities() = StaticData.getActivities()
 
     suspend fun addStudentToGroup(student: Student) {
         FirebaseUtils.addStudentToGroup(sharedPref.programId!!, sharedPref.groupId!!, student)
@@ -95,12 +100,12 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
     suspend fun fetchAssessments(id: String) = callbackFlow<Resource<List<DocumentSnapshot>>> {
         resetListener()
         offer(Resource.loading("fetching assessments..."))
-        listener = FirebaseUtils.getAssessmentsNumeracyFromStudent_Collection(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!, id).orderBy("timestamp",Query.Direction.DESCENDING).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        listener = FirebaseUtils.getAssessmentsNumeracyFromStudent_Collection(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!, id).orderBy("timestamp", Query.Direction.DESCENDING).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null) {
                 offer(Resource.error(firebaseFirestoreException))
-            } else if(querySnapshot!!.isEmpty) {
+            } else if (querySnapshot!!.isEmpty) {
                 offer(Resource.empty())
-            }else{
+            } else {
                 offer(Resource.success(querySnapshot!!.documents))
             }
 
@@ -109,6 +114,27 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
         awaitClose {
             resetListener()
         }
+    }
+
+    fun saveActivity(activity: Activity) = flow<Resource<Activity>> {
+        FirebaseUtils.addActivity(sharedPref.programId!!, sharedPref.groupId!!, activity).await()
+    }
+    fun saveActivity2(activity: Activity) = callbackFlow<Resource<Activity>> {
+        offer(Resource.loading(""))
+        FirebaseUtils.getActivityCollectionRef(sharedPref.programId!!, sharedPref.groupId!!).add(activity).addOnSuccessListener {
+            Log.d(TAG, "saveActivity2: success")
+            offer(Resource.success(activity))
+        }.addOnFailureListener {
+            offer(Resource.error(it))
+            Log.d(TAG, "saveActivity2: error:${it.message}")
+        }
+
+        awaitClose {  }
+    }
+
+    suspend fun getRemoteActivities(): List<DocumentSnapshot> {
+        return FirebaseUtils.getActivities(sharedPref.programId!!, sharedPref.groupId!!)
+
     }
 
 

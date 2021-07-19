@@ -5,7 +5,8 @@ import com.example.edward.nyansapo.numeracy.Numeracy_Learning_Levels
 import com.example.edward.nyansapo.presentation.ui.activities.ActivitySections
 
 object Data {
-    val list = mutableListOf(LevelSections(Numeracy_Learning_Levels.BEGINNER.name),
+    val list = mutableListOf(LevelSections(Numeracy_Learning_Levels.UNKNOWN.name),
+            LevelSections(Numeracy_Learning_Levels.BEGINNER.name),
             LevelSections(Numeracy_Learning_Levels.ADDITION.name),
             LevelSections(Numeracy_Learning_Levels.SUBTRACTION.name),
             LevelSections(Numeracy_Learning_Levels.SUBTRACTION.name),

@@ -16,6 +16,15 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSelectTaskBinding.bind(view)
         setUpRecyclerView()
+        setUpToolBar()
+    }
+
+    private fun setUpToolBar() {
+        binding.toolbar.root.inflateMenu(R.menu.overflow_menu)
+        binding.toolbar.root.title = "Select Task"
+        binding.toolbar.root.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -48,8 +57,15 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
             5 -> {
                 goToActivitiesScreen()
             }
+            6 -> {
+                goToCreateActivityScreen()
+            }
         }
 
+    }
+
+    private fun goToCreateActivityScreen() {
+        findNavController().navigate(R.id.action_selectTaskFragment_to_createActivityFragment)
     }
 
     private fun goToActivitiesScreen() {
@@ -79,9 +95,9 @@ class SelectTaskFragment : Fragment(R.layout.fragment_select_task) {
         list.add("Assess Student  ")
         list.add("View Grouping  ")
         list.add("View All Activities  ")
-     //   list.add("Create an Activity  ")
-      //  list.add("Create Session Plan  ")
-       // list.add("View Session Plan  ")
+        list.add("Create an Activity  ")
+        //  list.add("Create Session Plan  ")
+        // list.add("View Session Plan  ")
 
         return list
 

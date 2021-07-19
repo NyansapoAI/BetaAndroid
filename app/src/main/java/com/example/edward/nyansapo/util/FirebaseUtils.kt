@@ -16,6 +16,7 @@ import com.google.firebase.firestore.*
 import java.text.SimpleDateFormat
 import java.util.*
 import com.edward.nyansapo.R
+import com.example.edward.nyansapo.presentation.ui.activities.Activity
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
@@ -28,6 +29,7 @@ object FirebaseUtils {
     val COLLECTION_GROUPS = "groups"
     val COLLECTION_CAMPS = "camps"
     val COLLECTION_ATTENDANCE = "attendance"
+    val COLLECTION_ACTIVITIES = "activities"
 
     val ORDER_BY = "number"
 
@@ -355,4 +357,15 @@ object FirebaseUtils {
         MaterialAlertDialogBuilder(context).setBackground(context.getDrawable(R.drawable.button_first)).setIcon(icon).setTitle(title).setMessage(message).setNegativeButton("no") { dialog, which -> onNo() }.setPositiveButton("yes") { dialog, which -> onYes() }.show()
 
     }
+
+    suspend fun addActivity(programId: String, groupId: String, activity: Activity) =
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_ACTIVITIES).add(activity)
+  suspend fun getActivityCollectionRef(programId: String, groupId: String) =
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_ACTIVITIES)
+
+
+    suspend fun getActivities(programId: String, groupId: String) =
+        firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_ACTIVITIES).get().await().documents
+
+
 }

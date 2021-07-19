@@ -9,8 +9,10 @@ import com.example.edward.nyansapo.presentation.ui.preassessment.MainRepository
 import com.example.edward.nyansapo.util.Resource
 import com.example.edward.nyansapo.util.cleanString
 import com.example.edward.nyansapo.util.formatDate
+import com.example.edward.nyansapo.util.studentAttendance
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -33,9 +35,19 @@ class AttendanceViewModel @ViewModelInject constructor(private val repo: MainRep
                 is Event.CorrectDateChoosen -> {
                     checkIfWeHaveChoosenCorrectDate(event.date)
                 }
+                is Event.StartQuery -> {
+                    startQuery(event.query)
+                }
 
             }
         }
+    }
+
+    private val _queryStatus = Channel<List<DocumentSnapshot>>()
+    val queryStatus = _queryStatus.receiveAsFlow()
+    private suspend fun startQuery(query: String) {
+        val result = currentAttendanceList.value.filter { it.studentAttendance.name.contains(query, ignoreCase = true) }
+        _queryStatus.send(result)
     }
 
     private val _dataFetchingStatus = Channel<Resource<List<DocumentSnapshot>>>()
@@ -106,12 +118,16 @@ class AttendanceViewModel @ViewModelInject constructor(private val repo: MainRep
         getAttendanceContinously(originalDate)
     }
 
+    private val currentAttendanceList = MutableStateFlow(mutableListOf<DocumentSnapshot>())
     private suspend fun getAttendanceContinously(date: Date) {
         Log.d(TAG, "getAttendanceContinously: ")
         val properDate = date.formatDate.cleanString
         _dataFetchingStatus.send(Resource.loading("loading data..."))
         repo.getAttendanceContinuously(properDate).collect {
             _dataFetchingStatus.send(it)
+            if (it.status == Resource.Status.SUCCESS) {
+                currentAttendanceList.value = it.data!!.toMutableList()
+            }
         }
 
     }
@@ -126,6 +142,7 @@ class AttendanceViewModel @ViewModelInject constructor(private val repo: MainRep
         data class InitDataFetching(val date: Date) : Event()
         data class CorrectDateChoosen(val date: Date) : Event()
         object FutureDateChoosen : Event()
+        data class StartQuery(val query: String) : Event()
     }
 
 }

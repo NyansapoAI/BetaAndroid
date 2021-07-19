@@ -27,7 +27,7 @@ data class Student(
         var timestamp: Date? = null,
         var instructor_id: String? = null,
         var learningLevel: String? = Learning_Level.UNKNOWN.name,
-        var learningLevelNumeracy: String? = Numeracy_Learning_Levels.BEGINNER.name,
+        var learningLevelNumeracy: String? = Numeracy_Learning_Levels.UNKNOWN.name,
         var std_class: String? = null,
         var avatar: Int = R.drawable.nyansapo_avatar_lion
 

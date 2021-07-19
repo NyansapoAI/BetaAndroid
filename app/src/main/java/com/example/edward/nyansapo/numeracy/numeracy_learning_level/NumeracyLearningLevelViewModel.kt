@@ -27,11 +27,27 @@ class NumeracyLearningLevelViewModel @ViewModelInject constructor(private val re
                     allStudents.value = event.students
                     startSortingData(event.students)
                 }
+                is Event.StartQuery -> {
+                    startQuery(event.query)
+                }
             }
         }
 
     }
 
+    private fun startQuery(query: String) {
+        val students = allStudents.value.filter { it.student.firstname!!.contains(query, ignoreCase = true) || it.student.lastname!!.contains(query, ignoreCase = true) }
+        unknownStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.UNKNOWN.name) }
+        beginnerStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.BEGINNER.name) }
+        additionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ADDITION.name) }
+        subtractionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.SUBTRACTION.name) }
+        multiplicationStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.MULTIPLICATION.name) }
+        divisionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.DIVISION.name) }
+        aboveStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ABOVE.name) }
+
+    }
+
+    val unknownStudents = MutableStateFlow(listOf<DocumentSnapshot>())
     val beginnerStudents = MutableStateFlow(listOf<DocumentSnapshot>())
     val additionStudents = MutableStateFlow(listOf<DocumentSnapshot>())
     val subtractionStudents = MutableStateFlow(listOf<DocumentSnapshot>())
@@ -43,16 +59,18 @@ class NumeracyLearningLevelViewModel @ViewModelInject constructor(private val re
         students.forEach {
             Log.d(TAG, "startSortingData: student:${it.student}")
         }
-        beginnerStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.BEGINNER.name) }
-        additionStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ADDITION.name) }
-        subtractionStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.SUBTRACTION.name) }
-        multiplicationStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.MULTIPLICATION.name) }
-        divisionStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.DIVISION.name) }
-        aboveStudents.value = students.filter { it.toObject(Student::class.java)!!.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ABOVE.name) }
+        unknownStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.UNKNOWN.name) }
+        beginnerStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.BEGINNER.name) }
+        additionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ADDITION.name) }
+        subtractionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.SUBTRACTION.name) }
+        multiplicationStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.MULTIPLICATION.name) }
+        divisionStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.DIVISION.name) }
+        aboveStudents.value = students.filter { it.student.learningLevelNumeracy!!.equals(Numeracy_Learning_Levels.ABOVE.name) }
     }
 
     sealed class Event {
         data class StartSortingData(val students: List<DocumentSnapshot>) : Event()
+        data class StartQuery(val query: String) : Event()
     }
 
 

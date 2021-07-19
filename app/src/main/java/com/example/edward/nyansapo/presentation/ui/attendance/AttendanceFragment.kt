@@ -12,10 +12,12 @@ import android.view.*
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +27,7 @@ import com.edward.nyansapo.databinding.ItemAttendanceBinding
 import com.example.edward.nyansapo.presentation.ui.add_student.AddStudentFragment
 import com.example.edward.nyansapo.presentation.ui.attendance.AttendanceViewModel.Event
 import com.example.edward.nyansapo.presentation.ui.main.MainActivity2
-import com.example.edward.nyansapo.util.Constants
-import com.example.edward.nyansapo.util.FirebaseUtils
-import com.example.edward.nyansapo.util.Resource
-import com.example.edward.nyansapo.util.formatDate
+import com.example.edward.nyansapo.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
@@ -91,6 +90,11 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
                             showToastInfo(it.exception!!.message!!)
                         }
                     }
+                }
+            }
+            launch {
+                viewModel.queryStatus.collect {
+                    submitList(it)
                 }
             }
         }
@@ -177,6 +181,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
     private fun setUpToolBar() {
         binding.toolbar.root.inflateMenu(R.menu.attendance_menu)
         binding.toolbar.root.title = "Attendance"
+        binding.toolbar.root.setNavigationOnClickListener { findNavController().popBackStack() }
         binding.toolbar.root.setOnMenuItemClickListener { item ->
 
             when (item.itemId) {
@@ -189,6 +194,14 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
             true
 
         }
+
+        val searchView = (binding.toolbar.root.menu.findItem(R.id.searchItem).actionView as SearchView)
+        searchView.onQueryTextChanged {query->
+            Log.d(TAG, "setUpToolBar: query:$query")
+            viewModel.setEvent(Event.StartQuery(query))
+        }
+
+
     }
 
     private fun editItemClicked(item: MenuItem) {

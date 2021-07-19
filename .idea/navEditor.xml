@@ -292,8 +292,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="192" />
-                            <option name="y" value="1020" />
+                            <option name="x" value="5" />
+                            <option name="y" value="644" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -307,6 +307,15 @@
                             <option name="x" value="-24" />
                             <option name="y" value="1074" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_activitiesFragment3_to_activitiesDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -427,6 +436,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="createActivityFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="454" />
+                            <option name="y" value="-432" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
