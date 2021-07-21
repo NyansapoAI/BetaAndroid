@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ParagraphChooserFragment : Fragment(R.layout.activity_paragraph) {
 
-             private  val TAG="ParagraphChooserFragmen"
+             private  val TAG="ParagraphChooserFragment"
 
     private lateinit var binding: ActivityParagraphBinding
     private val viewModel: ParagraphChooserViewModel by viewModels()

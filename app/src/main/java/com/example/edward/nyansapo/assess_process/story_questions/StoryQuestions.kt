@@ -155,7 +155,7 @@ class storyQuestions : AppCompatActivity() {
         }
     }
 
-    fun checkAns(assessment: Assessment?): Int {
+    fun checkAns(assessment: Assessment?): Int { // will use real NLP here later with Ritiks code
         Log.d(TAG, "checkAns: ")
         Log.d(TAG, "checkAns: asssessmentKey:${assessment!!.assessmentKey}")
 
