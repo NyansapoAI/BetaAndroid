@@ -43,9 +43,12 @@ class AdditionLevelAssessmentResultFragment : Fragment(R.layout.fragment_additio
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        try {
+            setAdditionResults()
 
-
-        setAdditionResults()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
 
     }

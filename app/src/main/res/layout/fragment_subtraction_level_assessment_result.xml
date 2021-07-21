@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvBeginner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtraction Level"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mombasa"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@+id/tvBeginner"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/tvSubtraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subraction"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linearRootSub"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtraction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ls_1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvSubFirst_0"
+                android:tag="tvSubFirst_0"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSubSecond_0"
+                    android:tag="tvSubSecond_0"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSubAnswer_0"
+                android:tag="tvSubAnswer_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ls_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+
+            app:layout_constraintStart_toEndOf="@id/lOne"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvSubFirst_1"
+                android:tag="tvSubFirst_1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSubSecond_1"
+                    android:tag="tvSubSecond_1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSubAnswer_1"
+                android:tag="tvSubAnswer_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ls_3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/l_2"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvSubFirst_2"
+                android:tag="tvSubFirst_2"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSubSecond_2"
+                    android:tag="tvSubSecond_2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSubAnswer_2"
+                android:tag="tvSubAnswer_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+  <TextView
+        android:id="@+id/tvAddition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Addition"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearRootSub" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linearRootAdd"
+        app:layout_constraintTop_toBottomOf="@id/tvAddition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lOne"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvAdditionFirst_0"
+                android:tag="tvAdditionFirst_0"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdditionSecond_0"
+                    android:tag="tvAdditionSecond_0"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAdditionAnswer_0"
+                android:tag="tvAdditionAnswer_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+
+            app:layout_constraintStart_toEndOf="@id/lOne"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvAdditionFirst_1"
+                android:tag="tvAdditionFirst_1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdditionSecond_1"
+                    android:tag="tvAdditionSecond_1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAdditionAnswer_1"
+                android:tag="tvAdditionAnswer_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/l_2"
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/tvAdditionFirst_2"
+                android:tag="tvAdditionFirst_2"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdditionSecond_2"
+                    android:tag="tvAdditionSecond_2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAdditionAnswer_2"
+                android:tag="tvAdditionAnswer_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_number_recog_red"
+                android:gravity="center"
+                android:text="39"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number Recognition"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearRootAdd" />
+
+    <LinearLayout
+        android:id="@+id/linFirst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumber">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvNumberRecogn_0"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvNumberRecogn_1"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvNumberRecogn_2"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvNumberRecogn_3"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvNumberRecogn_4"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCountAndMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Count and Match"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linFirst" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountAndMatch">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvCountAndMatch_0"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvCountAndMatch_1"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvCountAndMatch_2"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvCountAndMatch_3"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_number_recog"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="tvCountAndMatch_4"
+            android:text="45"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:text="45" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.edward.nyansapo.util
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.Gravity
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.example.edward.nyansapo.numeracy.AssessmentNumeracy
 import com.example.edward.nyansapo.presentation.ui.activities.Activity
 import com.example.edward.nyansapo.presentation.ui.attendance.StudentAttendance
 import com.google.firebase.firestore.DocumentSnapshot
+import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -135,3 +137,28 @@ fun setProgressDialog(context: Context, message: String): AlertDialog {
 }
 
 //end progressbar
+
+
+/**
+ * Convert bitmap to byte array using ByteBuffer.
+ */
+fun Bitmap.convertToByteArray(): ByteArray {
+    //minimum number of bytes that can be used to store this bitmap's pixels
+    val size = this.byteCount
+
+    //allocate new instances which will hold bitmap
+    val buffer = ByteBuffer.allocate(size)
+    val bytes = ByteArray(size)
+
+    //copy the bitmap's pixels into the specified buffer
+    this.copyPixelsToBuffer(buffer)
+
+    //rewinds buffer (buffer position is set to zero and the mark is discarded)
+    buffer.rewind()
+
+    //transfer bytes from buffer into the given destination array
+    buffer.get(bytes)
+
+    //return bitmap's pixels
+    return bytes
+}

@@ -1,17 +1,24 @@
 package com.example.edward.nyansapo.numeracy.addition
 
+import android.R.attr
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Rect
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.provider.MediaStore
 import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,6 +36,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.nio.file.Files
+
 
 @AndroidEntryPoint
 class AdditionFragment : Fragment(R.layout.fragment_addition) {
@@ -160,7 +169,7 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
             assessmentNumeracy.learningLevelNumeracy = Numeracy_Learning_Levels.ADDITION.name
 
         }
-          goToSubtractionScreen(assessmentNumeracy.copy(student=student))
+          goToSubtractionScreen(assessmentNumeracy.copy(student = student))
 
     }
 
@@ -184,8 +193,12 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
 
     private fun setOnClickListener() {
         binding.imvAvatar.setOnClickListener {
-            viewModel.setEvent(Event.StartAnalysis(binding.answerTxtView.inkBuilder))
-        }
+            viewModel.setEvent(Event.StartAnalysis(binding.answerTxtView.inkBuilder,binding.answerTxtView.width.toFloat(),binding.answerTxtView.height.toFloat()))
+           // viewModel.setEvent(Event.StartAnalysisAzure("hello.txt"))
+
+          //  startGallery()
+
+         }
 
         binding.skipTxtView.setOnClickListener {
             goToSubtractionScreen(navArgs.assessmentNumeracy)
@@ -200,8 +213,61 @@ class AdditionFragment : Fragment(R.layout.fragment_addition) {
             }
         }
     }
+val GALLERY_REQUEST=5
+    private fun startGallery() {
+        val galleryIntent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        requireActivity().startActivityFromFragment(this, galleryIntent, GALLERY_REQUEST)
+    }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG, "onActivityResult: ")
+        if (requestCode === GALLERY_REQUEST && attr.data != null && data!!.getData() != null) {
+            //this is the uri of the image use it to load the image 
+            val imageUri: Uri = data!!.getData()
+            Log.d(TAG, "onActivityResult: path:${imageUri.path}")
+            viewModel.setEvent(Event.StartAnalysisAzure(imageUri.path))
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveScreenshot(view: View, saveBitmap: (Bitmap) -> Unit){
+        val window = (view.context as Activity).window
+        if (window != null) {
+            val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+            val locationOfViewInWindow = IntArray(2)
+            view.getLocationInWindow(locationOfViewInWindow)
+            try {
+                PixelCopy.request(window, Rect(locationOfViewInWindow[0], locationOfViewInWindow[1], locationOfViewInWindow[0] + view.width, locationOfViewInWindow[1] + view.height), bitmap, { copyResult ->
+                    if (copyResult == PixelCopy.SUCCESS) {
+                        saveBitmap(bitmap)
+                    }
+                    // possible to handle other result codes ...
+                }, Handler())
+            } catch (e: IllegalArgumentException) {
+                 // PixelCopy may throw IllegalArgumentException, make sure to handle it
+            }
+        }
+    }
+    fun getViewBitmap(v: View): Bitmap? {
+        v.clearFocus()
+        v.isPressed = false
+        val willNotCache = v.willNotCacheDrawing()
+        v.setWillNotCacheDrawing(false)
+        val color = v.drawingCacheBackgroundColor
+        v.drawingCacheBackgroundColor = 0
+        if (color != 0) {
+            v.destroyDrawingCache()
+        }
+        v.buildDrawingCache()
+        val cacheBitmap = v.drawingCache ?: return null
+        val bitmap = Bitmap.createBitmap(cacheBitmap)
+        v.destroyDrawingCache()
+        v.setWillNotCacheDrawing(willNotCache)
+        v.drawingCacheBackgroundColor = color
+        return bitmap
+    }
     private fun goToNext() {
 
         displayNumbers()

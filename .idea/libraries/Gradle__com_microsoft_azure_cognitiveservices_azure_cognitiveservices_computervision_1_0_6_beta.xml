@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure.cognitiveservices:azure-cognitiveservices-computervision:1.0.6-beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision/1.0.6-beta/2fa4b0aae8122f684aa0960835f2e07503f035e3/azure-cognitiveservices-computervision-1.0.6-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision/1.0.6-beta/377172eebd4b65afdf9769c98f93762bba5841eb/azure-cognitiveservices-computervision-1.0.6-beta-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision/1.0.6-beta/9d34f22e72a7ea05d9e90766ab46e79bb46fe73c/azure-cognitiveservices-computervision-1.0.6-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

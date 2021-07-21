@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.rest:client-runtime:1.7.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.7.3/fbcd29be5e5dc68166a94b7acb5141a6ad5c3c56/client-runtime-1.7.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.7.3/8ec44b13d1a6b05ecc90bfdcd3c936762b74782/client-runtime-1.7.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.7.3/1f0bf3da63faa990fb0f33b42e078b954e9403b4/client-runtime-1.7.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

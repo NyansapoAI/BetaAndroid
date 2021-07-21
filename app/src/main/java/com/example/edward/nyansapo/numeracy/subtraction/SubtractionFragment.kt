@@ -189,7 +189,7 @@ class SubtractionFragment : Fragment(R.layout.fragment_addition) {
 
     private fun setOnClickListener() {
         binding.imvAvatar.setOnClickListener {
-            viewModel.setEvent(Event.StartAnalysis(binding.answerTxtView.inkBuilder))
+            viewModel.setEvent(Event.StartAnalysis(binding.answerTxtView.inkBuilder,binding.answerTxtView.width.toFloat(),binding.answerTxtView.height.toFloat()))
         }
 
         binding.skipTxtView.setOnClickListener {

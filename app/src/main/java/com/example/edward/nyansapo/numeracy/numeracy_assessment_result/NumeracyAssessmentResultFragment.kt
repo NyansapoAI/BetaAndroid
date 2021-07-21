@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumeracyAssessmentResultBinding
 import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.AdditionLevelAssessmentResultFragment
+import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.SubtractionLevelAssessmentResultFragment
 import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.beginner.BeginnerLevelAssessmentResultFragment
 import com.example.edward.nyansapo.util.Resource
 import com.example.edward.nyansapo.util.exhaustive
@@ -73,7 +74,7 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
                     when (it) {
                         is NumeracyAssessmentResultViewModel.Event.Beginner -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
                         is NumeracyAssessmentResultViewModel.Event.Addition -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, AdditionLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
-                        is NumeracyAssessmentResultViewModel.Event.Subtraction -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
+                        is NumeracyAssessmentResultViewModel.Event.Subtraction -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, SubtractionLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
                         is NumeracyAssessmentResultViewModel.Event.Multiplicaton -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
                         is NumeracyAssessmentResultViewModel.Event.Division -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
                     }
