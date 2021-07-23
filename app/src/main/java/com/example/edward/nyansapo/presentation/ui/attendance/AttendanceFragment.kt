@@ -49,6 +49,8 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated: ")
         binding = ActivityAttendanceBinding.bind(view)
+
+
         initProgressBar()
         setUpToolBar()
         setLabel(Calendar.getInstance().time.formatDate)
