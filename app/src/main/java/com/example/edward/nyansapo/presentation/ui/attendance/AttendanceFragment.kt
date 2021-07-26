@@ -126,9 +126,9 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
             dateBtnClicked()
         }
 
-        binding.submitBtn.setOnClickListener {
+   /*     binding.submitBtn.setOnClickListener {
             submitBtnClicked()
-        }
+        }*/
     }
 
     private fun dateBtnClicked() {
@@ -152,7 +152,7 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         if (this::attendanceAdapter.isInitialized) {
             binding.submitBtn.isVisible = false
             //set edit item to visible
-            binding.toolbar.root.menu.findItem(R.id.editItem).isVisible = true
+         //   binding.toolbar.root.menu.findItem(R.id.editItem).isVisible = true
             weWantToChangeIfTheCheckBoxIsEnabledOrDisabledInTheRecylerView(false)
 
         } else {
@@ -187,9 +187,9 @@ class AttendanceFragment : Fragment(R.layout.activity_attendance) {
         binding.toolbar.root.setOnMenuItemClickListener { item ->
 
             when (item.itemId) {
-                R.id.editItem -> {
+              /*  R.id.editItem -> {
                     editItemClicked(item)
-                }
+                }*/
 
 
             }

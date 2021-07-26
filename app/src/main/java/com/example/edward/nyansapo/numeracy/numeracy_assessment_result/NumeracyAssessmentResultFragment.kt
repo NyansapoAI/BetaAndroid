@@ -10,9 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumeracyAssessmentResultBinding
-import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.AdditionLevelAssessmentResultFragment
-import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.AdditionLevelAssessmentResultFragment2
-import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.SubtractionLevelAssessmentResultFragment
+import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.*
 import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.beginner.BeginnerLevelAssessmentResultFragment
 import com.example.edward.nyansapo.util.Resource
 import com.example.edward.nyansapo.util.exhaustive
@@ -70,13 +68,52 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
             }
 
             launch {
-                viewModel.numeracyAssessmentResultEvents.collect {
+                viewModel.numeracyAssessmentResultEvents.collect { event ->
                     Log.d(TAG, "subscribeToObservers:numeracyAssessmentResultEvents ")
-                    val bundle = Bundle()
-                    val event=it as NumeracyAssessmentResultViewModel.Event.DisplayAssessment
-                    bundle.putParcelable("assessment", event.assessment)
-                    Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
-                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, AdditionLevelAssessmentResultFragment2::class.java,bundle).commit()
+
+                    when (event) {
+                        is NumeracyAssessmentResultViewModel.Event.Beginner -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Addition -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, AdditionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Subtraction -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, SubtractionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Multiplicaton -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, MultiplicationLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Division -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, DivisionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                    }
+
+
+
+
+
+
                     setDefaults()
                 }
             }

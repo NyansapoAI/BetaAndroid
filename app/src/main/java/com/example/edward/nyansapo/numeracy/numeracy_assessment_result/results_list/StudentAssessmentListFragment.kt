@@ -54,6 +54,7 @@ class StudentAssessmentListFragment : Fragment(R.layout.activity_student_info_pa
         initRecyclerViewAdapter()
         setSwipeListenerForItems()
         viewModel.setEvent(StudentAssessmentListViewModel.Event.FetchAssessments(navArgs.student))
+        viewModel.setEvent(StudentAssessmentListViewModel.Event.FetchAbsenceData(navArgs.student))
         subscribeToObservers()
 
     }
@@ -92,7 +93,19 @@ class StudentAssessmentListFragment : Fragment(R.layout.activity_student_info_pa
                     }
                 }
             }
+
+            launch {
+                viewModel.fetchAbsenceDataStatus.collect {
+                    setAttendanceValue(it)
+                }
+            }
         }
+    }
+
+    private fun setAttendanceValue(it: String) {
+
+        Log.d(TAG, "setAttendanceValue: $it")
+        binding.tvAttendance.text = "${viewModel.counter} Absences: $it"
     }
 
     private fun submitList(data: List<DocumentSnapshot>) {
@@ -239,8 +252,8 @@ class StudentAssessmentListFragment : Fragment(R.layout.activity_student_info_pa
     fun onAssmentClicked(snapshot: DocumentSnapshot) {
         Log.d(TAG, "onAssmentClicked: ${snapshot.assessmentNumeracy}")
 
-    val choosen=viewModel.assessMentsListFlow.value.indexOf(snapshot)
-        findNavController().navigate(StudentAssessmentListFragmentDirections.actionStudentAssessmentListFragmentToNumeracyAssessmentResultFragment(navArgs.student,choosen))
+        val choosen = viewModel.assessMentsListFlow.value.indexOf(snapshot)
+        findNavController().navigate(StudentAssessmentListFragmentDirections.actionStudentAssessmentListFragmentToNumeracyAssessmentResultFragment(navArgs.student, choosen))
     }
 
 
@@ -274,18 +287,18 @@ class StudentAssessmentListFragment : Fragment(R.layout.activity_student_info_pa
 
             when (item.itemId) {
                 R.id.settings -> {
-                    val myIntent = Intent(MainActivity2.activityContext!!, studentSettings::class.java)
-                    startActivity(myIntent)
-                    true
+                    /*     val myIntent = Intent(MainActivity2.activityContext!!, studentSettings::class.java)
+                         startActivity(myIntent)
+                 */        true
                 }
                 R.id.add_assessment -> {
-                    addAssessment()
+                    // addAssessment()
                     true
                 }
                 R.id.analytics -> {
-                    val intent = Intent(MainActivity2.activityContext!!, studentDetails::class.java)
-                    startActivity(intent)
-                    true
+                    /*    val intent = Intent(MainActivity2.activityContext!!, studentDetails::class.java)
+                        startActivity(intent)
+                   */     true
                 }
 
             }

@@ -73,7 +73,27 @@ class NumeracyAssessmentResultViewModel @ViewModelInject constructor(private val
     private suspend fun display(snapshot: DocumentSnapshot) {
         val assessment = snapshot.assessmentNumeracy
 
-        _numeracyAssessmentResultEvents.send(Event.DisplayAssessment(assessment))
+        //  _numeracyAssessmentResultEvents.send(Event.DisplayAssessment(assessment))
+        when (assessment.learningLevelNumeracy) {
+            Numeracy_Learning_Levels.BEGINNER.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Beginner(assessment))
+            }
+            Numeracy_Learning_Levels.ADDITION.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Addition(assessment))
+            }
+            Numeracy_Learning_Levels.SUBTRACTION.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Subtraction(assessment))
+            }
+            Numeracy_Learning_Levels.MULTIPLICATION.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Multiplicaton(assessment))
+            }
+            Numeracy_Learning_Levels.DIVISION.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Division(assessment))
+            }
+            Numeracy_Learning_Levels.ABOVE.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Division(assessment))
+            }
+        }
 
     }
 

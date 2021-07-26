@@ -69,9 +69,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/tvAttendance"
                 android:layout_marginTop="4dp"
                 android:gravity="start"
-                android:text="2 Absences: March 21, March 22" />
+                android:text="..."
+                tools:text="2 Absences: March 21, March 22" />
 
             <TextView
                 android:layout_width="match_parent"

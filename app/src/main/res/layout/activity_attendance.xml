@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_below="@id/toolbar"
+        android:id="@+id/dateBtn"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="wrap_content"
-        android:id="@+id/dateBtn"
-        app:strokeWidth="2dp"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:drawableEnd="@drawable/ic_arrow_down"
         app:strokeColor="@android:color/holo_blue_dark"
-        tools:text="March 21,2021"
-        android:drawableEnd="@drawable/ic_arrow_down" />
+        app:strokeWidth="2dp"
+        tools:text="March 21,2021" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        tools:listitem="@layout/item_attendance"
-        android:layout_below="@id/dateBtn"
         android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/submitBtn"
-        android:layout_height="match_parent"/>
+        android:layout_below="@id/dateBtn"
+        tools:listitem="@layout/item_attendance" />
 
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/submitBtn"
-        android:text="Submit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="@android:color/white"
-        android:padding="16dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:textStyle="bold" />
-
-
+        android:background="@android:color/holo_blue_dark"
+        android:padding="16dp"
+        android:text="Submit"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 
 </RelativeLayout>
