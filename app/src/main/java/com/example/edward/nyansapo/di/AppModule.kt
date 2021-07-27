@@ -80,8 +80,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository_H(): HomeRepository {
-        return HomeRepository()
+    fun provideRepository_H(sharedPreferences: SharedPreferences): HomeRepository {
+        return HomeRepository(sharedPreferences)
     }
 
     @Provides

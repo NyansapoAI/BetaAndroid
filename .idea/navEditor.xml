@@ -523,6 +523,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_numeracyLearningLevelFragment_to_addStudentFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_numeracyLearningLevelFragment_to_numeracyAssessmentResultFragment">
                               <value>
                                 <LayoutPositions />
@@ -588,6 +593,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_selectTaskFragment_to_createActivityFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_selectTaskFragment_to_numeracyLearningLevelFragment">
                               <value>
                                 <LayoutPositions />
@@ -605,6 +615,18 @@
                           <Point>
                             <option name="x" value="256" />
                             <option name="y" value="368" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="studentAssessmentListFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="944" />
+                            <option name="y" value="-495" />
                           </Point>
                         </option>
                       </LayoutPositions>

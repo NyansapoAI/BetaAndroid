@@ -10,8 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.edward.nyansapo.R
 import com.edward.nyansapo.databinding.FragmentNumeracyAssessmentResultBinding
-import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.AdditionLevelAssessmentResultFragment
-import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.SubtractionLevelAssessmentResultFragment
+import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.addition.*
 import com.example.edward.nyansapo.numeracy.numeracy_assessment_result.beginner.BeginnerLevelAssessmentResultFragment
 import com.example.edward.nyansapo.util.Resource
 import com.example.edward.nyansapo.util.exhaustive
@@ -29,6 +28,7 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
     private lateinit var binding: FragmentNumeracyAssessmentResultBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: choosen:${navArgs.choosen} ::student:${navArgs.student}")
         binding = FragmentNumeracyAssessmentResultBinding.bind(view)
         viewModel.setEvent(NumeracyAssessmentResultViewModel.Event.FetchAssessments(navArgs.student))
         subscribeToObservers()
@@ -50,7 +50,7 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
                             viewModel.saveAssessMents(it.data!!)
                             setOnClickListeners()
                             setDefaults()
-                            viewModel.setEvent(NumeracyAssessmentResultViewModel.Event.FirstScreen)
+                            viewModel.setEvent(NumeracyAssessmentResultViewModel.Event.FirstScreen(navArgs.choosen))
 
                         }
                         Resource.Status.ERROR -> {
@@ -68,16 +68,52 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
             }
 
             launch {
-                viewModel.numeracyAssessmentResultEvents.collect {
+                viewModel.numeracyAssessmentResultEvents.collect { event ->
                     Log.d(TAG, "subscribeToObservers:numeracyAssessmentResultEvents ")
-                    getBundle(it)
-                    when (it) {
-                        is NumeracyAssessmentResultViewModel.Event.Beginner -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
-                        is NumeracyAssessmentResultViewModel.Event.Addition -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, AdditionLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
-                        is NumeracyAssessmentResultViewModel.Event.Subtraction -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, SubtractionLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
-                        is NumeracyAssessmentResultViewModel.Event.Multiplicaton -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
-                        is NumeracyAssessmentResultViewModel.Event.Division -> requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, getBundle(it)).commit()
+
+                    when (event) {
+                        is NumeracyAssessmentResultViewModel.Event.Beginner -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, BeginnerLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Addition -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, AdditionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Subtraction -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, SubtractionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Multiplicaton -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, MultiplicationLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
+                        is NumeracyAssessmentResultViewModel.Event.Division -> {
+                            val bundle = Bundle()
+                            bundle.putParcelable("assessment", event.assessment)
+                            Log.d(TAG, "subscribeToObservers: assessment:${event.assessment}")
+                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, DivisionLevelAssessmentResultFragment::class.java, bundle).commit()
+
+                        }
                     }
+
+
+
+
+
+
                     setDefaults()
                 }
             }
@@ -88,18 +124,6 @@ class NumeracyAssessmentResultFragment : Fragment(R.layout.fragment_numeracy_ass
 
     private fun showProgress(visible: Boolean) {
         binding.progressBar.isVisible = visible
-    }
-
-    private fun getBundle(it: NumeracyAssessmentResultViewModel.Event): Bundle {
-        val bundle = Bundle()
-        when (it) {
-            is NumeracyAssessmentResultViewModel.Event.Beginner -> bundle.putParcelable("assessment", it.assessment)
-            is NumeracyAssessmentResultViewModel.Event.Addition -> bundle.putParcelable("assessment", it.assessment)
-            is NumeracyAssessmentResultViewModel.Event.Subtraction -> bundle.putParcelable("assessment", it.assessment)
-            is NumeracyAssessmentResultViewModel.Event.Multiplicaton -> bundle.putParcelable("assessment", it.assessment)
-            is NumeracyAssessmentResultViewModel.Event.Division -> bundle.putParcelable("assessment", it.assessment)
-        }
-        return bundle
     }
 
     private fun setDefaults() {

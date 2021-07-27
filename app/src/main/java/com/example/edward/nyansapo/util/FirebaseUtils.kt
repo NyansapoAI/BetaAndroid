@@ -310,6 +310,9 @@ object FirebaseUtils {
         }
     }
 
+    fun getAssessementsCollection(programId: String, groupId: String, campId: String, studentId: String)= firestoreInstance.collection(COLLECTION_ROOT + "/" + instructor_id + "/" + COLLECTION_PROGRAM_NAMES).document(programId).collection(COLLECTION_GROUPS).document(groupId).collection(COLLECTION_CAMPS).document(campId).collection(COLLECTION_STUDENTS).document(studentId).collection(COLLECTION_ASSESSMENTS_NUMERACY).orderBy("timestamp")
+
+
     fun getAssessmentsFromStudent2(snapshot: DocumentSnapshot) =
             snapshot.reference.collection(COLLECTION_ASSESSMENTS).orderBy(TIME_STAMP_FIELD)
 

@@ -95,7 +95,8 @@ class NumeracyLearningLevelFragment : Fragment(R.layout.fragment_numeracy_learni
 
     private fun onStudentClicked(snapshot: DocumentSnapshot) {
         Log.d(TAG, "onStudentClicked: student:${snapshot.student}")
-        findNavController().navigate(NumeracyLearningLevelFragmentDirections.actionNumeracyLearningLevelFragmentToNumeracyAssessmentResultFragment(snapshot.student))
+     //   findNavController().navigate(NumeracyLearningLevelFragmentDirections.actionNumeracyLearningLevelFragmentToNumeracyAssessmentResultFragment(snapshot.student))
+        findNavController().navigate(NumeracyLearningLevelFragmentDirections.actionNumeracyLearningLevelFragmentToStudentAssessmentListFragment(snapshot.student))
     }
 
     private fun subScribeToObservers() {

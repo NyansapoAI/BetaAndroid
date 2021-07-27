@@ -183,6 +183,10 @@ dependencies {
     //microsoft OCR library
     implementation "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-computervision:1.0.6-beta"
 
+    //getting range of dates to calculate attendance of students
+    compile 'joda-time:joda-time:2.10.10'
+
+
 }
 
 kapt {

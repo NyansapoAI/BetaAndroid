@@ -29,6 +29,7 @@ import com.google.firebase.firestore.SetOptions
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
@@ -46,6 +47,8 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
     lateinit var programNames: QuerySnapshot
     lateinit var groupNames: QuerySnapshot
     lateinit var campNames: QuerySnapshot
+
+    @Inject
     lateinit var sharedPreferences: SharedPreferences
     lateinit var binding: FragmentChangeProgramBinding
 
@@ -53,7 +56,6 @@ class ChangeProgramFragment : Fragment(R.layout.fragment_change_program) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChangeProgramBinding.bind(view)
-        sharedPreferences = MainActivity2.sharedPref
         Log.d(TAG, "onViewCreated: ")
         setOnClickListeners()
         setItemClickListener()

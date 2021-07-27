@@ -80,6 +80,16 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
         }
     }
 
+    suspend fun getAttendanceOnce(date: String) = flow<Resource<List<DocumentSnapshot>>> {
+        try {
+            val it = FirebaseUtils.getCollectionStudentFromCamp_attendance_ReturnCollection(sharedPref.programId!!, sharedPref.groupId!!, sharedPref.campId!!, date).get().await()
+            emit(Resource.success(it.documents))
+        } catch (e: Exception) {
+            emit(Resource.error(e))
+        }
+
+    }
+
     private fun resetListener() {
         try {
             if (this::listener.isInitialized) {
@@ -119,6 +129,7 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
     fun saveActivity(activity: Activity) = flow<Resource<Activity>> {
         FirebaseUtils.addActivity(sharedPref.programId!!, sharedPref.groupId!!, activity).await()
     }
+
     fun saveActivity2(activity: Activity) = callbackFlow<Resource<Activity>> {
         offer(Resource.loading(""))
         FirebaseUtils.getActivityCollectionRef(sharedPref.programId!!, sharedPref.groupId!!).add(activity).addOnSuccessListener {
@@ -129,7 +140,7 @@ class MainRepository @Inject constructor(private val sharedPref: SharedPreferenc
             Log.d(TAG, "saveActivity2: error:${it.message}")
         }
 
-        awaitClose {  }
+        awaitClose { }
     }
 
     suspend fun getRemoteActivities(): List<DocumentSnapshot> {

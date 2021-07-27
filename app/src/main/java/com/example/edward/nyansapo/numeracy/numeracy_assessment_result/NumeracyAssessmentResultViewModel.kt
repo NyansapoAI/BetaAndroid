@@ -33,15 +33,17 @@ class NumeracyAssessmentResultViewModel @ViewModelInject constructor(private val
                 }
                 is Event.FrontClicked -> {
                     frontClicked()
-                }    is Event.FirstScreen -> {
-                    firstScreen()
+                }
+                is Event.FirstScreen -> {
+                    firstScreen(event.choosen)
                 }
 
             }
         }
     }
 
-    private suspend fun firstScreen() {
+    private suspend fun firstScreen(choosen: Int) {
+        counter = choosen
         display(assessMentsListFlow.value.get(counter))
     }
 
@@ -70,27 +72,29 @@ class NumeracyAssessmentResultViewModel @ViewModelInject constructor(private val
 
     private suspend fun display(snapshot: DocumentSnapshot) {
         val assessment = snapshot.assessmentNumeracy
-        when (snapshot.assessmentNumeracy.learningLevelNumeracy) {
+
+        //  _numeracyAssessmentResultEvents.send(Event.DisplayAssessment(assessment))
+        when (assessment.learningLevelNumeracy) {
             Numeracy_Learning_Levels.BEGINNER.name -> {
                 _numeracyAssessmentResultEvents.send(Event.Beginner(assessment))
             }
             Numeracy_Learning_Levels.ADDITION.name -> {
                 _numeracyAssessmentResultEvents.send(Event.Addition(assessment))
-
             }
             Numeracy_Learning_Levels.SUBTRACTION.name -> {
                 _numeracyAssessmentResultEvents.send(Event.Subtraction(assessment))
-
             }
             Numeracy_Learning_Levels.MULTIPLICATION.name -> {
                 _numeracyAssessmentResultEvents.send(Event.Multiplicaton(assessment))
-
             }
             Numeracy_Learning_Levels.DIVISION.name -> {
                 _numeracyAssessmentResultEvents.send(Event.Division(assessment))
-
+            }
+            Numeracy_Learning_Levels.ABOVE.name -> {
+                _numeracyAssessmentResultEvents.send(Event.Division(assessment))
             }
         }
+
     }
 
     private val _fetchAssessmentsStatus = Channel<Resource<List<DocumentSnapshot>>>()
@@ -113,8 +117,9 @@ class NumeracyAssessmentResultViewModel @ViewModelInject constructor(private val
         data class Addition(val assessment: AssessmentNumeracy) : Event()
         data class Subtraction(val assessment: AssessmentNumeracy) : Event()
         data class Multiplicaton(val assessment: AssessmentNumeracy) : Event()
+        data class DisplayAssessment(val assessment: AssessmentNumeracy) : Event()
         data class Division(val assessment: AssessmentNumeracy) : Event()
-        object FirstScreen : Event()
+        data class FirstScreen(val choosen: Int) : Event()
         object BackClicked : Event()
         object FrontClicked : Event()
     }
