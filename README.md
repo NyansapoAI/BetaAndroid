@@ -41,7 +41,7 @@ Email me at eai6@psu.edu if you encounter any issues
 
 <img src="https://s3.ap-south-1.amazonaws.com/mindorks-server-uploads/cooperation-coroutines.png" width="260">&emsp;
 
--MPAndroidChart :used for drawing charts 
+- MPAndroidChart :used for drawing charts 
 
 <img src="https://user-images.githubusercontent.com/63531125/151121138-7b17e393-5e49-47dc-ac18-18c738fffea6.jpeg" width="260">&emsp;
 
